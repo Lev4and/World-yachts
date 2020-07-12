@@ -2,8 +2,9 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:World_yachts"
+             xmlns:v="clr-namespace:World_yachts.Views"
              StartupUri="Views/Windows/MainWindow.xaml">
     <Application.Resources>
-         
+        <v:ViewModelLocator x:Key="ViewModelLocator"/>
     </Application.Resources>
 </Application>
