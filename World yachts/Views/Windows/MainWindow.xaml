@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:World_yachts.Views.Windows"
         mc:Ignorable="d"
+        DataContext="{Binding MainWindowViewModel, Source={StaticResource ViewModelLocator}}"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Frame Content="{Binding PageSource}" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

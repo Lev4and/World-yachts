@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b0f9157c374540faa2935f0e96e4cf61" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Accessory" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AccToBoats" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Boat" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Contract" Width="1.5" PointX="8.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Customer" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Invoice" Width="1.5" PointX="10.5" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Order" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.OrderDetails" Width="1.5" PointX="11.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Partner" Width="1.5" PointX="1.5" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Role" Width="1.5" PointX="5.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SalesPerson" Width="1.5" PointX="3.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="8" PointY="10.25" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_Accessory_Partner" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_AccToBoats_Accessory" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_OrderDetails_Accessory" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_AccToBoats_Boat" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Order_Boat" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Contract_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Invoice_Contract" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Order_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Order_SalesPerson" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_OrderDetails_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_User_Role" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.v_user" Width="1.5" PointX="6.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
