@@ -13,7 +13,7 @@ namespace World_yachts.ViewModels
     {
         private int _countIncorrectAttempts;
         private readonly PageService _pageService;
-        private EntityFramework _eF;
+        private readonly EntityFramework _eF;
 
         public bool IsLocked { get; set; }
 
@@ -63,6 +63,13 @@ namespace World_yachts.ViewModels
             if(_eF.CorrectDataUser(Login, Password, out user))
             {
                 IsAuthorizationed = true;
+
+                _eF.UpdateValueWasOnline(user);
+
+                if(_eF.NecessaryChagePassword(user))
+                {
+
+                }
             }
             else
             {

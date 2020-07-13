@@ -5,12 +5,29 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:World_yachts.Views.Pages"
       xmlns:vm="clr-namespace:World_yachts.ViewModels"
+      xmlns:wpfag="http://wpfanimatedgif.codeplex.com"
+      xmlns:c="clr-namespace:World_yachts.Converters"
       mc:Ignorable="d" 
       DataContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Main">
+    <Page.Resources>
+        <c:ValueToVisibility x:Key="valueToVisibility"/>
+    </Page.Resources>
     <Grid>
         <Grid>
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsBackgroundTaskRunning}" Value="true">
+                            <Setter Property="Opacity" Value="0"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=IsBackgroundTaskRunning}" Value="false">
+                            <Setter Property="Opacity" Value="1"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
             <Button Content="Войти" 
                 VerticalAlignment="Center" 
                 HorizontalAlignment="Center" 
@@ -37,6 +54,26 @@
                 FontFamily="Comic Sans MS"
                 FontSize="18"
                 Command="{Binding Exit}"/>
+        </Grid>
+        <Grid Visibility="{Binding Path=IsBackgroundTaskRunning, Converter={StaticResource valueToVisibility}}" Width="275" Height="300">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Image wpfag:ImageBehavior.AnimatedSource="/World yachts;component/Resources/Images/Loading/Rolling-1s-200px.gif"
+                       Width="50"
+                       Height="50"
+                       Stretch="Fill"/>
+            </Grid>
+            <Grid Grid.Row="1">
+                <TextBlock Text="Выполнение фоновых задач. Пожалуйста подождите..."
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           FontFamily="Comic Sans MS"
+                           FontSize="18"
+                           Foreground="Orange"/>
+            </Grid>
         </Grid>
     </Grid>
 </Page>

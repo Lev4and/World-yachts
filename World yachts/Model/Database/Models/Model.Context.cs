@@ -12,6 +12,8 @@ namespace World_yachts.Model.Database.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class WorldYachtsContext : DbContext
     {
@@ -38,5 +40,10 @@ namespace World_yachts.Model.Database.Models
         public virtual DbSet<SalesPerson> SalesPerson { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<v_user> v_user { get; set; }
+    
+        public virtual int sp_toBlockUser()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_toBlockUser");
+        }
     }
 }

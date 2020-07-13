@@ -2,6 +2,6 @@
 {
     public interface IProcedurable
     {
-
+        void BlockingUsers();
     }
 }

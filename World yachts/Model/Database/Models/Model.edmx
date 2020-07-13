@@ -310,6 +310,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_getCountDays" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="date" Type="smalldatetime" Mode="In" />
+        </Function>
+        <Function Name="sp_toBlockUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="Хранилище ModelContainer">
           <EntitySet Name="Accessory" EntityType="Self.Accessory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AccToBoats" EntityType="Self.AccToBoats" Schema="dbo" store:Type="Tables" />
@@ -748,6 +752,7 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
           <EntitySet Name="v_user" EntityType="Model.v_user" />
+          <FunctionImport Name="sp_toBlockUser" />
         </EntityContainer>
         <EntityType Name="v_user">
           <Key>
@@ -929,6 +934,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_toBlockUser" FunctionName="Хранилище Model.sp_toBlockUser" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
