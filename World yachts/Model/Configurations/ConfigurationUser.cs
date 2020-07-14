@@ -11,10 +11,13 @@ namespace World_yachts.Model.Configurations
 
         public string TypeUser { get; set; }
 
+        public bool IsAuthorized { get; set; }
+
         public ConfigurationUser(int idUser, string typeUser)
         {
             IdUser = idUser;
             TypeUser = typeUser;
+            IsAuthorized = false;
         }
 
         public void Save()

@@ -29,6 +29,12 @@
         <AssociationConnector Association="Model.FK_OrderDetails_Order" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_User_Role" ManuallyRouted="false" />
         <EntityTypeShape EntityType="Model.v_user" Width="1.5" PointX="6.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.BoatType" Width="1.5" PointX="0.75" PointY="17.625" />
+        <EntityTypeShape EntityType="Model.Colour" Width="1.5" PointX="0.75" PointY="15.125" />
+        <EntityTypeShape EntityType="Model.Wood" Width="1.5" PointX="0.75" PointY="12.75" />
+        <AssociationConnector Association="Model.FK_Boat_BoatType" />
+        <AssociationConnector Association="Model.FK_Boat_Colour" />
+        <AssociationConnector Association="Model.FK_Boat_Wood" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -40,6 +40,9 @@ namespace World_yachts.Model.Database.Models
         public virtual DbSet<SalesPerson> SalesPerson { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<v_user> v_user { get; set; }
+        public virtual DbSet<BoatType> BoatType { get; set; }
+        public virtual DbSet<Colour> Colour { get; set; }
+        public virtual DbSet<Wood> Wood { get; set; }
     
         public virtual int sp_toBlockUser()
         {

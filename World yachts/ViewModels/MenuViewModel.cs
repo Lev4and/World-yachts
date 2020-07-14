@@ -18,6 +18,12 @@ namespace World_yachts.ViewModels
             _config = ConfigurationUser.GetConfiguration();
         }
 
+        public ICommand Loaded => new DelegateCommand(() =>
+        {
+            _config.IsAuthorized = true;
+            _config.Save();
+        });
+
         public ICommand Boats => new DelegateCommand(() =>
         {
 
@@ -50,8 +56,6 @@ namespace World_yachts.ViewModels
 
         public ICommand Exit => new DelegateCommand(() =>
         {
-            new EntityFramework().UpdateValueWasOnline(_config.IdUser);
-
             Application.Current.Shutdown();
         });
     }

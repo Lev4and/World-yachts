@@ -12,31 +12,18 @@ namespace World_yachts.Model.Database.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Boat
+    public partial class BoatType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Boat()
+        public BoatType()
         {
-            this.AccToBoats = new HashSet<AccToBoats>();
-            this.Order = new HashSet<Order>();
+            this.Boat = new HashSet<Boat>();
         }
     
-        public int IdBoat { get; set; }
-        public string Model { get; set; }
-        public int BoatType { get; set; }
-        public int NumberOfRowers { get; set; }
-        public bool Mast { get; set; }
-        public int Colour { get; set; }
-        public int Wood { get; set; }
-        public int BasePrice { get; set; }
-        public double VAT { get; set; }
+        public int IdBoatType { get; set; }
+        public string NameBoatType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AccToBoats> AccToBoats { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Order { get; set; }
-        public virtual BoatType BoatType1 { get; set; }
-        public virtual Colour Colour1 { get; set; }
-        public virtual Wood Wood1 { get; set; }
+        public virtual ICollection<Boat> Boat { get; set; }
     }
 }

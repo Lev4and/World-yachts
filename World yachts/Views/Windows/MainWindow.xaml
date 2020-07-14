@@ -4,9 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:World_yachts.Views.Windows"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         DataContext="{Binding MainWindowViewModel, Source={StaticResource ViewModelLocator}}"
         Title="MainWindow" Height="450" Width="800">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closed">
+            <i:InvokeCommandAction Command="{Binding Closed}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Frame Content="{Binding PageSource}" NavigationUIVisibility="Hidden"/>
     </Grid>
