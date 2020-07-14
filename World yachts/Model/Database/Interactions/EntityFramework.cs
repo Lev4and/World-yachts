@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using World_yachts.Model.Database.Models;
 
@@ -13,14 +14,90 @@ namespace World_yachts.Model.Database.Interactions
             _context = new WorldYachtsContext();
         }
 
+        public bool AddSalesPerson(int idSalesPerson, string firstName, string familyName)
+        {
+            if(!ContainsSalesPerson(idSalesPerson))
+            {
+                _context.SalesPerson.Add(new SalesPerson
+                {
+                    IdSalesPerson = idSalesPerson,
+                    FirstName = firstName,
+                    FamilyName = familyName
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool AddUser(int idRole, string login, string password)
+        {
+            DateTime dateTime = DateTime.Now;
+
+            if(!ContainsUser(login))
+            {
+                _context.User.Add(new User
+                {
+                    IdRole = idRole,
+                    Login = login,
+                    Password = password,
+                    DateOfRegistration = dateTime,
+                    DateOfLastChangePassword = dateTime,
+                    WasOnline = null
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool AddUser(int idRole, string login, string password, out User user)
+        {
+            user = null;
+
+            DateTime dateTime = DateTime.Now;
+
+            if (!ContainsUser(login))
+            {
+                user = _context.User.Add(new User
+                {
+                    IdRole = idRole,
+                    Login = login,
+                    Password = password,
+                    DateOfRegistration = dateTime,
+                    DateOfLastChangePassword = dateTime,
+                    WasOnline = null
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public void BlockingUsers()
         {
             _context.sp_toBlockUser();
         }
 
+        public bool ContainsSalesPerson(int idSalesPerson)
+        {
+            return _context.SalesPerson.SingleOrDefault(s => s.IdSalesPerson == idSalesPerson) != null;
+        }
+
+        public bool ContainsUser(string login)
+        {
+            return _context.User.SingleOrDefault(u => u.Login == login) != null;
+        }
+
         public bool CorrectDataUser(string login, string password)
         {
-            return _context.v_user.SingleOrDefault(u => u.Login == login && u.Password == password) != null ? true : false;
+            return _context.v_user.SingleOrDefault(u => u.Login == login && u.Password == password) != null;
         }
 
         public bool CorrectDataUser(string login, string password, out v_user user)
@@ -30,19 +107,34 @@ namespace World_yachts.Model.Database.Interactions
             return user != null ? true : false;
         }
 
+        public List<Role> GetRoles()
+        {
+            return _context.Role.AsNoTracking().ToList();
+        }
+
         public bool NecessaryChagePassword(DateTime dateOfLastChangePassword)
         {
-            return (DateTime.Now - dateOfLastChangePassword).Days >= 14 ? true : false;
+            return (DateTime.Now - dateOfLastChangePassword).Days >= 14;
         }
 
         public bool NecessaryChagePassword(User user)
         {
-            return (DateTime.Now - user.DateOfLastChangePassword).Days >= 14 ? true : false;
+            return (DateTime.Now - user.DateOfLastChangePassword).Days >= 14;
         }
 
         public bool NecessaryChagePassword(v_user user)
         {
-            return (DateTime.Now - user.DateOfLastChangePassword).Days >= 14 ? true : false;
+            return (DateTime.Now - user.DateOfLastChangePassword).Days >= 14;
+        }
+
+        public void UpdatePassword(int idUser, string newPassword)
+        {
+            var user = _context.User.SingleOrDefault(u => u.IdUser == idUser);
+
+            user.Password = newPassword;
+            user.DateOfLastChangePassword = DateTime.Now;
+
+            _context.SaveChanges();
         }
 
         public void UpdateValueWasOnline(int idUser)

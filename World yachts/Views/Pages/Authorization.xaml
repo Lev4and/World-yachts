@@ -106,7 +106,7 @@
                 </TextBlock>
             </Grid>
         </Grid>
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="2">
             <Button Content="Авторизоваться"
                     Command="{Binding Authorization}"
                     VerticalAlignment="Bottom" 
@@ -115,7 +115,7 @@
                     FontFamily="Comic Sans MS"
                     FontSize="22"/>
         </Grid>
-        <Grid Grid.Row="3" Visibility="{Binding Path=IsLocked, Converter={StaticResource valueToVisibility}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,10,10">
+        <Grid Grid.Row="2" Visibility="{Binding Path=IsLocked, Converter={StaticResource valueToVisibility}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,10,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>

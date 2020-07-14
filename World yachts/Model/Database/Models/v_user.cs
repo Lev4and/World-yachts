@@ -20,6 +20,6 @@ namespace World_yachts.Model.Database.Models
         public string Password { get; set; }
         public System.DateTime DateOfRegistration { get; set; }
         public System.DateTime DateOfLastChangePassword { get; set; }
-        public System.DateTime WasOnline { get; set; }
+        public Nullable<System.DateTime> WasOnline { get; set; }
     }
 }

@@ -15,6 +15,10 @@ namespace World_yachts.Views
             services.AddTransient<MainWindowViewModel>();
             services.AddTransient<MainViewModel>();
             services.AddTransient<AuthorizationViewModel>();
+            services.AddTransient<ChangePasswordViewModel>();
+            services.AddTransient<MenuViewModel>();
+            services.AddTransient<RegistrationViewModel>();
+            services.AddTransient<UserInformationSupplementViewModel>();
 
             services.AddSingleton<PageService>();
 
@@ -29,5 +33,13 @@ namespace World_yachts.Views
         public MainViewModel MainViewModel => _provider.GetRequiredService<MainViewModel>();
 
         public AuthorizationViewModel AuthorizationViewModel => _provider.GetRequiredService<AuthorizationViewModel>();
+
+        public ChangePasswordViewModel ChangePasswordViewModel => _provider.GetRequiredService<ChangePasswordViewModel>();
+
+        public MenuViewModel MenuViewModel => _provider.GetRequiredService<MenuViewModel>();
+
+        public RegistrationViewModel RegistrationViewModel => _provider.GetRequiredService<RegistrationViewModel>();
+
+        public UserInformationSupplementViewModel UserInformationSupplementViewModel => _provider.GetRequiredService<UserInformationSupplementViewModel>();
     }
 }

@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using World_yachts.Model.Configurations;
 using World_yachts.Model.Database.Interactions;
 using World_yachts.Model.Database.Models;
 using World_yachts.Services;
@@ -64,11 +65,18 @@ namespace World_yachts.ViewModels
             {
                 IsAuthorizationed = true;
 
-                _eF.UpdateValueWasOnline(user);
-
                 if(_eF.NecessaryChagePassword(user))
                 {
+                    ChangePasswordViewModel.User = user;
 
+                    _pageService.ChangePage(new ChangePassword());
+                }
+                else
+                {
+                    ConfigurationUser config = new ConfigurationUser(user.IdUser, user.RoleName);
+                    config.Save();
+
+                    _pageService.ChangePage(new Menu());
                 }
             }
             else

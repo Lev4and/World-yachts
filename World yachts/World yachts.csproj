@@ -116,6 +116,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Converters\ValueToVisibility.cs" />
+    <Compile Include="Messages\IMessage.cs" />
+    <Compile Include="Messages\UserMessage.cs" />
+    <Compile Include="Model\Configurations\ConfigurationUser.cs" />
     <Compile Include="Model\Database\Interactions\DataActions\IAccordanable.cs" />
     <Compile Include="Model\Database\Interactions\DataActions\IAddable.cs" />
     <Compile Include="Model\Database\Interactions\DataActions\IContainsable.cs" />
@@ -183,13 +186,29 @@
     </Compile>
     <Compile Include="Services\PageService.cs" />
     <Compile Include="ViewModels\AuthorizationViewModel.cs" />
+    <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\RegistrationViewModel.cs" />
+    <Compile Include="ViewModels\UserInformationSupplementViewModel.cs" />
     <Compile Include="Views\Pages\Authorization.xaml.cs">
       <DependentUpon>Authorization.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\ChangePassword.xaml.cs">
+      <DependentUpon>ChangePassword.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Menu.xaml.cs">
+      <DependentUpon>Menu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Registration.xaml.cs">
+      <DependentUpon>Registration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\UserInformationSupplement.xaml.cs">
+      <DependentUpon>UserInformationSupplement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ViewModelLocator.cs" />
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
@@ -235,7 +254,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\ChangePassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Registration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\UserInformationSupplement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -245,7 +280,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\Configurations\" />
     <Folder Include="Model\Logic\" />
     <Folder Include="Resources\Images\Icons\" />
     <Folder Include="Resources\Images\Interface\" />

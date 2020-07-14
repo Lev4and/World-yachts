@@ -134,7 +134,7 @@
           <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
           <Property Name="DateOfRegistration" Type="smalldatetime" Nullable="false" />
           <Property Name="DateOfLastChangePassword" Type="smalldatetime" Nullable="false" />
-          <Property Name="WasOnline" Type="smalldatetime" Nullable="false" />
+          <Property Name="WasOnline" Type="smalldatetime" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_user" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -146,7 +146,6 @@
             <PropertyRef Name="Password" />
             <PropertyRef Name="DateOfRegistration" />
             <PropertyRef Name="DateOfLastChangePassword" />
-            <PropertyRef Name="WasOnline" />
           </Key>
           <Property Name="IdUser" Type="int" Nullable="false" />
           <Property Name="RoleName" Type="nvarchar(max)" Nullable="false" />
@@ -154,7 +153,7 @@
           <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
           <Property Name="DateOfRegistration" Type="smalldatetime" Nullable="false" />
           <Property Name="DateOfLastChangePassword" Type="smalldatetime" Nullable="false" />
-          <Property Name="WasOnline" Type="smalldatetime" Nullable="false" />
+          <Property Name="WasOnline" Type="smalldatetime" />
         </EntityType>
         <Association Name="FK_Accessory_Partner">
           <End Role="Partner" Type="Self.Partner" Multiplicity="1">
@@ -537,7 +536,7 @@
           <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DateOfLastChangePassword" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="WasOnline" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="WasOnline" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
         <Association Name="FK_Accessory_Partner">
@@ -751,8 +750,8 @@
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <EntitySet Name="v_user" EntityType="Model.v_user" />
           <FunctionImport Name="sp_toBlockUser" />
+          <EntitySet Name="v_user" EntityType="Model.v_user" />
         </EntityContainer>
         <EntityType Name="v_user">
           <Key>
@@ -762,7 +761,6 @@
             <PropertyRef Name="Password" />
             <PropertyRef Name="DateOfRegistration" />
             <PropertyRef Name="DateOfLastChangePassword" />
-            <PropertyRef Name="WasOnline" />
           </Key>
           <Property Name="IdUser" Type="Int32" Nullable="false" />
           <Property Name="RoleName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -770,7 +768,7 @@
           <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DateOfLastChangePassword" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="WasOnline" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="WasOnline" Type="DateTime" Precision="0" Nullable="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -921,6 +919,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_toBlockUser" FunctionName="Хранилище Model.sp_toBlockUser" />
           <EntitySetMapping Name="v_user">
             <EntityTypeMapping TypeName="Model.v_user">
               <MappingFragment StoreEntitySet="v_user">
@@ -934,7 +933,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_toBlockUser" FunctionName="Хранилище Model.sp_toBlockUser" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

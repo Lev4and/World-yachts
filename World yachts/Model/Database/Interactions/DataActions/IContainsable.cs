@@ -2,6 +2,8 @@
 {
     public interface IContainsable
     {
+        bool ContainsSalesPerson(int idSalesPerson);
 
+        bool ContainsUser(string login);
     }
 }

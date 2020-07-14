@@ -30,7 +30,7 @@ namespace World_yachts.ViewModels
         {
             await Task.Run(() => 
             {
-                Thread.Sleep(1500);
+                Thread.Sleep(2000);
 
                 _eF.BlockingUsers();
 
@@ -41,6 +41,11 @@ namespace World_yachts.ViewModels
         public ICommand Authorization => new DelegateCommand(() =>
         {
             _pageService.ChangePage(new Authorization());
+        }, () => IsBackgroundTaskRunning == false);
+
+        public ICommand Registration => new DelegateCommand(() =>
+        {
+            _pageService.ChangePage(new Registration());
         }, () => IsBackgroundTaskRunning == false);
 
         public ICommand Exit => new DelegateCommand(() =>
