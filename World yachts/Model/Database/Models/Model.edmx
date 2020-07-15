@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Accessory">
           <Key>
             <PropertyRef Name="IdAccessory" />
@@ -33,11 +33,11 @@
           </Key>
           <Property Name="IdBoat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Model" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="BoatType" Type="int" Nullable="false" />
+          <Property Name="IdBoatType" Type="int" Nullable="false" />
           <Property Name="NumberOfRowers" Type="int" Nullable="false" />
           <Property Name="Mast" Type="bit" Nullable="false" />
-          <Property Name="Colour" Type="int" Nullable="false" />
-          <Property Name="Wood" Type="int" Nullable="false" />
+          <Property Name="IdColour" Type="int" Nullable="false" />
+          <Property Name="IdWood" Type="int" Nullable="false" />
           <Property Name="BasePrice" Type="int" Nullable="false" />
           <Property Name="VAT" Type="float" Nullable="false" />
         </EntityType>
@@ -159,6 +159,30 @@
           <Property Name="NameWood" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_boat" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_boat">
+          <Key>
+            <PropertyRef Name="IdBoat" />
+            <PropertyRef Name="Model" />
+            <PropertyRef Name="NameBoatType" />
+            <PropertyRef Name="NumberOfRowers" />
+            <PropertyRef Name="Mast" />
+            <PropertyRef Name="NameColour" />
+            <PropertyRef Name="NameWood" />
+            <PropertyRef Name="BasePrice" />
+            <PropertyRef Name="VAT" />
+          </Key>
+          <Property Name="IdBoat" Type="int" Nullable="false" />
+          <Property Name="Model" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="NameBoatType" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NumberOfRowers" Type="int" Nullable="false" />
+          <Property Name="Mast" Type="bit" Nullable="false" />
+          <Property Name="NameColour" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NameWood" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="BasePrice" Type="int" Nullable="false" />
+          <Property Name="VAT" Type="float" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_user" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="v_user">
           <Key>
@@ -229,7 +253,7 @@
               <PropertyRef Name="IdBoatType" />
             </Principal>
             <Dependent Role="Boat">
-              <PropertyRef Name="BoatType" />
+              <PropertyRef Name="IdBoatType" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -243,7 +267,7 @@
               <PropertyRef Name="IdColour" />
             </Principal>
             <Dependent Role="Boat">
-              <PropertyRef Name="Colour" />
+              <PropertyRef Name="IdColour" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -257,7 +281,7 @@
               <PropertyRef Name="IdWood" />
             </Principal>
             <Dependent Role="Boat">
-              <PropertyRef Name="Wood" />
+              <PropertyRef Name="IdWood" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -393,6 +417,19 @@
           <EntitySet Name="SalesPerson" EntityType="Self.SalesPerson" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Wood" EntityType="Self.Wood" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="v_boat" EntityType="Self.v_boat" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_boat].[IdBoat] AS [IdBoat], 
+    [v_boat].[Model] AS [Model], 
+    [v_boat].[NameBoatType] AS [NameBoatType], 
+    [v_boat].[NumberOfRowers] AS [NumberOfRowers], 
+    [v_boat].[Mast] AS [Mast], 
+    [v_boat].[NameColour] AS [NameColour], 
+    [v_boat].[NameWood] AS [NameWood], 
+    [v_boat].[BasePrice] AS [BasePrice], 
+    [v_boat].[VAT] AS [VAT]
+    FROM [dbo].[v_boat] AS [v_boat]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="v_user" EntityType="Self.v_user" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [v_user].[IdUser] AS [IdUser], 
@@ -461,7 +498,8 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -498,18 +536,35 @@
           </Key>
           <Property Name="IdBoat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Model" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="BoatType" Type="Int32" Nullable="false" />
+          <Property Name="IdBoatType" Type="Int32" Nullable="false" />
           <Property Name="NumberOfRowers" Type="Int32" Nullable="false" />
           <Property Name="Mast" Type="Boolean" Nullable="false" />
-          <Property Name="Colour" Type="Int32" Nullable="false" />
-          <Property Name="Wood" Type="Int32" Nullable="false" />
+          <Property Name="IdColour" Type="Int32" Nullable="false" />
+          <Property Name="IdWood" Type="Int32" Nullable="false" />
           <Property Name="BasePrice" Type="Int32" Nullable="false" />
           <Property Name="VAT" Type="Double" Nullable="false" />
           <NavigationProperty Name="AccToBoats" Relationship="Self.FK_AccToBoats_Boat" FromRole="Boat" ToRole="AccToBoats" />
+          <NavigationProperty Name="BoatType" Relationship="Self.FK_Boat_BoatType" FromRole="Boat" ToRole="BoatType" />
+          <NavigationProperty Name="Colour" Relationship="Self.FK_Boat_Colour" FromRole="Boat" ToRole="Colour" />
+          <NavigationProperty Name="Wood" Relationship="Self.FK_Boat_Wood" FromRole="Boat" ToRole="Wood" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Order_Boat" FromRole="Boat" ToRole="Order" />
-          <NavigationProperty Name="BoatType1" Relationship="Model.FK_Boat_BoatType" FromRole="Boat" ToRole="BoatType" />
-          <NavigationProperty Name="Colour1" Relationship="Model.FK_Boat_Colour" FromRole="Boat" ToRole="Colour" />
-          <NavigationProperty Name="Wood1" Relationship="Model.FK_Boat_Wood" FromRole="Boat" ToRole="Wood" />
+        </EntityType>
+        <EntityType Name="BoatType">
+          <Key>
+            <PropertyRef Name="IdBoatType" />
+          </Key>
+          <Property Name="IdBoatType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameBoatType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Boat" Relationship="Self.FK_Boat_BoatType" FromRole="BoatType" ToRole="Boat" />
+        </EntityType>
+        <EntityType Name="Colour">
+          <Key>
+            <PropertyRef Name="IdColour" />
+          </Key>
+          <Property Name="IdColour" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameColour" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Boat" Relationship="Self.FK_Boat_Colour" FromRole="Colour" ToRole="Boat" />
         </EntityType>
         <EntityType Name="Contract">
           <Key>
@@ -621,6 +676,53 @@
           <Property Name="WasOnline" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
+        <EntityType Name="Wood">
+          <Key>
+            <PropertyRef Name="IdWood" />
+          </Key>
+          <Property Name="IdWood" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameWood" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Boat" Relationship="Self.FK_Boat_Wood" FromRole="Wood" ToRole="Boat" />
+        </EntityType>
+        <EntityType Name="v_boat">
+          <Key>
+            <PropertyRef Name="IdBoat" />
+            <PropertyRef Name="Model" />
+            <PropertyRef Name="NameBoatType" />
+            <PropertyRef Name="NumberOfRowers" />
+            <PropertyRef Name="Mast" />
+            <PropertyRef Name="NameColour" />
+            <PropertyRef Name="NameWood" />
+            <PropertyRef Name="BasePrice" />
+            <PropertyRef Name="VAT" />
+          </Key>
+          <Property Name="IdBoat" Type="Int32" Nullable="false" />
+          <Property Name="Model" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameBoatType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumberOfRowers" Type="Int32" Nullable="false" />
+          <Property Name="Mast" Type="Boolean" Nullable="false" />
+          <Property Name="NameColour" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameWood" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BasePrice" Type="Int32" Nullable="false" />
+          <Property Name="VAT" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_user">
+          <Key>
+            <PropertyRef Name="IdUser" />
+            <PropertyRef Name="RoleName" />
+            <PropertyRef Name="Login" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="DateOfRegistration" />
+            <PropertyRef Name="DateOfLastChangePassword" />
+          </Key>
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateOfLastChangePassword" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="WasOnline" Type="DateTime" Precision="0" />
+        </EntityType>
         <Association Name="FK_Accessory_Partner">
           <End Role="Partner" Type="Self.Partner" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -674,6 +776,48 @@
             </Principal>
             <Dependent Role="AccToBoats">
               <PropertyRef Name="IdBoat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Boat_BoatType">
+          <End Role="BoatType" Type="Self.BoatType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Boat" Type="Self.Boat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BoatType">
+              <PropertyRef Name="IdBoatType" />
+            </Principal>
+            <Dependent Role="Boat">
+              <PropertyRef Name="IdBoatType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Boat_Colour">
+          <End Role="Colour" Type="Self.Colour" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Boat" Type="Self.Boat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colour">
+              <PropertyRef Name="IdColour" />
+            </Principal>
+            <Dependent Role="Boat">
+              <PropertyRef Name="IdColour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Boat_Wood">
+          <End Role="Wood" Type="Self.Wood" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Boat" Type="Self.Boat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wood">
+              <PropertyRef Name="IdWood" />
+            </Principal>
+            <Dependent Role="Boat">
+              <PropertyRef Name="IdWood" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -779,6 +923,8 @@
           <EntitySet Name="Accessory" EntityType="Self.Accessory" />
           <EntitySet Name="AccToBoats" EntityType="Self.AccToBoats" />
           <EntitySet Name="Boat" EntityType="Self.Boat" />
+          <EntitySet Name="BoatType" EntityType="Self.BoatType" />
+          <EntitySet Name="Colour" EntityType="Self.Colour" />
           <EntitySet Name="Contract" EntityType="Self.Contract" />
           <EntitySet Name="Customer" EntityType="Self.Customer" />
           <EntitySet Name="Invoice" EntityType="Self.Invoice" />
@@ -788,6 +934,9 @@
           <EntitySet Name="Role" EntityType="Self.Role" />
           <EntitySet Name="SalesPerson" EntityType="Self.SalesPerson" />
           <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="Wood" EntityType="Self.Wood" />
+          <EntitySet Name="v_boat" EntityType="Self.v_boat" />
+          <EntitySet Name="v_user" EntityType="Self.v_user" />
           <AssociationSet Name="FK_Accessory_Partner" Association="Self.FK_Accessory_Partner">
             <End Role="Partner" EntitySet="Partner" />
             <End Role="Accessory" EntitySet="Accessory" />
@@ -803,6 +952,18 @@
           <AssociationSet Name="FK_AccToBoats_Boat" Association="Self.FK_AccToBoats_Boat">
             <End Role="Boat" EntitySet="Boat" />
             <End Role="AccToBoats" EntitySet="AccToBoats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Boat_BoatType" Association="Self.FK_Boat_BoatType">
+            <End Role="BoatType" EntitySet="BoatType" />
+            <End Role="Boat" EntitySet="Boat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Boat_Colour" Association="Self.FK_Boat_Colour">
+            <End Role="Colour" EntitySet="Colour" />
+            <End Role="Boat" EntitySet="Boat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Boat_Wood" Association="Self.FK_Boat_Wood">
+            <End Role="Wood" EntitySet="Wood" />
+            <End Role="Boat" EntitySet="Boat" />
           </AssociationSet>
           <AssociationSet Name="FK_Order_Boat" Association="Self.FK_Order_Boat">
             <End Role="Boat" EntitySet="Boat" />
@@ -833,107 +994,7 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
           <FunctionImport Name="sp_toBlockUser" />
-          <EntitySet Name="v_user" EntityType="Model.v_user" />
-          <EntitySet Name="BoatType" EntityType="Model.BoatType" />
-          <EntitySet Name="Colour" EntityType="Model.Colour" />
-          <EntitySet Name="Wood" EntityType="Model.Wood" />
-          <AssociationSet Name="FK_Boat_BoatType" Association="Model.FK_Boat_BoatType">
-            <End Role="BoatType" EntitySet="BoatType" />
-            <End Role="Boat" EntitySet="Boat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Boat_Colour" Association="Model.FK_Boat_Colour">
-            <End Role="Colour" EntitySet="Colour" />
-            <End Role="Boat" EntitySet="Boat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Boat_Wood" Association="Model.FK_Boat_Wood">
-            <End Role="Wood" EntitySet="Wood" />
-            <End Role="Boat" EntitySet="Boat" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="v_user">
-          <Key>
-            <PropertyRef Name="IdUser" />
-            <PropertyRef Name="RoleName" />
-            <PropertyRef Name="Login" />
-            <PropertyRef Name="Password" />
-            <PropertyRef Name="DateOfRegistration" />
-            <PropertyRef Name="DateOfLastChangePassword" />
-          </Key>
-          <Property Name="IdUser" Type="Int32" Nullable="false" />
-          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Login" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="DateOfLastChangePassword" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="WasOnline" Type="DateTime" Precision="0" Nullable="true" />
-        </EntityType>
-        <EntityType Name="BoatType">
-          <Key>
-            <PropertyRef Name="IdBoatType" />
-          </Key>
-          <Property Name="IdBoatType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NameBoatType" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Boat" Relationship="Model.FK_Boat_BoatType" FromRole="BoatType" ToRole="Boat" />
-        </EntityType>
-        <EntityType Name="Colour">
-          <Key>
-            <PropertyRef Name="IdColour" />
-          </Key>
-          <Property Name="IdColour" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NameColour" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Price" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Boat" Relationship="Model.FK_Boat_Colour" FromRole="Colour" ToRole="Boat" />
-        </EntityType>
-        <EntityType Name="Wood">
-          <Key>
-            <PropertyRef Name="IdWood" />
-          </Key>
-          <Property Name="IdWood" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NameWood" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Boat" Relationship="Model.FK_Boat_Wood" FromRole="Wood" ToRole="Boat" />
-        </EntityType>
-        <Association Name="FK_Boat_BoatType">
-          <End Type="Model.BoatType" Role="BoatType" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="Model.Boat" Role="Boat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BoatType">
-              <PropertyRef Name="IdBoatType" />
-            </Principal>
-            <Dependent Role="Boat">
-              <PropertyRef Name="BoatType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Boat_Colour">
-          <End Type="Model.Colour" Role="Colour" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="Model.Boat" Role="Boat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Colour">
-              <PropertyRef Name="IdColour" />
-            </Principal>
-            <Dependent Role="Boat">
-              <PropertyRef Name="Colour" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Boat_Wood">
-          <End Type="Model.Wood" Role="Wood" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="Model.Boat" Role="Boat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Wood">
-              <PropertyRef Name="IdWood" />
-            </Principal>
-            <Dependent Role="Boat">
-              <PropertyRef Name="Wood" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -969,13 +1030,30 @@
               <MappingFragment StoreEntitySet="Boat">
                 <ScalarProperty Name="IdBoat" ColumnName="IdBoat" />
                 <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="BoatType" ColumnName="BoatType" />
+                <ScalarProperty Name="IdBoatType" ColumnName="IdBoatType" />
                 <ScalarProperty Name="NumberOfRowers" ColumnName="NumberOfRowers" />
                 <ScalarProperty Name="Mast" ColumnName="Mast" />
-                <ScalarProperty Name="Colour" ColumnName="Colour" />
-                <ScalarProperty Name="Wood" ColumnName="Wood" />
+                <ScalarProperty Name="IdColour" ColumnName="IdColour" />
+                <ScalarProperty Name="IdWood" ColumnName="IdWood" />
                 <ScalarProperty Name="BasePrice" ColumnName="BasePrice" />
                 <ScalarProperty Name="VAT" ColumnName="VAT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BoatType">
+            <EntityTypeMapping TypeName="Model.BoatType">
+              <MappingFragment StoreEntitySet="BoatType">
+                <ScalarProperty Name="IdBoatType" ColumnName="IdBoatType" />
+                <ScalarProperty Name="NameBoatType" ColumnName="NameBoatType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Colour">
+            <EntityTypeMapping TypeName="Model.Colour">
+              <MappingFragment StoreEntitySet="Colour">
+                <ScalarProperty Name="IdColour" ColumnName="IdColour" />
+                <ScalarProperty Name="NameColour" ColumnName="NameColour" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1083,45 +1161,43 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_toBlockUser" FunctionName="Хранилище Model.sp_toBlockUser" />
-          <EntitySetMapping Name="v_user">
-            <EntityTypeMapping TypeName="Model.v_user">
-              <MappingFragment StoreEntitySet="v_user">
-                <ScalarProperty Name="WasOnline" ColumnName="WasOnline" />
-                <ScalarProperty Name="DateOfLastChangePassword" ColumnName="DateOfLastChangePassword" />
-                <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BoatType">
-            <EntityTypeMapping TypeName="Model.BoatType">
-              <MappingFragment StoreEntitySet="BoatType">
-                <ScalarProperty Name="NameBoatType" ColumnName="NameBoatType" />
-                <ScalarProperty Name="IdBoatType" ColumnName="IdBoatType" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Colour">
-            <EntityTypeMapping TypeName="Model.Colour">
-              <MappingFragment StoreEntitySet="Colour">
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="NameColour" ColumnName="NameColour" />
-                <ScalarProperty Name="IdColour" ColumnName="IdColour" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Wood">
             <EntityTypeMapping TypeName="Model.Wood">
               <MappingFragment StoreEntitySet="Wood">
-                <ScalarProperty Name="NameWood" ColumnName="NameWood" />
                 <ScalarProperty Name="IdWood" ColumnName="IdWood" />
+                <ScalarProperty Name="NameWood" ColumnName="NameWood" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="v_boat">
+            <EntityTypeMapping TypeName="Model.v_boat">
+              <MappingFragment StoreEntitySet="v_boat">
+                <ScalarProperty Name="IdBoat" ColumnName="IdBoat" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="NameBoatType" ColumnName="NameBoatType" />
+                <ScalarProperty Name="NumberOfRowers" ColumnName="NumberOfRowers" />
+                <ScalarProperty Name="Mast" ColumnName="Mast" />
+                <ScalarProperty Name="NameColour" ColumnName="NameColour" />
+                <ScalarProperty Name="NameWood" ColumnName="NameWood" />
+                <ScalarProperty Name="BasePrice" ColumnName="BasePrice" />
+                <ScalarProperty Name="VAT" ColumnName="VAT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_user">
+            <EntityTypeMapping TypeName="Model.v_user">
+              <MappingFragment StoreEntitySet="v_user">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+                <ScalarProperty Name="DateOfLastChangePassword" ColumnName="DateOfLastChangePassword" />
+                <ScalarProperty Name="WasOnline" ColumnName="WasOnline" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_toBlockUser" FunctionName="Хранилище Model.sp_toBlockUser" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

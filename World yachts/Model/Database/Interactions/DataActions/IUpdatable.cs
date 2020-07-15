@@ -4,6 +4,8 @@ namespace World_yachts.Model.Database.Interactions.DataActions
 {
     public interface IUpdatable
     {
+        void UpdateBoat(int idBoat, int basePrice, double VAT);
+
         void UpdatePassword(int idUser, string newPassword);
 
         void UpdateValueWasOnline(int idUser);

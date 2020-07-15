@@ -16,7 +16,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
@@ -39,7 +39,7 @@
                         FontSize="18"/>
             </Grid>
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>

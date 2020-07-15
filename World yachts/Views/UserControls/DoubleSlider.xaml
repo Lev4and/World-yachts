@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="World_yachts.Views.UserControls.DoubleSlider"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:World_yachts.Views.UserControls"
+             x:Name="_this"
+             mc:Ignorable="d" 
+             d:DesignHeight="60" d:DesignWidth="200" MinHeight="60" MinWidth="200" SizeChanged="UserControl_SizeChanged">
+    <Grid>
+        <Grid Height="{Binding ElementName=_this, Path=HeightGrid}"
+              VerticalAlignment="Top"
+              Margin="{Binding ElementName=_this, Path=MarginForGrid1}">
+            <Label Content="От:"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"/>
+            <Slider Name="beginRange"
+                    Minimum="{Binding ElementName=_this, Path=MinValue}"
+                    Value="{Binding ElementName=_this, Path=BeginValue}"
+                    Maximum="{Binding ElementName=endRange, Path=Value}"
+                    TickFrequency="{Binding ElementName=_this, Path=TickFrequency}"
+                    IsSnapToTickEnabled="{Binding ElementName=_this, Path=IsSnapToTickEnabled}"
+                    VerticalAlignment="Top"
+                    Height="20"
+                    Margin="35,4,55,0"/>
+            <Label Content="{Binding ElementName=beginRange, Path=Value}"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Right"
+                   Margin="0,0,0,0"/>
+        </Grid>
+        <Grid Height="{Binding ElementName=_this, Path=HeightGrid}"
+              VerticalAlignment="Top"
+              Margin="{Binding ElementName=_this, Path=MarginForGrid2}">
+            <Label Content="До:"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"/>
+            <Slider Name="endRange"
+                    Minimum="{Binding ElementName=beginRange, Path=Value}"
+                    Value="{Binding ElementName=_this, Path=EndValue}"
+                    Maximum="{Binding ElementName=_this, Path=MaxValue}"
+                    TickFrequency="{Binding ElementName=_this, Path=TickFrequency}"
+                    IsSnapToTickEnabled="{Binding ElementName=_this, Path=IsSnapToTickEnabled}"
+                    VerticalAlignment="Top"
+                    Height="20"
+                    Margin="35,4,55,0"/>
+            <Label Content="{Binding ElementName=endRange, Path=Value}"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Right"
+                   Margin="0,0,0,0"/>
+        </Grid>
+    </Grid>
+</UserControl>

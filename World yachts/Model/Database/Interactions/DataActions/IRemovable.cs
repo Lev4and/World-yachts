@@ -2,6 +2,6 @@
 {
     public interface IRemovable
     {
-
+        void RemoveBoat(int idBoat);
     }
 }

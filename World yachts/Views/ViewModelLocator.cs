@@ -19,6 +19,9 @@ namespace World_yachts.Views
             services.AddTransient<MenuViewModel>();
             services.AddTransient<RegistrationViewModel>();
             services.AddTransient<UserInformationSupplementViewModel>();
+            services.AddTransient<BoatsViewModel>();
+            services.AddTransient<AddBoatViewModel>();
+            services.AddTransient<ChangeBoatViewModel>();
 
             services.AddSingleton<PageService>();
 
@@ -41,5 +44,11 @@ namespace World_yachts.Views
         public RegistrationViewModel RegistrationViewModel => _provider.GetRequiredService<RegistrationViewModel>();
 
         public UserInformationSupplementViewModel UserInformationSupplementViewModel => _provider.GetRequiredService<UserInformationSupplementViewModel>();
+
+        public BoatsViewModel BoatsViewModel => _provider.GetRequiredService<BoatsViewModel>();
+
+        public AddBoatViewModel AddBoatViewModel => _provider.GetRequiredService<AddBoatViewModel>();
+
+        public ChangeBoatViewModel ChangeBoatViewModel => _provider.GetRequiredService<ChangeBoatViewModel>();
     }
 }

@@ -1,7 +1,10 @@
-﻿using System;
+﻿using DevExpress.Mvvm.Native;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using World_yachts.Model.Database.Models;
+using World_yachts.Model.Logic;
 
 namespace World_yachts.Model.Database.Interactions
 {
@@ -12,6 +15,59 @@ namespace World_yachts.Model.Database.Interactions
         public EntityFramework()
         {
             _context = new WorldYachtsContext();
+        }
+
+        public bool AddBoat(string model, int idBoatType, int numberOfRowers, bool mast, int idColour, int idWood, int basePrice, double VAT)
+        {
+            if (!ContainsBoat(model))
+            {
+                _context.Boat.Add(new Boat
+                {
+                    Model = model,
+                    IdBoatType = idBoatType,
+                    NumberOfRowers = numberOfRowers,
+                    Mast = mast,
+                    IdColour = idColour,
+                    IdWood = idWood,
+                    BasePrice = basePrice,
+                    VAT = VAT
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool AddColour(string nameColour)
+        {
+            if(!ContainsColour(nameColour))
+            {
+                _context.Colour.Add(new Colour { NameColour = nameColour });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool AddColour(string nameColour, out Colour colour)
+        {
+            colour = null;
+
+            if (!ContainsColour(nameColour))
+            {
+                colour = _context.Colour.Add(new Colour { NameColour = nameColour });
+                colour.Price = 5000;
+
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
         }
 
         public bool AddSalesPerson(int idSalesPerson, string firstName, string familyName)
@@ -85,6 +141,16 @@ namespace World_yachts.Model.Database.Interactions
             _context.sp_toBlockUser();
         }
 
+        public bool ContainsBoat(string model)
+        {
+            return _context.Boat.SingleOrDefault(b => b.Model == model) != null;
+        }
+
+        public bool ContainsColour(string nameColour)
+        {
+            return _context.Colour.SingleOrDefault(c => c.NameColour == nameColour) != null;
+        }
+
         public bool ContainsSalesPerson(int idSalesPerson)
         {
             return _context.SalesPerson.SingleOrDefault(s => s.IdSalesPerson == idSalesPerson) != null;
@@ -107,9 +173,113 @@ namespace World_yachts.Model.Database.Interactions
             return user != null ? true : false;
         }
 
+        public v_boat GetBoat(int idBoat)
+        {
+            return _context.v_boat.SingleOrDefault(b => b.IdBoat == idBoat);
+        }
+
+        public List<v_boat> GetBoats(string model, List<string> listSelectedBoatTypes, List<string> listSelectedModelType, Range<int> rangeNumberOfRowers, bool? thereIsMast, List<string> listSelectedColours, List<string> listSelectedWoods, Range<int> rangeBasePrice, Range<double> rangeVAT)
+        {
+            return _context.v_boat.Where(b =>
+                   (model.Length > 0 ? b.Model.ToLower().StartsWith(model.ToLower()) : true) &&
+                   (listSelectedModelType.Count > 0 ? listSelectedModelType.Any(l => b.Model.ToLower().Contains(l.ToLower())) : true) &&
+                   b.NumberOfRowers >= rangeNumberOfRowers.BeginValue &&
+                   b.NumberOfRowers <= rangeNumberOfRowers.EndValue &&
+                   (thereIsMast != null ? b.Mast == thereIsMast : true) &&
+                   b.BasePrice >= rangeBasePrice.BeginValue &&
+                   b.BasePrice <= rangeBasePrice.EndValue &&
+                   b.VAT >= rangeVAT.BeginValue &&
+                   b.VAT <= rangeVAT.EndValue &&
+                   (listSelectedBoatTypes.Count > 0 ? listSelectedBoatTypes.Contains(b.NameBoatType) : true) &&
+                   (listSelectedColours.Count > 0 ? listSelectedColours.Contains(b.NameColour) : true) &&
+                   (listSelectedWoods.Count > 0 ? listSelectedWoods.Contains(b.NameWood) : true)).AsNoTracking().ToList();
+        }
+
+        public List<BoatType> GetBoatTypes()
+        {
+            return _context.BoatType.AsNoTracking().ToList();
+        }
+
+        public Colour GetColour(string nameColour)
+        {
+            return _context.Colour.SingleOrDefault(c => c.NameColour == nameColour);
+        }
+
+        public List<Colour> GetColours()
+        {
+            return _context.Colour.AsNoTracking().ToList();
+        }
+
+        public int GetMaxBasePrice()
+        {
+            return _context.Boat.Max(b => b.BasePrice);
+        }
+
+        public int GetMaxNumberOfRowers()
+        {
+            return _context.Boat.Max(b => b.NumberOfRowers);
+        }
+
+        public double GetMaxVATBoat()
+        {
+            return _context.Boat.Max(b => b.VAT);
+        }
+
+        public int GetMinBasePrice()
+        {
+            return _context.Boat.Min(b => b.BasePrice);
+        }
+
+        public int GetMinNumberOfRowers()
+        {
+            return _context.Boat.Min(b => b.NumberOfRowers);
+        }
+
+        public double GetMinVATBoat()
+        {
+            return _context.Boat.Min(b => b.VAT);
+        }
+
         public List<Role> GetRoles()
         {
             return _context.Role.AsNoTracking().ToList();
+        }
+
+        public List<string> GetStringListBoatTypes()
+        {
+            var list = new List<string>();
+
+            GetBoatTypes().ForEach(b => list.Add(b.NameBoatType));
+
+            return list;
+        }
+
+        public List<string> GetStringListColours()
+        {
+            var list = new List<string>();
+
+            GetColours().ForEach(c => list.Add(c.NameColour));
+
+            return list;
+        }
+
+        public List<string> GetStringListWoods()
+        {
+            var list = new List<string>();
+
+            GetWoods().ForEach(w => list.Add(w.NameWood));
+
+            return list;
+        }
+
+        public List<string> GetTypesModel()
+        {
+            return new List<string>() { "Стандарт", "Эконом", "Юниор", "Супер Люкс", "Люкс" };
+        }
+
+        public List<Wood> GetWoods()
+        {
+            return _context.Wood.AsNoTracking().ToList();
         }
 
         public bool NecessaryChagePassword(DateTime dateOfLastChangePassword)
@@ -125,6 +295,24 @@ namespace World_yachts.Model.Database.Interactions
         public bool NecessaryChagePassword(v_user user)
         {
             return (DateTime.Now - user.DateOfLastChangePassword).Days >= 14;
+        }
+
+        public void RemoveBoat(int idBoat)
+        {
+            var boat = _context.Boat.Single(b => b.IdBoat == idBoat);
+
+            _context.Boat.Remove(boat);
+            _context.SaveChanges();
+        }
+
+        public void UpdateBoat(int idBoat, int basePrice, double VAT)
+        {
+            var boat = _context.Boat.SingleOrDefault(b => b.IdBoat == idBoat);
+
+            boat.BasePrice = basePrice;
+            boat.VAT = VAT;
+
+            _context.SaveChanges();
         }
 
         public void UpdatePassword(int idUser, string newPassword)
