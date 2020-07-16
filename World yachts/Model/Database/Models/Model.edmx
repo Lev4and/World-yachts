@@ -4,14 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Accessory">
           <Key>
             <PropertyRef Name="IdAccessory" />
           </Key>
           <Property Name="IdAccessory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AccName" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="DescriptionOfAccessory" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="DescriptionOfAccessory" Type="nvarchar" MaxLength="255" />
           <Property Name="Price" Type="int" Nullable="false" />
           <Property Name="VAT" Type="float" Nullable="false" />
           <Property Name="Inventory" Type="int" Nullable="false" />
@@ -159,6 +159,31 @@
           <Property Name="NameWood" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_accessory" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_accessory">
+          <Key>
+            <PropertyRef Name="IdAccessory" />
+            <PropertyRef Name="AccName" />
+            <PropertyRef Name="DescriptionOfAccessory" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="VAT" />
+            <PropertyRef Name="Inventory" />
+            <PropertyRef Name="OrderLevel" />
+            <PropertyRef Name="OrderBatch" />
+            <PropertyRef Name="PartnerName" />
+          </Key>
+          <Property Name="IdAccessory" Type="int" Nullable="false" />
+          <Property Name="AccName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="DescriptionOfAccessory" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="VAT" Type="float" Nullable="false" />
+          <Property Name="Inventory" Type="int" Nullable="false" />
+          <Property Name="OrderLevel" Type="int" Nullable="false" />
+          <Property Name="OrderBatch" Type="int" Nullable="false" />
+          <Property Name="PartnerName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ListCompatibleModelBoats" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_boat" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="v_boat">
           <Key>
@@ -181,6 +206,16 @@
           <Property Name="NameWood" Type="nvarchar(max)" Nullable="false" />
           <Property Name="BasePrice" Type="int" Nullable="false" />
           <Property Name="VAT" Type="float" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_boatSimplifiedInformation" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_boatSimplifiedInformation">
+          <Key>
+            <PropertyRef Name="IdBoat" />
+            <PropertyRef Name="Model" />
+          </Key>
+          <Property Name="IdBoat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Model" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_user" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -397,9 +432,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="fn_getCountDays" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
-          <Parameter Name="date" Type="smalldatetime" Mode="In" />
-        </Function>
         <Function Name="sp_toBlockUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="Хранилище ModelContainer">
           <EntitySet Name="Accessory" EntityType="Self.Accessory" Schema="dbo" store:Type="Tables" />
@@ -417,6 +449,20 @@
           <EntitySet Name="SalesPerson" EntityType="Self.SalesPerson" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Wood" EntityType="Self.Wood" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="v_accessory" EntityType="Self.v_accessory" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_accessory].[IdAccessory] AS [IdAccessory], 
+    [v_accessory].[AccName] AS [AccName], 
+    [v_accessory].[DescriptionOfAccessory] AS [DescriptionOfAccessory], 
+    [v_accessory].[Price] AS [Price], 
+    [v_accessory].[VAT] AS [VAT], 
+    [v_accessory].[Inventory] AS [Inventory], 
+    [v_accessory].[OrderLevel] AS [OrderLevel], 
+    [v_accessory].[OrderBatch] AS [OrderBatch], 
+    [v_accessory].[PartnerName] AS [PartnerName], 
+    [v_accessory].[ListCompatibleModelBoats] AS [ListCompatibleModelBoats]
+    FROM [dbo].[v_accessory] AS [v_accessory]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="v_boat" EntityType="Self.v_boat" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [v_boat].[IdBoat] AS [IdBoat], 
@@ -429,6 +475,12 @@
     [v_boat].[BasePrice] AS [BasePrice], 
     [v_boat].[VAT] AS [VAT]
     FROM [dbo].[v_boat] AS [v_boat]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_boatSimplifiedInformation" EntityType="Self.v_boatSimplifiedInformation" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_boatSimplifiedInformation].[IdBoat] AS [IdBoat], 
+    [v_boatSimplifiedInformation].[Model] AS [Model]
+    FROM [dbo].[v_boatSimplifiedInformation] AS [v_boatSimplifiedInformation]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="v_user" EntityType="Self.v_user" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -498,8 +550,7 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -509,7 +560,7 @@
           </Key>
           <Property Name="IdAccessory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AccName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DescriptionOfAccessory" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DescriptionOfAccessory" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="true" />
           <Property Name="Price" Type="Int32" Nullable="false" />
           <Property Name="VAT" Type="Double" Nullable="false" />
           <Property Name="Inventory" Type="Int32" Nullable="false" />
@@ -683,6 +734,29 @@
           <Property Name="IdWood" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameWood" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Boat" Relationship="Self.FK_Boat_Wood" FromRole="Wood" ToRole="Boat" />
+        </EntityType>
+        <EntityType Name="v_accessory">
+          <Key>
+            <PropertyRef Name="IdAccessory" />
+            <PropertyRef Name="AccName" />
+            <PropertyRef Name="DescriptionOfAccessory" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="VAT" />
+            <PropertyRef Name="Inventory" />
+            <PropertyRef Name="OrderLevel" />
+            <PropertyRef Name="OrderBatch" />
+            <PropertyRef Name="PartnerName" />
+          </Key>
+          <Property Name="IdAccessory" Type="Int32" Nullable="false" />
+          <Property Name="AccName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DescriptionOfAccessory" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="VAT" Type="Double" Nullable="false" />
+          <Property Name="Inventory" Type="Int32" Nullable="false" />
+          <Property Name="OrderLevel" Type="Int32" Nullable="false" />
+          <Property Name="OrderBatch" Type="Int32" Nullable="false" />
+          <Property Name="PartnerName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ListCompatibleModelBoats" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="v_boat">
           <Key>
@@ -935,6 +1009,7 @@
           <EntitySet Name="SalesPerson" EntityType="Self.SalesPerson" />
           <EntitySet Name="User" EntityType="Self.User" />
           <EntitySet Name="Wood" EntityType="Self.Wood" />
+          <EntitySet Name="v_accessory" EntityType="Self.v_accessory" />
           <EntitySet Name="v_boat" EntityType="Self.v_boat" />
           <EntitySet Name="v_user" EntityType="Self.v_user" />
           <AssociationSet Name="FK_Accessory_Partner" Association="Self.FK_Accessory_Partner">
@@ -994,7 +1069,16 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
           <FunctionImport Name="sp_toBlockUser" />
+          <EntitySet Name="v_boatSimplifiedInformation" EntityType="Model.v_boatSimplifiedInformation" />
         </EntityContainer>
+        <EntityType Name="v_boatSimplifiedInformation">
+          <Key>
+            <PropertyRef Name="Model" />
+            <PropertyRef Name="IdBoat" />
+          </Key>
+          <Property Name="Model" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IdBoat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1169,6 +1253,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="v_accessory">
+            <EntityTypeMapping TypeName="Model.v_accessory">
+              <MappingFragment StoreEntitySet="v_accessory">
+                <ScalarProperty Name="IdAccessory" ColumnName="IdAccessory" />
+                <ScalarProperty Name="AccName" ColumnName="AccName" />
+                <ScalarProperty Name="DescriptionOfAccessory" ColumnName="DescriptionOfAccessory" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="VAT" ColumnName="VAT" />
+                <ScalarProperty Name="Inventory" ColumnName="Inventory" />
+                <ScalarProperty Name="OrderLevel" ColumnName="OrderLevel" />
+                <ScalarProperty Name="OrderBatch" ColumnName="OrderBatch" />
+                <ScalarProperty Name="PartnerName" ColumnName="PartnerName" />
+                <ScalarProperty Name="ListCompatibleModelBoats" ColumnName="ListCompatibleModelBoats" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="v_boat">
             <EntityTypeMapping TypeName="Model.v_boat">
               <MappingFragment StoreEntitySet="v_boat">
@@ -1198,6 +1298,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="sp_toBlockUser" FunctionName="Хранилище Model.sp_toBlockUser" />
+          <EntitySetMapping Name="v_boatSimplifiedInformation">
+            <EntityTypeMapping TypeName="Model.v_boatSimplifiedInformation">
+              <MappingFragment StoreEntitySet="v_boatSimplifiedInformation">
+                <ScalarProperty Name="IdBoat" ColumnName="IdBoat" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

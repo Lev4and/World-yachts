@@ -18,6 +18,21 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -196,7 +211,13 @@
     <Compile Include="Model\Database\Models\User.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Database\Models\v_accessory.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Database\Models\v_boat.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_boatSimplifiedInformation.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Database\Models\v_user.cs">
@@ -205,12 +226,16 @@
     <Compile Include="Model\Database\Models\Wood.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Logic\FormattingList.cs" />
     <Compile Include="Model\Logic\Range.cs" />
     <Compile Include="Services\PageService.cs" />
     <Compile Include="Services\WindowService.cs" />
+    <Compile Include="ViewModels\AccessoriesViewModel.cs" />
+    <Compile Include="ViewModels\AddAccessoryViewModel.cs" />
     <Compile Include="ViewModels\AddBoatViewModel.cs" />
     <Compile Include="ViewModels\AuthorizationViewModel.cs" />
     <Compile Include="ViewModels\BoatsViewModel.cs" />
+    <Compile Include="ViewModels\ChangeAccessoryViewModel.cs" />
     <Compile Include="ViewModels\ChangeBoatViewModel.cs" />
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -218,6 +243,9 @@
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\UserInformationSupplementViewModel.cs" />
+    <Compile Include="Views\Pages\Accessories.xaml.cs">
+      <DependentUpon>Accessories.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\Authorization.xaml.cs">
       <DependentUpon>Authorization.xaml</DependentUpon>
     </Compile>
@@ -246,8 +274,14 @@
       <DependentUpon>ExpanderWithCheckBoxes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ViewModelLocator.cs" />
+    <Compile Include="Views\Windows\AddAccessory.xaml.cs">
+      <DependentUpon>AddAccessory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\AddBoat.xaml.cs">
       <DependentUpon>AddBoat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\ChangeAccessory.xaml.cs">
+      <DependentUpon>ChangeAccessory.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\ChangeBoat.xaml.cs">
       <DependentUpon>ChangeBoat.xaml</DependentUpon>
@@ -291,6 +325,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\Pages\Accessories.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\Authorization.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -327,7 +365,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Windows\AddAccessory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Windows\AddBoat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\ChangeAccessory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -353,10 +399,22 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model\Database\Models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
       <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Model\Database\Models\Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

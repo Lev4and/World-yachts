@@ -2,6 +2,10 @@
 {
     public interface IContainsable
     {
+        bool ContainsAccessory(string accName);
+
+        bool ContainsAccToBoats(int idAccessory, int idBoat);
+
         bool ContainsBoat(string model);
 
         bool ContainsColour(string nameColour);

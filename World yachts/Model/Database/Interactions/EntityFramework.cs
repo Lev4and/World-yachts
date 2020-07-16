@@ -17,6 +17,52 @@ namespace World_yachts.Model.Database.Interactions
             _context = new WorldYachtsContext();
         }
 
+        public bool AddAccessory(string accName, string descriptionOfAccessory, int price, double VAT, int inventory, int orderLevel, int orderBatch, int idPartner, List<string> listSelectedCompatibleModelBoats)
+        {
+            if(!ContainsAccessory(accName))
+            {
+                Accessory accessory = _context.Accessory.Add(new Accessory
+                {
+                    AccName = accName,
+                    DescriptionOfAccessory = descriptionOfAccessory,
+                    Price = price,
+                    VAT = VAT,
+                    Inventory = inventory,
+                    OrderLevel = orderLevel,
+                    OrderBatch = orderBatch,
+                    IdPartner = idPartner
+                });
+
+                for (int i = 0; i < listSelectedCompatibleModelBoats.Count; i++)
+                {
+                    AddAccToBoats(accessory.IdAccessory, GetIdBoat(listSelectedCompatibleModelBoats[i]));
+                }
+
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool AddAccToBoats(int idAccessory, int idBoat)
+        {
+            if (!ContainsAccToBoats(idAccessory, idBoat))
+            {
+                _context.AccToBoats.Add(new AccToBoats
+                {
+                    IdAccessory = idAccessory,
+                    IdBoat = idBoat
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool AddBoat(string model, int idBoatType, int numberOfRowers, bool mast, int idColour, int idWood, int basePrice, double VAT)
         {
             if (!ContainsBoat(model))
@@ -141,6 +187,16 @@ namespace World_yachts.Model.Database.Interactions
             _context.sp_toBlockUser();
         }
 
+        public bool ContainsAccessory(string accName)
+        {
+            return _context.Accessory.SingleOrDefault(a => a.AccName == accName) != null;
+        }
+
+        public bool ContainsAccToBoats(int idAccessory, int idBoat)
+        {
+            return _context.AccToBoats.SingleOrDefault(a => a.IdAccessory == idAccessory && a.IdBoat == idBoat) != null;
+        }
+
         public bool ContainsBoat(string model)
         {
             return _context.Boat.SingleOrDefault(b => b.Model == model) != null;
@@ -173,6 +229,24 @@ namespace World_yachts.Model.Database.Interactions
             return user != null ? true : false;
         }
 
+        public List<v_accessory> GetAccessories(string accName, Range<int> rangePrice, Range<double> rangeVAT, Range<int> rangeInventory, Range<int> rangeOrderLevel, Range<int> rangeOrderBatch, List<string> listSelectedPartners, List<string> listSelectedBoats)
+        {
+            return _context.v_accessory.Where(a =>
+            (accName.Length > 0 ? a.AccName.ToLower().StartsWith(accName.ToLower()) : true) &&
+            a.Price >= rangePrice.BeginValue &&
+            a.Price <= rangePrice.EndValue &&
+            a.VAT >= rangeVAT.BeginValue &&
+            a.VAT <= rangeVAT.EndValue &&
+            a.Inventory >= rangeInventory.BeginValue &&
+            a.Inventory <= rangeInventory.EndValue &&
+            a.OrderLevel >= rangeOrderLevel.BeginValue &&
+            a.OrderLevel <= rangeOrderLevel.EndValue &&
+            a.OrderBatch >= rangeOrderBatch.BeginValue &&
+            a.OrderBatch <= rangeOrderBatch.EndValue &&
+            (listSelectedPartners.Count > 0 ? listSelectedPartners.Contains(a.PartnerName) : true) &&
+            (listSelectedBoats.Count > 0 ? listSelectedBoats.All(l => a.ListCompatibleModelBoats.ToLower().Contains(l.ToLower())) : true)).AsNoTracking().ToList();
+        }
+
         public v_boat GetBoat(int idBoat)
         {
             return _context.v_boat.SingleOrDefault(b => b.IdBoat == idBoat);
@@ -195,6 +269,11 @@ namespace World_yachts.Model.Database.Interactions
                    (listSelectedWoods.Count > 0 ? listSelectedWoods.Contains(b.NameWood) : true)).AsNoTracking().ToList();
         }
 
+        public List<v_boatSimplifiedInformation> GetBoats()
+        {
+            return _context.v_boatSimplifiedInformation.AsNoTracking().ToList();
+        }
+
         public List<BoatType> GetBoatTypes()
         {
             return _context.BoatType.AsNoTracking().ToList();
@@ -215,9 +294,34 @@ namespace World_yachts.Model.Database.Interactions
             return _context.Boat.Max(b => b.BasePrice);
         }
 
+        public int GetMaxInventory()
+        {
+            return _context.Accessory.Max(a => a.Inventory);
+        }
+
         public int GetMaxNumberOfRowers()
         {
             return _context.Boat.Max(b => b.NumberOfRowers);
+        }
+
+        public int GetMaxOrderBatch()
+        {
+            return _context.Accessory.Max(a => a.OrderBatch);
+        }
+
+        public int GetMaxOrderLevel()
+        {
+            return _context.Accessory.Max(a => a.OrderLevel);
+        }
+
+        public int GetMaxPriceAccessory()
+        {
+            return _context.Accessory.Max(a => a.Price);
+        }
+
+        public double GetMaxVATAccessory()
+        {
+            return _context.Accessory.Max(a => a.VAT);
         }
 
         public double GetMaxVATBoat()
@@ -230,9 +334,34 @@ namespace World_yachts.Model.Database.Interactions
             return _context.Boat.Min(b => b.BasePrice);
         }
 
+        public int GetMinInventory()
+        {
+            return _context.Accessory.Min(a => a.Inventory);
+        }
+
         public int GetMinNumberOfRowers()
         {
             return _context.Boat.Min(b => b.NumberOfRowers);
+        }
+
+        public int GetMinOrderBatch()
+        {
+            return _context.Accessory.Min(a => a.OrderBatch);
+        }
+
+        public int GetMinOrderLevel()
+        {
+            return _context.Accessory.Min(a => a.OrderLevel);
+        }
+
+        public int GetMinPriceAccessory()
+        {
+            return _context.Accessory.Min(a => a.Price);
+        }
+
+        public double GetMinVATAccessory()
+        {
+            return _context.Accessory.Min(a => a.VAT);
         }
 
         public double GetMinVATBoat()
@@ -240,9 +369,23 @@ namespace World_yachts.Model.Database.Interactions
             return _context.Boat.Min(b => b.VAT);
         }
 
+        public List<Partner> GetPartners()
+        {
+            return _context.Partner.AsNoTracking().ToList();
+        }
+
         public List<Role> GetRoles()
         {
             return _context.Role.AsNoTracking().ToList();
+        }
+
+        public List<string> GetStringListBoats()
+        {
+            var list = new List<string>();
+
+            GetBoats().ForEach(b => list.Add(b.Model));
+
+            return list;
         }
 
         public List<string> GetStringListBoatTypes()
@@ -259,6 +402,15 @@ namespace World_yachts.Model.Database.Interactions
             var list = new List<string>();
 
             GetColours().ForEach(c => list.Add(c.NameColour));
+
+            return list;
+        }
+
+        public List<string> GetStringListPartners()
+        {
+            var list = new List<string>();
+
+            GetPartners().ForEach(p => list.Add(p.Name));
 
             return list;
         }
@@ -297,6 +449,20 @@ namespace World_yachts.Model.Database.Interactions
             return (DateTime.Now - user.DateOfLastChangePassword).Days >= 14;
         }
 
+        public void RemoveAccessory(int idAccessory)
+        {
+            var accessory = _context.Accessory.Single(a => a.IdAccessory == idAccessory);
+
+            _context.Accessory.Remove(accessory);
+            _context.SaveChanges();
+        }
+
+        public void RemoveAccToBoats(int idAccessory)
+        {
+            _context.AccToBoats.RemoveRange(_context.AccToBoats.Where(a => a.IdAccessory == idAccessory));
+            _context.SaveChanges();
+        }
+
         public void RemoveBoat(int idBoat)
         {
             var boat = _context.Boat.Single(b => b.IdBoat == idBoat);
@@ -311,6 +477,27 @@ namespace World_yachts.Model.Database.Interactions
 
             boat.BasePrice = basePrice;
             boat.VAT = VAT;
+
+            _context.SaveChanges();
+        }
+
+        public void UpdateAccessory(int idAccessory, string descriptionOfAccessory, int price, double VAT, int inventory, int orderLevel, int orderBatch, List<string> listSelectedCompatibleModelBoats)
+        {
+            RemoveAccToBoats(idAccessory);
+
+            Accessory accessory = _context.Accessory.Single(a => a.IdAccessory == idAccessory);
+
+            accessory.DescriptionOfAccessory = descriptionOfAccessory;
+            accessory.Price = price;
+            accessory.VAT = VAT;
+            accessory.Inventory = inventory;
+            accessory.OrderLevel = orderLevel;
+            accessory.OrderBatch = orderBatch;
+
+            for (int i = 0; i < listSelectedCompatibleModelBoats.Count; i++)
+            {
+                AddAccToBoats(accessory.IdAccessory, GetIdBoat(listSelectedCompatibleModelBoats[i]));
+            }
 
             _context.SaveChanges();
         }
@@ -354,6 +541,16 @@ namespace World_yachts.Model.Database.Interactions
             obj.WasOnline = DateTime.Now;
 
             _context.SaveChanges();
+        }
+
+        public int GetIdBoat(string model)
+        {
+            return _context.Boat.SingleOrDefault(b => b.Model == model).IdBoat;
+        }
+
+        public v_accessory GetAccessory(int idAccessory)
+        {
+            return _context.v_accessory.SingleOrDefault(a => a.IdAccessory == idAccessory);
         }
     }
 }

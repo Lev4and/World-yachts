@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Input;
 using World_yachts.Model.Configurations;
-using World_yachts.Model.Database.Interactions;
 using World_yachts.Services;
 using World_yachts.Views.Pages;
 
@@ -37,10 +36,15 @@ namespace World_yachts.ViewModels
 
         public ICommand Accessories => new DelegateCommand(() =>
         {
-
+            _pageService.ChangePage(new Accessories());
         }, () => _config.TypeUser == "Administrator" || _config.TypeUser == "Manager");
 
         public ICommand Customers => new DelegateCommand(() =>
+        {
+
+        }, () => _config.TypeUser == "Administrator" || _config.TypeUser == "Manager");
+
+        public ICommand Partners => new DelegateCommand(() =>
         {
 
         }, () => _config.TypeUser == "Administrator" || _config.TypeUser == "Manager");

@@ -25,6 +25,7 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Width="200" Height="50">
                 <Button Content="Лодки"
@@ -51,18 +52,24 @@
                         FontSize="22"/>
             </Grid>
             <Grid Grid.Row="4" Width="200" Height="50">
+                <Button Content="Партнеры"
+                        Command="{Binding Path=Partners}"
+                        FontFamily="Comic Sans MS"
+                        FontSize="22"/>
+            </Grid>
+            <Grid Grid.Row="5" Width="200" Height="50">
                 <Button Content="Заказы"
                         Command="{Binding Path=Orders}"
                         FontFamily="Comic Sans MS"
                         FontSize="22"/>
             </Grid>
-            <Grid Grid.Row="5" Width="200" Height="50">
+            <Grid Grid.Row="6" Width="200" Height="50">
                 <Button Content="Статистика"
                         Command="{Binding Path=Statistics}"
                         FontFamily="Comic Sans MS"
                         FontSize="22"/>
             </Grid>
-            <Grid Grid.Row="6" Width="200" Height="50">
+            <Grid Grid.Row="7" Width="200" Height="50">
                 <Button Content="Выход"
                         Command="{Binding Path=Exit}"
                         FontFamily="Comic Sans MS"

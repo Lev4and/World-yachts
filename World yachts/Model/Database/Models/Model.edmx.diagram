@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5baae51a20a04e71b79765d890c1fa47" Name="Diagram1">
+      <Diagram DiagramId="48e8f7b4d6674238b1425b3f837b34ae" Name="Diagram1">
         <EntityTypeShape EntityType="Model.Accessory" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.AccToBoats" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Boat" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
@@ -20,7 +20,8 @@
         <EntityTypeShape EntityType="Model.SalesPerson" Width="1.5" PointX="6" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="11" PointY="10.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Wood" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.v_boat" Width="1.5" PointX="5.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.v_accessory" Width="1.5" PointX="5.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.v_boat" Width="1.5" PointX="7.75" PointY="14.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.v_user" Width="1.5" PointX="10.75" PointY="2.125" IsExpanded="true" />
         <AssociationConnector Association="Model.FK_Accessory_Partner" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_AccToBoats_Accessory" ManuallyRouted="false" />
@@ -36,6 +37,7 @@
         <AssociationConnector Association="Model.FK_Order_SalesPerson" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_OrderDetails_Order" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_User_Role" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.v_boatSimplifiedInformation" Width="1.5" PointX="13.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

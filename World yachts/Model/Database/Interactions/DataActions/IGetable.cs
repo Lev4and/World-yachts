@@ -6,17 +6,41 @@ namespace World_yachts.Model.Database.Interactions.DataActions
 {
     public interface IGetable
     {
+        int GetIdBoat(string model);
+
+        int GetMinPriceAccessory();
+
         int GetMinBasePrice();
 
         int GetMinNumberOfRowers();
+
+        int GetMinInventory();
+
+        int GetMinOrderLevel();
+
+        int GetMinOrderBatch();
+
+        int GetMaxPriceAccessory();
 
         int GetMaxBasePrice();
 
         int GetMaxNumberOfRowers();
 
+        int GetMaxInventory();
+
+        int GetMaxOrderLevel();
+
+        int GetMaxOrderBatch();
+
+        double GetMinVATAccessory();
+
         double GetMinVATBoat();
 
+        double GetMaxVATAccessory();
+
         double GetMaxVATBoat();
+
+        v_accessory GetAccessory(int idAccessory);
 
         v_boat GetBoat(int idBoat);
 
@@ -30,14 +54,24 @@ namespace World_yachts.Model.Database.Interactions.DataActions
 
         List<string> GetStringListWoods();
 
+        List<string> GetStringListPartners();
+
+        List<string> GetStringListBoats();
+
         List<BoatType> GetBoatTypes();
 
         List<Colour> GetColours();
+
+        List<Partner> GetPartners();
 
         List<Wood> GetWoods();
 
         List<Role> GetRoles();
 
+        List<v_accessory> GetAccessories(string accName, Range<int> rangePrice, Range<double> rangeVAT, Range<int> rangeInventory, Range<int> rangeOrderLevel, Range<int> rangeOrderBatch, List<string> listSelectedPartners, List<string> listSelectedBoats);
+
         List<v_boat> GetBoats(string model, List<string> listSelectedBoatTypes, List<string> listSelectedModelType, Range<int> rangeNumberOfRowers, bool? thereIsMast, List<string> listSelectedColours, List<string> listSelectedWoods, Range<int> rangeBasePrice, Range<double> rangeVAT);
+
+        List<v_boatSimplifiedInformation> GetBoats();
     }
 }

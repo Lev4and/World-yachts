@@ -9,9 +9,9 @@
              d:DesignHeight="200" d:DesignWidth="200">
     <Grid>
         <Expander Header="{Binding ElementName=_this, Path=ElementHeader, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" MaxHeight="200" IsEnabled="True">
-        <ScrollViewer HorizontalScrollBarVisibility="Visible">
-            <Grid Name="grid" Background="#FFE5E5E5"/>
-        </ScrollViewer>
+            <ScrollViewer>
+                <Grid Name="grid" Background="#FFE5E5E5"/>
+            </ScrollViewer>
         </Expander>
     </Grid>
 </UserControl>

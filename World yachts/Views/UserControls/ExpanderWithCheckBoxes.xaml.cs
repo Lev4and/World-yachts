@@ -25,9 +25,15 @@ namespace World_yachts.Views.UserControls
 
             if (current != null)
             {
-                current.RemoveContorls();
-                current.GenerateItems();
-                current.RenderContorls();
+                if(current.Data != null)
+                {
+                    current.RemoveContorls();
+                    current.GenerateItems();
+                    current.RenderContorls();
+
+                    if(current.ListSelectedValuesFromAnExternalSource != null)
+                        current.SetChecked();
+                }
             }
         }
 
@@ -49,6 +55,25 @@ namespace World_yachts.Views.UserControls
         public static readonly DependencyProperty ListSelectedValuesProperty =
             DependencyProperty.Register("ListSelectedValues", typeof(ObservableCollection<string>), typeof(ExpanderWithCheckBoxes), new PropertyMetadata(null));
 
+        public ObservableCollection<string> ListSelectedValuesFromAnExternalSource
+        {
+            get { return (ObservableCollection<string>)GetValue(ListSelectedValuesFromAnExternalSourceProperty); }
+            set { SetValue(ListSelectedValuesFromAnExternalSourceProperty, value); }
+        }
+
+        public static readonly DependencyProperty ListSelectedValuesFromAnExternalSourceProperty =
+            DependencyProperty.Register("ListSelectedValuesFromAnExternalSource", typeof(ObservableCollection<string>), typeof(ExpanderWithCheckBoxes), new PropertyMetadata(null, ListSelectedValuesFromAnExternalSource_Changed));
+
+        private static void ListSelectedValuesFromAnExternalSource_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var current = d as ExpanderWithCheckBoxes;
+
+            if(current != null)
+            {
+                //current.SetChecked();
+            }
+        }
+
         public string ElementHeader
         {
             get { return (string)GetValue(ElementHeaderProperty); }
@@ -63,7 +88,9 @@ namespace World_yachts.Views.UserControls
             InitializeComponent();
 
             Items = new List<CheckBox>();
+            Data = new ObservableCollection<string>();
             ListSelectedValues = new ObservableCollection<string>();
+            ListSelectedValuesFromAnExternalSource = new ObservableCollection<string>();
         }
 
         private void GenerateItems()
@@ -105,6 +132,20 @@ namespace World_yachts.Views.UserControls
         {
             foreach (var item in Items)
                 grid.Children.Add(item);
+        }
+
+        private void SetChecked()
+        {
+            if(ListSelectedValuesFromAnExternalSource != null)
+            {
+                foreach (var value in ListSelectedValuesFromAnExternalSource)
+                {
+                    var checkBox = Items.Find(c => c.Content.ToString() == value);
+
+                    if (checkBox != null)
+                        checkBox.IsChecked = true;
+                }
+            }
         }
     }
 }
