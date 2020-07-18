@@ -25,6 +25,9 @@ namespace World_yachts.Views
             services.AddTransient<AccessoriesViewModel>();
             services.AddTransient<AddAccessoryViewModel>();
             services.AddTransient<ChangeAccessoryViewModel>();
+            services.AddTransient<UsersViewModel>();
+            services.AddTransient<AddUserViewModel>();
+            services.AddTransient<ChangeUserViewModel>();
 
             services.AddSingleton<PageService>();
 
@@ -59,5 +62,11 @@ namespace World_yachts.Views
         public AddAccessoryViewModel AddAccessoryViewModel => _provider.GetRequiredService<AddAccessoryViewModel>();
 
         public ChangeAccessoryViewModel ChangeAccessoryViewModel => _provider.GetRequiredService<ChangeAccessoryViewModel>();
+
+        public UsersViewModel UsersViewModel => _provider.GetRequiredService<UsersViewModel>();
+
+        public AddUserViewModel AddUserViewModel => _provider.GetRequiredService<AddUserViewModel>();
+
+        public ChangeUserViewModel ChangeUserViewModel => _provider.GetRequiredService<ChangeUserViewModel>();
     }
 }

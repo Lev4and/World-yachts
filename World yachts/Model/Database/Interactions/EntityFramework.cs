@@ -552,5 +552,76 @@ namespace World_yachts.Model.Database.Interactions
         {
             return _context.v_accessory.SingleOrDefault(a => a.IdAccessory == idAccessory);
         }
+
+        public DateTime GetMinDateOfRegistration()
+        {
+            return _context.User.Min(u => u.DateOfRegistration);
+        }
+
+        public DateTime GetMinDateOfLastChangePassword()
+        {
+            return _context.User.Min(u => u.DateOfLastChangePassword);
+        }
+
+        public DateTime GetMinWasOnline()
+        {
+            return (DateTime)_context.User.Min(u => u.WasOnline);
+        }
+
+        public DateTime GetMaxDateOfRegistration()
+        {
+            return _context.User.Max(u => u.DateOfRegistration);
+        }
+
+        public DateTime GetMaxDateOfLastChangePassword()
+        {
+            return _context.User.Max(u => u.DateOfLastChangePassword);
+        }
+
+        public DateTime GetMaxWasOnline()
+        {
+            return (DateTime)_context.User.Max(u => u.WasOnline);
+        }
+
+        public User GetUser(int idUser)
+        {
+            return _context.User.SingleOrDefault(u => u.IdUser == idUser);
+        }
+
+        public List<v_user> GetUsers(string login, string roleName, Range<DateTime> rangeDateOfRegistration, Range<DateTime> rangeDateOfLastChangePassword, Range<DateTime> rangeWasOnline)
+        {
+            return _context.v_user.Where(u =>
+            (login.Length > 0 ? u.Login.ToLower().StartsWith(login.ToLower()) : true) &&
+            (roleName.Length > 0 ? u.RoleName == roleName : true) &&
+            u.DateOfRegistration >= rangeDateOfRegistration.BeginValue &&
+            u.DateOfRegistration <= rangeDateOfRegistration.EndValue &&
+            u.DateOfLastChangePassword >= rangeDateOfLastChangePassword.BeginValue &&
+            u.DateOfLastChangePassword <= rangeDateOfLastChangePassword.EndValue &&
+            (u.WasOnline != null ? u.WasOnline >= rangeWasOnline.BeginValue &&
+            u.WasOnline <= rangeWasOnline.EndValue : true)).AsNoTracking().ToList();
+        }
+
+        public void RemoveUser(int idUser)
+        {
+            var user = _context.User.Single(u => u.IdUser == idUser);
+
+            _context.User.Remove(user);
+            _context.SaveChanges();
+        }
+
+        public void UpdateUser(int idUser, int idRole, string password)
+        {
+            var user = _context.User.Single(u => u.IdUser == idUser);
+
+            user.IdRole = idRole;
+            user.Password = password;
+
+            _context.SaveChanges();
+        }
+
+        public SalesPerson GetSalesPerson(int idSalesPerson)
+        {
+            return _context.SalesPerson.SingleOrDefault(s => s.IdSalesPerson == idSalesPerson);
+        }
     }
 }

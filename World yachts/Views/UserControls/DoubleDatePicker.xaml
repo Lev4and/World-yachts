@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="World_yachts.Views.UserControls.DoubleDatePicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:World_yachts.Views.UserControls"
+             mc:Ignorable="d" 
+             x:Name="_this"
+             d:DesignHeight="60" d:DesignWidth="200" MinHeight="60" MinWidth="200" SizeChanged="UserControl_SizeChanged">
+    <Grid>
+        <Grid Height="{Binding ElementName=_this, Path=HeightGrid}" VerticalAlignment="Top" Margin="{Binding ElementName=_this, Path=MarginForGrid1}">
+            <Label Content="От:" VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
+            <DatePicker Name="beginRange" DisplayDateStart="{Binding ElementName=_this, Path=MinSelectedDate}" SelectedDate="{Binding ElementName=_this, Path=BeginSelectedDate}" DisplayDateEnd="{Binding ElementName=endRange, Path=SelectedDate}" VerticalAlignment="Top" Height="20" Margin="35,4,0,0"></DatePicker>
+        </Grid>
+        <Grid Height="{Binding ElementName=_this, Path=HeightGrid}" VerticalAlignment="Top" Margin="{Binding ElementName=_this, Path=MarginForGrid2}">
+            <Label Content="До:" VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
+            <DatePicker Name="endRange" DisplayDateStart="{Binding ElementName=beginRange, Path=SelectedDate}" SelectedDate="{Binding ElementName=_this, Path=EndSelectedDate}" DisplayDateEnd="{Binding ElementName=_this, Path=MaxSelectedDate}" VerticalAlignment="Top" Height="20" Margin="35,4,0,0"></DatePicker>
+        </Grid>
+    </Grid>
+</UserControl>

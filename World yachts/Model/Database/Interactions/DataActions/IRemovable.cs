@@ -7,5 +7,7 @@
         void RemoveAccToBoats(int idAccessory);
 
         void RemoveBoat(int idBoat);
+
+        void RemoveUser(int idUser);
     }
 }

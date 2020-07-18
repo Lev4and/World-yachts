@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using World_yachts.Model.Database.Models;
 using World_yachts.Model.Logic;
 
@@ -40,11 +41,27 @@ namespace World_yachts.Model.Database.Interactions.DataActions
 
         double GetMaxVATBoat();
 
+        DateTime GetMinDateOfRegistration();
+
+        DateTime GetMinDateOfLastChangePassword();
+
+        DateTime GetMinWasOnline();
+
+        DateTime GetMaxDateOfRegistration();
+
+        DateTime GetMaxDateOfLastChangePassword();
+
+        DateTime GetMaxWasOnline();
+
         v_accessory GetAccessory(int idAccessory);
 
         v_boat GetBoat(int idBoat);
 
         Colour GetColour(string nameColour);
+
+        SalesPerson GetSalesPerson(int idSalesPerson);
+
+        User GetUser(int idUser);
 
         List<string> GetTypesModel();
 
@@ -73,5 +90,7 @@ namespace World_yachts.Model.Database.Interactions.DataActions
         List<v_boat> GetBoats(string model, List<string> listSelectedBoatTypes, List<string> listSelectedModelType, Range<int> rangeNumberOfRowers, bool? thereIsMast, List<string> listSelectedColours, List<string> listSelectedWoods, Range<int> rangeBasePrice, Range<double> rangeVAT);
 
         List<v_boatSimplifiedInformation> GetBoats();
+
+        List<v_user> GetUsers(string login, string roleName, Range<DateTime> rangeDateOfRegistration, Range<DateTime> rangeDateOfLastChangePassword, Range<DateTime> rangeWasOnline);
     }
 }

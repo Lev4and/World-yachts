@@ -233,16 +233,19 @@
     <Compile Include="ViewModels\AccessoriesViewModel.cs" />
     <Compile Include="ViewModels\AddAccessoryViewModel.cs" />
     <Compile Include="ViewModels\AddBoatViewModel.cs" />
+    <Compile Include="ViewModels\AddUserViewModel.cs" />
     <Compile Include="ViewModels\AuthorizationViewModel.cs" />
     <Compile Include="ViewModels\BoatsViewModel.cs" />
     <Compile Include="ViewModels\ChangeAccessoryViewModel.cs" />
     <Compile Include="ViewModels\ChangeBoatViewModel.cs" />
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
+    <Compile Include="ViewModels\ChangeUserViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\UserInformationSupplementViewModel.cs" />
+    <Compile Include="ViewModels\UsersViewModel.cs" />
     <Compile Include="Views\Pages\Accessories.xaml.cs">
       <DependentUpon>Accessories.xaml</DependentUpon>
     </Compile>
@@ -267,6 +270,12 @@
     <Compile Include="Views\Pages\UserInformationSupplement.xaml.cs">
       <DependentUpon>UserInformationSupplement.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\Users.xaml.cs">
+      <DependentUpon>Users.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\DoubleDatePicker.xaml.cs">
+      <DependentUpon>DoubleDatePicker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\DoubleSlider.xaml.cs">
       <DependentUpon>DoubleSlider.xaml</DependentUpon>
     </Compile>
@@ -280,11 +289,17 @@
     <Compile Include="Views\Windows\AddBoat.xaml.cs">
       <DependentUpon>AddBoat.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Windows\AddUser.xaml.cs">
+      <DependentUpon>AddUser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\ChangeAccessory.xaml.cs">
       <DependentUpon>ChangeAccessory.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\ChangeBoat.xaml.cs">
       <DependentUpon>ChangeBoat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\ChangeUser.xaml.cs">
+      <DependentUpon>ChangeUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -357,6 +372,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\Users.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\DoubleDatePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserControls\DoubleSlider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -373,11 +396,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Windows\AddUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Windows\ChangeAccessory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\ChangeBoat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\ChangeUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,0 +1,164 @@
+﻿<Window x:Class="World_yachts.Views.Windows.AddUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:World_yachts.Views.Windows"
+        xmlns:vm="clr-namespace:World_yachts.ViewModels"
+        xmlns:uc="clr-namespace:World_yachts.Views.UserControls"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:c="clr-namespace:World_yachts.Converters"
+        DataContext="{Binding AddUserViewModel, Source={StaticResource ViewModelLocator}}"
+        mc:Ignorable="d"
+        x:Name="_this"
+        Title="AddUser" Height="300" Width="800">
+    <Grid Margin="10">
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding Path=Loaded}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Label Content="Должность:"
+                               FontFamily="Comic Sans MS"
+                               FontSize="18"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <ComboBox x:Name="roles"
+                          ItemsSource="{Binding Path=Roles}"
+                          VerticalContentAlignment="Center"
+                          DisplayMemberPath="RoleName"
+                          SelectedValuePath="IdRole"
+                          SelectedValue="{Binding Path=SelectedIdRole, UpdateSourceTrigger=PropertyChanged,Mode=OneWayToSource}"
+                          Text="{Binding Path=RoleName, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}"
+                          FontFamily="Comic Sans MS"
+                          FontSize="18"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1" Margin="0,5,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Label Content="Логин:"
+                               FontFamily="Comic Sans MS"
+                               FontSize="18"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <TextBox Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}"
+                                 VerticalContentAlignment="Center"
+                                 FontFamily="Comic Sans MS"
+                                 FontSize="18"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2" Margin="0,5,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Label Content="Пароль:"
+                               FontFamily="Comic Sans MS"
+                               FontSize="18"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <TextBox Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}"
+                                 VerticalContentAlignment="Center"
+                                 FontFamily="Comic Sans MS"
+                                 FontSize="18"/>
+            </Grid>
+        </Grid>
+        <Grid x:Name="blockFirstName" Grid.Row="3" Margin="0,5,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=RoleName}" Value="Manager">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=RoleName}" Value="Administrator">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=RoleName}" Value="Owner">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=RoleName}" Value="">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <Grid Grid.Column="0">
+                <Label Content="Имя:"
+                               FontFamily="Comic Sans MS"
+                               FontSize="18"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <TextBox Text="{Binding Path=FirstName, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}"
+                                 VerticalContentAlignment="Center"
+                                 FontFamily="Comic Sans MS"
+                                 FontSize="18"/>
+            </Grid>
+        </Grid>
+        <Grid x:Name="blockFamilyName" Grid.Row="4" Margin="0,5,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=RoleName}" Value="Manager">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=RoleName}" Value="Administrator">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=RoleName}" Value="Owner">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=RoleName}" Value="">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <Grid Grid.Column="0">
+                <Label Content="Фамилия:"
+                               FontFamily="Comic Sans MS"
+                               FontSize="18"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <TextBox Text="{Binding Path=FamilyName, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}"
+                                 VerticalContentAlignment="Center"
+                                 FontFamily="Comic Sans MS"
+                                 FontSize="18"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="5" Grid.ColumnSpan="2" Margin="0,5,0,0" Width="300">
+            <Grid>
+                <Button Content="Добавить"
+                        FontFamily="Comic Sans MS"
+                        FontSize="18"
+                        Command="{Binding Path=Add}"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

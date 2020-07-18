@@ -18,5 +18,7 @@ namespace World_yachts.Model.Database.Interactions.DataActions
         void UpdateValueWasOnline(User user);
 
         void UpdateValueWasOnline(v_user user);
+
+        void UpdateUser(int idUser, int idRole, string password);
     }
 }
