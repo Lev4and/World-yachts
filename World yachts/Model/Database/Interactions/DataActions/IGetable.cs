@@ -63,6 +63,8 @@ namespace World_yachts.Model.Database.Interactions.DataActions
 
         SalesPerson GetSalesPerson(int idSalesPerson);
 
+        Partner GetPartner(int idPartner);
+
         User GetUser(int idUser);
 
         List<string> GetTypesModel();
@@ -83,6 +85,8 @@ namespace World_yachts.Model.Database.Interactions.DataActions
 
         List<Partner> GetPartners();
 
+        List<Partner> GetPartners(string name, string city);
+
         List<Wood> GetWoods();
 
         List<Role> GetRoles();
@@ -94,6 +98,8 @@ namespace World_yachts.Model.Database.Interactions.DataActions
         List<v_boatSimplifiedInformation> GetBoats();
 
         List<v_cityCustomer> GetCitiesCustomers();
+
+        List<v_cityPartner> GetCitiesPartners();
 
         List<v_customer> GetCustomers(string fullName, string organisationName, string city);
 

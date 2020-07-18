@@ -12,6 +12,8 @@
 
         bool ContainsSalesPerson(int idSalesPerson);
 
+        bool ContainsPartner(string name, string address, string city);
+
         bool ContainsUser(string login);
     }
 }

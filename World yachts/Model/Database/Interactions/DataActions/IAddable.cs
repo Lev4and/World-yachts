@@ -20,6 +20,8 @@ namespace World_yachts.Model.Database.Interactions.DataActions
 
         bool AddSalesPerson(int idSalesPerson, string firstName, string familyName);
 
+        bool AddPartner(string name, string address, string city);
+
         bool AddUser(int idRole, string login, string password);
 
         bool AddUser(int idRole, string login, string password, out User user);

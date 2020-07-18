@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using World_yachts.Services;
 using World_yachts.ViewModels;
-using World_yachts.Views.Windows;
 
 namespace World_yachts.Views
 {
@@ -32,6 +31,9 @@ namespace World_yachts.Views
             services.AddTransient<CustomersViewModel>();
             services.AddTransient<AddCustomerViewModel>();
             services.AddTransient<ChangeCustomerViewModel>();
+            services.AddTransient<PartnersViewModel>();
+            services.AddTransient<AddPartnerViewModel>();
+            services.AddTransient<ChangePartnerViewModel>();
 
             services.AddSingleton<PageService>();
 
@@ -78,5 +80,11 @@ namespace World_yachts.Views
         public AddCustomerViewModel AddCustomerViewModel => _provider.GetRequiredService<AddCustomerViewModel>();
 
         public ChangeCustomerViewModel ChangeCustomerViewModel => _provider.GetRequiredService<ChangeCustomerViewModel>();
+
+        public PartnersViewModel PartnersViewModel => _provider.GetRequiredService<PartnersViewModel>();
+
+        public AddPartnerViewModel AddPartnerViewModel => _provider.GetRequiredService<AddPartnerViewModel>();
+
+        public ChangePartnerViewModel ChangePartnerViewModel => _provider.GetRequiredService<ChangePartnerViewModel>();
     }
 }

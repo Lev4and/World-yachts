@@ -8,6 +8,8 @@
 
         void RemoveCustomer(int idCustomer);
 
+        void RemovePartner(int idPartner);
+
         void RemoveBoat(int idBoat);
 
         void RemoveUser(int idUser);

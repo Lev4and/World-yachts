@@ -41,6 +41,7 @@
         <EntityTypeShape EntityType="Model.v_cityCustomer" Width="1.5" PointX="13.375" PointY="8.75" />
         <EntityTypeShape EntityType="Model.v_customer" Width="1.5" PointX="13.375" PointY="10.75" />
         <EntityTypeShape EntityType="Model.v_organisationNameCustomer" Width="1.5" PointX="10.375" PointY="13.75" />
+        <EntityTypeShape EntityType="Model.v_cityPartner" Width="1.5" PointX="12.375" PointY="14.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

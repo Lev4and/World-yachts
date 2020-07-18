@@ -5,6 +5,8 @@ namespace World_yachts.Model.Database.Interactions.DataActions
 {
     public interface IUpdatable
     {
+        bool UpdatePartner(int idPartner, string name, string address, string city);
+
         void UpdateAccessory(int idAccessory, string descriptionOfAccessory, int price, double VAT, int inventory, int orderLevel, int orderBatch, List<string> listSelectedCompatibleModelBoats);
 
         void UpdateBoat(int idBoat, int basePrice, double VAT);

@@ -49,6 +49,7 @@ namespace World_yachts.Model.Database.Models
         public virtual DbSet<v_cityCustomer> v_cityCustomer { get; set; }
         public virtual DbSet<v_customer> v_customer { get; set; }
         public virtual DbSet<v_organisationNameCustomer> v_organisationNameCustomer { get; set; }
+        public virtual DbSet<v_cityPartner> v_cityPartner { get; set; }
     
         public virtual int sp_toBlockUser()
         {

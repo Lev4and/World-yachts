@@ -228,6 +228,16 @@
           <Property Name="City" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_cityPartner" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_cityPartner">
+          <Key>
+            <PropertyRef Name="IdCity" />
+            <PropertyRef Name="City" />
+          </Key>
+          <Property Name="IdCity" Type="bigint" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_customer" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="v_customer">
           <Key>
@@ -530,6 +540,12 @@
     [v_cityCustomer].[IdCity] AS [IdCity], 
     [v_cityCustomer].[City] AS [City]
     FROM [dbo].[v_cityCustomer] AS [v_cityCustomer]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_cityPartner" EntityType="Self.v_cityPartner" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_cityPartner].[IdCity] AS [IdCity], 
+    [v_cityPartner].[City] AS [City]
+    FROM [dbo].[v_cityPartner] AS [v_cityPartner]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="v_customer" EntityType="Self.v_customer" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1142,6 +1158,7 @@
           <EntitySet Name="v_cityCustomer" EntityType="Model.v_cityCustomer" />
           <EntitySet Name="v_customer" EntityType="Model.v_customer" />
           <EntitySet Name="v_organisationNameCustomer" EntityType="Model.v_organisationNameCustomer" />
+          <EntitySet Name="v_cityPartner" EntityType="Model.v_cityPartner" />
         </EntityContainer>
         <EntityType Name="v_boatSimplifiedInformation">
           <Key>
@@ -1187,6 +1204,14 @@
           </Key>
           <Property Name="IdOrganisationName" Type="Int64" Nullable="false" />
           <Property Name="OrganisationName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="v_cityPartner">
+          <Key>
+            <PropertyRef Name="IdCity" />
+            <PropertyRef Name="City" />
+          </Key>
+          <Property Name="IdCity" Type="Int64" Nullable="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1444,6 +1469,14 @@
               <MappingFragment StoreEntitySet="v_organisationNameCustomer">
                 <ScalarProperty Name="OrganisationName" ColumnName="OrganisationName" />
                 <ScalarProperty Name="IdOrganisationName" ColumnName="IdOrganisationName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_cityPartner">
+            <EntityTypeMapping TypeName="Model.v_cityPartner">
+              <MappingFragment StoreEntitySet="v_cityPartner">
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

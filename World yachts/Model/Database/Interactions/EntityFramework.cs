@@ -687,5 +687,71 @@ namespace World_yachts.Model.Database.Interactions
 
             _context.SaveChanges();
         }
+
+        public bool AddPartner(string name, string address, string city)
+        {
+            if(!ContainsPartner(name, address, city))
+            {
+                _context.Partner.Add(new Partner
+                {
+                    Name = name,
+                    Address = address,
+                    City = city
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool ContainsPartner(string name, string address, string city)
+        {
+            return _context.Partner.SingleOrDefault(p => p.Name == name && p.Address == address && p.City == city) != null;
+        }
+
+        public Partner GetPartner(int idPartner)
+        {
+            return _context.Partner.SingleOrDefault(p => p.IdPartner == idPartner);
+        }
+
+        public List<Partner> GetPartners(string name, string city)
+        {
+            return _context.Partner.Where(p =>
+            (name.Length > 0 ? p.Name.ToLower().StartsWith(name.ToLower()) : true) &&
+            (city.Length > 0 ? p.City == city : true)).AsNoTracking().ToList();
+        }
+
+        public List<v_cityPartner> GetCitiesPartners()
+        {
+            return _context.v_cityPartner.AsNoTracking().ToList();
+        }
+
+        public void RemovePartner(int idPartner)
+        {
+            var partner = _context.Partner.Single(p => p.IdPartner == idPartner);
+
+            _context.Partner.Remove(partner);
+            _context.SaveChanges();
+        }
+
+        public bool UpdatePartner(int idPartner, string name, string address, string city)
+        {
+            if(!ContainsPartner(name, address, city))
+            {
+                var partner = _context.Partner.Single(p => p.IdPartner == idPartner);
+
+                partner.Name = name;
+                partner.Address = address;
+                partner.City = city;
+
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
     }
 }
