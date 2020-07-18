@@ -38,6 +38,9 @@
         <AssociationConnector Association="Model.FK_OrderDetails_Order" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_User_Role" ManuallyRouted="false" />
         <EntityTypeShape EntityType="Model.v_boatSimplifiedInformation" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.v_cityCustomer" Width="1.5" PointX="13.375" PointY="8.75" />
+        <EntityTypeShape EntityType="Model.v_customer" Width="1.5" PointX="13.375" PointY="10.75" />
+        <EntityTypeShape EntityType="Model.v_organisationNameCustomer" Width="1.5" PointX="10.375" PointY="13.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

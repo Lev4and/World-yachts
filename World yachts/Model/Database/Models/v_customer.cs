@@ -12,16 +12,10 @@ namespace World_yachts.Model.Database.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Customer
+    public partial class v_customer
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Customer()
-        {
-            this.Order = new HashSet<Order>();
-        }
-    
         public int IdCustomer { get; set; }
-        public string FamilyName { get; set; }
+        public string FullName { get; set; }
         public System.DateTime DateOfBirth { get; set; }
         public string OrganisationName { get; set; }
         public string Address { get; set; }
@@ -30,9 +24,5 @@ namespace World_yachts.Model.Database.Models
         public string Phone { get; set; }
         public string IdNumber { get; set; }
         public string IdDocumentName { get; set; }
-        public string FirstName { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Order { get; set; }
     }
 }

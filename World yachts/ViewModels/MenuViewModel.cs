@@ -41,7 +41,7 @@ namespace World_yachts.ViewModels
 
         public ICommand Customers => new DelegateCommand(() =>
         {
-
+            _pageService.ChangePage(new Customers());
         }, () => _config.TypeUser == "Administrator" || _config.TypeUser == "Manager");
 
         public ICommand Partners => new DelegateCommand(() =>

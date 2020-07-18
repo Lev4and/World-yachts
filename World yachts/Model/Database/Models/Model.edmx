@@ -73,7 +73,7 @@
             <PropertyRef Name="IdCustomer" />
           </Key>
           <Property Name="IdCustomer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FistName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="FamilyName" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="DateOfBirth" Type="date" Nullable="false" />
           <Property Name="OrganisationName" Type="nvarchar" MaxLength="255" />
@@ -216,6 +216,49 @@
           </Key>
           <Property Name="IdBoat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Model" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_cityCustomer" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_cityCustomer">
+          <Key>
+            <PropertyRef Name="IdCity" />
+            <PropertyRef Name="City" />
+          </Key>
+          <Property Name="IdCity" Type="bigint" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_customer" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_customer">
+          <Key>
+            <PropertyRef Name="IdCustomer" />
+            <PropertyRef Name="DateOfBirth" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="City" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="Phone" />
+            <PropertyRef Name="IdNumber" />
+            <PropertyRef Name="IdDocumentName" />
+          </Key>
+          <Property Name="IdCustomer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar(max)" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="OrganisationName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IdNumber" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IdDocumentName" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_organisationNameCustomer" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_organisationNameCustomer">
+          <Key>
+            <PropertyRef Name="IdOrganisationName" />
+          </Key>
+          <Property Name="IdOrganisationName" Type="bigint" Nullable="false" />
+          <Property Name="OrganisationName" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_user" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -482,6 +525,32 @@
     [v_boatSimplifiedInformation].[Model] AS [Model]
     FROM [dbo].[v_boatSimplifiedInformation] AS [v_boatSimplifiedInformation]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="v_cityCustomer" EntityType="Self.v_cityCustomer" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_cityCustomer].[IdCity] AS [IdCity], 
+    [v_cityCustomer].[City] AS [City]
+    FROM [dbo].[v_cityCustomer] AS [v_cityCustomer]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_customer" EntityType="Self.v_customer" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_customer].[IdCustomer] AS [IdCustomer], 
+    [v_customer].[FullName] AS [FullName], 
+    [v_customer].[DateOfBirth] AS [DateOfBirth], 
+    [v_customer].[OrganisationName] AS [OrganisationName], 
+    [v_customer].[Address] AS [Address], 
+    [v_customer].[City] AS [City], 
+    [v_customer].[Email] AS [Email], 
+    [v_customer].[Phone] AS [Phone], 
+    [v_customer].[IdNumber] AS [IdNumber], 
+    [v_customer].[IdDocumentName] AS [IdDocumentName]
+    FROM [dbo].[v_customer] AS [v_customer]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_organisationNameCustomer" EntityType="Self.v_organisationNameCustomer" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_organisationNameCustomer].[IdOrganisationName] AS [IdOrganisationName], 
+    [v_organisationNameCustomer].[OrganisationName] AS [OrganisationName]
+    FROM [dbo].[v_organisationNameCustomer] AS [v_organisationNameCustomer]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="v_user" EntityType="Self.v_user" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [v_user].[IdUser] AS [IdUser], 
@@ -636,7 +705,6 @@
             <PropertyRef Name="IdCustomer" />
           </Key>
           <Property Name="IdCustomer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FistName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FamilyName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="OrganisationName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -647,6 +715,7 @@
           <Property Name="IdNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdDocumentName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Invoice">
           <Key>
@@ -1070,6 +1139,9 @@
           </AssociationSet>
           <FunctionImport Name="sp_toBlockUser" />
           <EntitySet Name="v_boatSimplifiedInformation" EntityType="Model.v_boatSimplifiedInformation" />
+          <EntitySet Name="v_cityCustomer" EntityType="Model.v_cityCustomer" />
+          <EntitySet Name="v_customer" EntityType="Model.v_customer" />
+          <EntitySet Name="v_organisationNameCustomer" EntityType="Model.v_organisationNameCustomer" />
         </EntityContainer>
         <EntityType Name="v_boatSimplifiedInformation">
           <Key>
@@ -1078,6 +1150,43 @@
           </Key>
           <Property Name="Model" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="IdBoat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="v_cityCustomer">
+          <Key>
+            <PropertyRef Name="City" />
+            <PropertyRef Name="IdCity" />
+          </Key>
+          <Property Name="City" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IdCity" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_customer">
+          <Key>
+            <PropertyRef Name="IdCustomer" />
+            <PropertyRef Name="DateOfBirth" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="City" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="Phone" />
+            <PropertyRef Name="IdNumber" />
+            <PropertyRef Name="IdDocumentName" />
+          </Key>
+          <Property Name="IdCustomer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="OrganisationName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IdNumber" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IdDocumentName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="v_organisationNameCustomer">
+          <Key>
+            <PropertyRef Name="IdOrganisationName" />
+          </Key>
+          <Property Name="IdOrganisationName" Type="Int64" Nullable="false" />
+          <Property Name="OrganisationName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1157,8 +1266,8 @@
           <EntitySetMapping Name="Customer">
             <EntityTypeMapping TypeName="Model.Customer">
               <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="IdCustomer" ColumnName="IdCustomer" />
-                <ScalarProperty Name="FistName" ColumnName="FistName" />
                 <ScalarProperty Name="FamilyName" ColumnName="FamilyName" />
                 <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
                 <ScalarProperty Name="OrganisationName" ColumnName="OrganisationName" />
@@ -1303,6 +1412,38 @@
               <MappingFragment StoreEntitySet="v_boatSimplifiedInformation">
                 <ScalarProperty Name="IdBoat" ColumnName="IdBoat" />
                 <ScalarProperty Name="Model" ColumnName="Model" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_cityCustomer">
+            <EntityTypeMapping TypeName="Model.v_cityCustomer">
+              <MappingFragment StoreEntitySet="v_cityCustomer">
+                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+                <ScalarProperty Name="City" ColumnName="City" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_customer">
+            <EntityTypeMapping TypeName="Model.v_customer">
+              <MappingFragment StoreEntitySet="v_customer">
+                <ScalarProperty Name="IdDocumentName" ColumnName="IdDocumentName" />
+                <ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="OrganisationName" ColumnName="OrganisationName" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IdCustomer" ColumnName="IdCustomer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_organisationNameCustomer">
+            <EntityTypeMapping TypeName="Model.v_organisationNameCustomer">
+              <MappingFragment StoreEntitySet="v_organisationNameCustomer">
+                <ScalarProperty Name="OrganisationName" ColumnName="OrganisationName" />
+                <ScalarProperty Name="IdOrganisationName" ColumnName="IdOrganisationName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -6,6 +6,8 @@
 
         void RemoveAccToBoats(int idAccessory);
 
+        void RemoveCustomer(int idCustomer);
+
         void RemoveBoat(int idBoat);
 
         void RemoveUser(int idUser);

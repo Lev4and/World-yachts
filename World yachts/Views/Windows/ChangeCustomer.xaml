@@ -1,0 +1,224 @@
+﻿<Window x:Class="World_yachts.Views.Windows.ChangeCustomer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:World_yachts.Views.Windows"
+        xmlns:uc="clr-namespace:World_yachts.Views.UserControls"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:c="clr-namespace:World_yachts.Converters"
+        mc:Ignorable="d"
+        DataContext="{Binding ChangeCustomerViewModel, Source={StaticResource ViewModelLocator}}"
+        x:Name="_this"
+        Title="ChangeCustomer" Height="500" Width="800">
+    <Window.Resources>
+        <c:SelectedValueToNullableInt32 x:Key="selectedValueToNullableInt32"/>
+        <c:TextToInt32 x:Key="textToInt32"/>
+        <c:TextToDouble x:Key="textToDouble"/>
+    </Window.Resources>
+    <Grid>
+        <Grid Margin="10">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Loaded">
+                    <i:InvokeCommandAction Command="{Binding Path=Loaded}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label Content="Имя:"
+                           FontFamily="Comic Sans MS"
+                           FontSize="18"/>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBox Text="{Binding Path=FirstName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                             IsReadOnly="True"
+                                 VerticalContentAlignment="Center"
+                                 FontFamily="Comic Sans MS"
+                                 FontSize="18"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1" Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label Content="Фамилия:"
+                           FontFamily="Comic Sans MS"
+                           FontSize="18"/>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBox Text="{Binding Path=FamilyName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                             IsReadOnly="True"
+                                 VerticalContentAlignment="Center"
+                                 FontFamily="Comic Sans MS"
+                                 FontSize="18"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2" Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label Content="Дата рождения:"
+                           FontFamily="Comic Sans MS"
+                           FontSize="18"/>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBox Text="{Binding Path=DateOfBirth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                             IsReadOnly="True"
+                                 VerticalContentAlignment="Center"
+                                 FontFamily="Comic Sans MS"
+                                 FontSize="18"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="3" Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label Content="Название организации:"
+                           FontFamily="Comic Sans MS"
+                           FontSize="18"/>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBox Text="{Binding Path=OrganisationName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                 VerticalContentAlignment="Center"
+                                 FontFamily="Comic Sans MS"
+                                 FontSize="18"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="4" Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label Content="Адрес:"
+                           FontFamily="Comic Sans MS"
+                           FontSize="18"/>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBox Text="{Binding Path=Address, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                 VerticalContentAlignment="Center"
+                                 FontFamily="Comic Sans MS"
+                                 FontSize="18"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="5" Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label Content="Город:"
+                           FontFamily="Comic Sans MS"
+                           FontSize="18"/>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBox Text="{Binding Path=City, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                 VerticalContentAlignment="Center"
+                                 FontFamily="Comic Sans MS"
+                                 FontSize="18"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="6" Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label Content="Email:"
+                           FontFamily="Comic Sans MS"
+                           FontSize="18"/>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBox Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                 VerticalContentAlignment="Center"
+                                 FontFamily="Comic Sans MS"
+                                 FontSize="18"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="7" Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label Content="Номер телефона:"
+                           FontFamily="Comic Sans MS"
+                           FontSize="18"/>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBox Text="{Binding Path=Phone, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                             VerticalContentAlignment="Center"
+                             FontFamily="Comic Sans MS"
+                             FontSize="18"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="8" Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label Content="Идентификационный номер:"
+                           FontFamily="Comic Sans MS"
+                           FontSize="18"/>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBox Text="{Binding Path=IdNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                             VerticalContentAlignment="Center"
+                             FontFamily="Comic Sans MS"
+                             FontSize="18"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="9" Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label Content="Идентификатор документа:"
+                           FontFamily="Comic Sans MS"
+                           FontSize="18"/>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBox Text="{Binding Path=IdDocumentName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                             VerticalContentAlignment="Center"
+                             FontFamily="Comic Sans MS"
+                             FontSize="18"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="10" Grid.ColumnSpan="2" Width="300">
+                <Grid>
+                    <Button Content="Изменить"
+                            VerticalAlignment="Bottom"
+                            Margin="0,0,0,5"
+                            FontFamily="Comic Sans MS"
+                            FontSize="18"
+                            Command="{Binding Path=Change}"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

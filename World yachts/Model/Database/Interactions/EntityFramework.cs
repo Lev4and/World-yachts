@@ -623,5 +623,69 @@ namespace World_yachts.Model.Database.Interactions
         {
             return _context.SalesPerson.SingleOrDefault(s => s.IdSalesPerson == idSalesPerson);
         }
+
+        public void AddCustomer(string firstName, string familyName, DateTime dateOfBirth, string organisationName, string address, string city, string email, string phone, string idNumber, string idDocumentName)
+        {
+            _context.Customer.Add(new Customer 
+            {
+                FirstName = firstName,
+                FamilyName = familyName,
+                DateOfBirth = dateOfBirth,
+                OrganisationName = organisationName,
+                Address = address,
+                City = city,
+                Email = email,
+                Phone = phone,
+                IdNumber = idNumber,
+                IdDocumentName = idDocumentName
+            });
+            _context.SaveChanges();
+        }
+
+        public Customer GetCustomer(int idCustomer)
+        {
+            return _context.Customer.SingleOrDefault(c => c.IdCustomer == idCustomer);
+        }
+
+        public List<v_cityCustomer> GetCitiesCustomers()
+        {
+            return _context.v_cityCustomer.AsNoTracking().ToList();
+        }
+
+        public List<v_customer> GetCustomers(string fullName, string organisationName, string city)
+        {
+            return _context.v_customer.Where(c =>
+            (fullName.Length > 0 ? c.FullName.ToLower().StartsWith(fullName.ToLower()) : true) &&
+            (organisationName.Length > 0 ? c.OrganisationName == organisationName : true) &&
+            (city.Length > 0 ? c.City == city : true)).AsNoTracking().ToList();
+        }
+
+        public List<v_organisationNameCustomer> GetOrganisationsNamesCustomers()
+        {
+            return _context.v_organisationNameCustomer.AsNoTracking().ToList();
+        }
+
+        public void RemoveCustomer(int idCustomer)
+        {
+            var customer = _context.Customer.Single(c => c.IdCustomer == idCustomer);
+
+            _context.Customer.Remove(customer);
+            _context.SaveChanges();
+        }
+
+        public void UpdateCustomer(int idCustomer, string organisationName, string address, string city, string email, string phone, string idNumber, string idDocumentName)
+        {
+            var customer = _context.Customer.Single(c => c.IdCustomer == idCustomer);
+
+            customer.OrganisationName = organisationName;
+            customer.Address = address;
+            customer.City = city;
+            customer.Email = email;
+            customer.Phone = phone;
+            customer.IdNumber = idNumber;
+            customer.IdDocumentName = idDocumentName;
+
+            _context.SaveChanges();
+        }
     }
 }

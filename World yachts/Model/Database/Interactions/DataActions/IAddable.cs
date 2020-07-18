@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using World_yachts.Model.Database.Models;
 
 namespace World_yachts.Model.Database.Interactions.DataActions
@@ -14,6 +15,8 @@ namespace World_yachts.Model.Database.Interactions.DataActions
         bool AddColour(string nameColour);
 
         bool AddColour(string nameColour, out Colour colour);
+
+        void AddCustomer(string firstName, string familyName, DateTime dateOfBirth, string organisationName, string address, string city, string email, string phone, string idNumber, string idDocumentName);
 
         bool AddSalesPerson(int idSalesPerson, string firstName, string familyName);
 

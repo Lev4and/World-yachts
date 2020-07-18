@@ -59,6 +59,8 @@ namespace World_yachts.Model.Database.Interactions.DataActions
 
         Colour GetColour(string nameColour);
 
+        Customer GetCustomer(int idCustomer);
+
         SalesPerson GetSalesPerson(int idSalesPerson);
 
         User GetUser(int idUser);
@@ -90,6 +92,12 @@ namespace World_yachts.Model.Database.Interactions.DataActions
         List<v_boat> GetBoats(string model, List<string> listSelectedBoatTypes, List<string> listSelectedModelType, Range<int> rangeNumberOfRowers, bool? thereIsMast, List<string> listSelectedColours, List<string> listSelectedWoods, Range<int> rangeBasePrice, Range<double> rangeVAT);
 
         List<v_boatSimplifiedInformation> GetBoats();
+
+        List<v_cityCustomer> GetCitiesCustomers();
+
+        List<v_customer> GetCustomers(string fullName, string organisationName, string city);
+
+        List<v_organisationNameCustomer> GetOrganisationsNamesCustomers();
 
         List<v_user> GetUsers(string login, string roleName, Range<DateTime> rangeDateOfRegistration, Range<DateTime> rangeDateOfLastChangePassword, Range<DateTime> rangeWasOnline);
     }

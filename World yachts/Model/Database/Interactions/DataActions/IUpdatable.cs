@@ -9,6 +9,8 @@ namespace World_yachts.Model.Database.Interactions.DataActions
 
         void UpdateBoat(int idBoat, int basePrice, double VAT);
 
+        void UpdateCustomer(int idCustomer, string organisationName, string address, string city, string email, string phone, string idNumber, string idDocumentName);
+
         void UpdatePassword(int idUser, string newPassword);
 
         void UpdateValueWasOnline(int idUser);
