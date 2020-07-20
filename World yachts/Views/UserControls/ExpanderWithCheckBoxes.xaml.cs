@@ -113,8 +113,18 @@ namespace World_yachts.Views.UserControls
 
         private void Item_Checked(object sender, RoutedEventArgs e)
         {
-            if (!ListSelectedValues.Contains((sender as CheckBox).Content.ToString()))
-                ListSelectedValues.Add((sender as CheckBox).Content.ToString());
+            if(ListSelectedValues != null)
+            {
+                if (!ListSelectedValues.Contains((sender as CheckBox).Content.ToString()))
+                    ListSelectedValues.Add((sender as CheckBox).Content.ToString());
+            }
+            else
+            {
+                ListSelectedValues = new ObservableCollection<string>();
+
+                if (!ListSelectedValues.Contains((sender as CheckBox).Content.ToString()))
+                    ListSelectedValues.Add((sender as CheckBox).Content.ToString());
+            }
         }
 
         private void Item_Unchecked(object sender, RoutedEventArgs e)

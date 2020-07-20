@@ -23,5 +23,6 @@ namespace World_yachts.Model.Database.Models
         public string NameWood { get; set; }
         public int BasePrice { get; set; }
         public double VAT { get; set; }
+        public System.DateTime ProductionStartDate { get; set; }
     }
 }

@@ -34,6 +34,9 @@ namespace World_yachts.Views
             services.AddTransient<PartnersViewModel>();
             services.AddTransient<AddPartnerViewModel>();
             services.AddTransient<ChangePartnerViewModel>();
+            services.AddTransient<ContractsViewModel>();
+            services.AddTransient<AddContractViewModel>();
+            services.AddTransient<ChangeContractViewModel>();
 
             services.AddSingleton<PageService>();
 
@@ -86,5 +89,11 @@ namespace World_yachts.Views
         public AddPartnerViewModel AddPartnerViewModel => _provider.GetRequiredService<AddPartnerViewModel>();
 
         public ChangePartnerViewModel ChangePartnerViewModel => _provider.GetRequiredService<ChangePartnerViewModel>();
+
+        public ContractsViewModel ContractsViewModel => _provider.GetRequiredService<ContractsViewModel>();
+
+        public AddContractViewModel AddContractViewModel => _provider.GetRequiredService<AddContractViewModel>();
+
+        public ChangeContractViewModel ChangeContractViewModel => _provider.GetRequiredService<ChangeContractViewModel>();
     }
 }

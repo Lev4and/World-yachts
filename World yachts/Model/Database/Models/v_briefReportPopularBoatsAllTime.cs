@@ -12,11 +12,11 @@ namespace World_yachts.Model.Database.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class v_boatSimplifiedInformation
+    public partial class v_briefReportPopularBoatsAllTime
     {
-        public string Model { get; set; }
         public int IdBoat { get; set; }
-        public int BasePrice { get; set; }
-        public double VAT { get; set; }
+        public string Model { get; set; }
+        public Nullable<int> Count { get; set; }
+        public long Rank { get; set; }
     }
 }

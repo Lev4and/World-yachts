@@ -16,11 +16,15 @@ namespace World_yachts.Model.Database.Interactions.DataActions
 
         bool AddColour(string nameColour, out Colour colour);
 
+        void AddContract(DateTime date, int depositPayed, int idOrder, int contractTotalPrice, int contractTotalPriceInclVAT, string productionProcess);
+
         void AddCustomer(string firstName, string familyName, DateTime dateOfBirth, string organisationName, string address, string city, string email, string phone, string idNumber, string idDocumentName);
 
         bool AddSalesPerson(int idSalesPerson, string firstName, string familyName);
 
         bool AddPartner(string name, string address, string city);
+
+        void AddOrderDetails(int idAccessory, int idOrder);
 
         bool AddUser(int idRole, string login, string password);
 

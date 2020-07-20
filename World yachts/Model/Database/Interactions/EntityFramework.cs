@@ -70,6 +70,7 @@ namespace World_yachts.Model.Database.Interactions
                 _context.Boat.Add(new Boat
                 {
                     Model = model,
+                    ProductionStartDate = DateTime.Now,
                     IdBoatType = idBoatType,
                     NumberOfRowers = numberOfRowers,
                     Mast = mast,
@@ -252,7 +253,7 @@ namespace World_yachts.Model.Database.Interactions
             return _context.v_boat.SingleOrDefault(b => b.IdBoat == idBoat);
         }
 
-        public List<v_boat> GetBoats(string model, List<string> listSelectedBoatTypes, List<string> listSelectedModelType, Range<int> rangeNumberOfRowers, bool? thereIsMast, List<string> listSelectedColours, List<string> listSelectedWoods, Range<int> rangeBasePrice, Range<double> rangeVAT)
+        public List<v_boat> GetBoats(string model, List<string> listSelectedBoatTypes, List<string> listSelectedModelType, Range<int> rangeNumberOfRowers, bool? thereIsMast, List<string> listSelectedColours, List<string> listSelectedWoods, Range<int> rangeBasePrice, Range<double> rangeVAT, Range<DateTime> rangeProductionStartDate)
         {
             return _context.v_boat.Where(b =>
                    (model.Length > 0 ? b.Model.ToLower().StartsWith(model.ToLower()) : true) &&
@@ -264,6 +265,8 @@ namespace World_yachts.Model.Database.Interactions
                    b.BasePrice <= rangeBasePrice.EndValue &&
                    b.VAT >= rangeVAT.BeginValue &&
                    b.VAT <= rangeVAT.EndValue &&
+                   b.ProductionStartDate >= rangeProductionStartDate.BeginValue &&
+                   b.ProductionStartDate <= rangeProductionStartDate.EndValue &&
                    (listSelectedBoatTypes.Count > 0 ? listSelectedBoatTypes.Contains(b.NameBoatType) : true) &&
                    (listSelectedColours.Count > 0 ? listSelectedColours.Contains(b.NameColour) : true) &&
                    (listSelectedWoods.Count > 0 ? listSelectedWoods.Contains(b.NameWood) : true)).AsNoTracking().ToList();
@@ -752,6 +755,223 @@ namespace World_yachts.Model.Database.Interactions
             }
 
             return false;
+        }
+
+        public void AddContract(DateTime date, int depositPayed, int idOrder, int contractTotalPrice, int contractTotalPriceInclVAT, string productionProcess)
+        {
+            _context.Contract.Add(new Contract
+            {
+                Date = date,
+                DepositPayed = depositPayed,
+                IdOrder = idOrder,
+                ContractTotalPrice = contractTotalPrice,
+                ContractTotalPriceInclVAT = contractTotalPriceInclVAT,
+                ProductionProcess = productionProcess
+            });
+            _context.SaveChanges();
+        }
+
+        public void AddOrderDetails(int idAccessory, int idOrder)
+        {
+            _context.OrderDetails.Add(new OrderDetails()
+            {
+                IdAccessory = idAccessory,
+                IdOrder = idOrder
+            });
+            _context.SaveChanges();
+        }
+
+        public int GetMinDepositPayed()
+        {
+            return _context.Contract.Min(c => c.DepositPayed);
+        }
+
+        public int GetMinContractTotalPrice()
+        {
+            return _context.Contract.Min(c => c.ContractTotalPrice);
+        }
+
+        public int GetMinContractTotalPriceInclVAT()
+        {
+            return _context.Contract.Min(c => c.ContractTotalPriceInclVAT);
+        }
+
+        public int GetMaxDepositPayed()
+        {
+            return _context.Contract.Max(c => c.DepositPayed);
+        }
+
+        public int GetMaxContractTotalPrice()
+        {
+            return _context.Contract.Max(c => c.ContractTotalPrice);
+        }
+
+        public int GetMaxContractTotalPriceInclVAT()
+        {
+            return _context.Contract.Max(c => c.ContractTotalPriceInclVAT);
+        }
+
+        public DateTime GetMinDateOfConclusionContract()
+        {
+            return _context.Contract.Min(c => c.Date);
+        }
+
+        public DateTime GetMaxDateOfConclusionContract()
+        {
+            return _context.Contract.Max(c => c.Date);
+        }
+
+        public List<string> GetProductionProcess()
+        {
+            return new List<string>()
+            {
+                "Работы не начаты",
+                "Начато производство",
+                "25% готовности",
+                "50% готовности",
+                "75% готовности",
+                "Отделка лодки"
+            };
+        }
+
+        public List<v_cityOrder> GetCitiesOrders()
+        {
+            return _context.v_cityOrder.AsNoTracking().ToList();
+        }
+
+        public List<v_contract> GetContracts(List<string> listSelectedModelsBoats, List<string> listSelectedAccessoriesAtOrder, List<string> listSelectedProductionProcess, List<string> listSelectedDeliveryAddressOrders, List<string> listSelectedCitiesOrders, Range<DateTime> rangeDateOfConclusionContract, Range<int> rangeDepositPayed, Range<int> rangeContractTotalPrice, Range<int> rangeContractTotalPriceInclVAT)
+        {
+            return _context.v_contract.Where(c =>
+            (listSelectedModelsBoats.Count > 0 ? listSelectedModelsBoats.Contains(c.Model) : true) &&
+            (listSelectedAccessoriesAtOrder.Count > 0 ? listSelectedAccessoriesAtOrder.All(l => c.SelectedAccessoriesAtOrder.ToLower().Contains(l.ToLower())) : true) &&
+            (listSelectedProductionProcess.Count > 0 ? listSelectedProductionProcess.Contains(c.ProductionProcess) : true) &&
+            (listSelectedDeliveryAddressOrders.Count > 0 ? listSelectedDeliveryAddressOrders.Contains(c.DeliveryAddress) : true) &&
+            (listSelectedCitiesOrders.Count > 0 ? listSelectedCitiesOrders.Contains(c.City) : true) &&
+            c.Date >= rangeDateOfConclusionContract.BeginValue &&
+            c.Date <= rangeDateOfConclusionContract.EndValue &&
+            c.DepositPayed >= rangeDepositPayed.BeginValue &&
+            c.DepositPayed <= rangeDepositPayed.EndValue &&
+            c.ContractTotalPrice >= rangeContractTotalPrice.BeginValue &&
+            c.ContractTotalPrice <= rangeContractTotalPrice.EndValue &&
+            c.ContractTotalPriceInclVAT >= rangeContractTotalPriceInclVAT.BeginValue &&
+            c.ContractTotalPriceInclVAT <= rangeContractTotalPriceInclVAT.EndValue).AsNoTracking().ToList();
+        }
+
+        public List<v_deliveryAddressOrder> GetDeliveryAddressOrders()
+        {
+            return _context.v_deliveryAddressOrder.AsNoTracking().ToList();
+        }
+
+        public void RemoveContract(int idContract)
+        {
+            var contract = _context.Contract.Single(c => c.IdContract == idContract);
+
+            _context.Contract.Remove(contract);
+            _context.SaveChanges();
+        }
+
+        public void RemoveOrder(int idOrder)
+        {
+            var order = _context.Order.Single(c => c.IdOrder == idOrder);
+
+            _context.Order.Remove(order);
+            _context.SaveChanges();
+        }
+
+        public void UpdateContract(int idContract, int depositPayed, string productionProcess)
+        {
+            var contract = _context.Contract.Single(c => c.IdContract == idContract);
+
+            contract.DepositPayed = depositPayed;
+            contract.ProductionProcess = productionProcess;
+
+            _context.SaveChanges();
+        }
+
+        public void EnterIntoContract(int idSalesPerson, int idCustomer, int idBoat, string deliveryAddress, string city, List<int> listSelectedAccessories, int depositPayed, int contractTotalPrice, int contractTotalPriceInclVAT)
+        {
+            DateTime time = DateTime.Now;
+
+            Order order = _context.Order.Add(new Order
+            {
+                Date = time,
+                IdSalesPerson = idSalesPerson,
+                IdCustomer = idCustomer,
+                IdBoat = idBoat,
+                DeliveryAddress = deliveryAddress,
+                City = city
+            });
+            _context.SaveChanges();
+
+            for (int i = 0; i < listSelectedAccessories.Count; i++)
+            {
+                AddOrderDetails(listSelectedAccessories[i], order.IdOrder);
+            }
+
+            AddContract(time, depositPayed, order.IdOrder, contractTotalPrice, contractTotalPriceInclVAT, "Работы не начаты");
+        }
+
+        public List<string> GetStringListAccessories()
+        {
+            var list = new List<string>();
+
+            GetAccessories().ForEach(a => list.Add(a.AccName));
+
+            return list;
+        }
+
+        public List<v_accessorySimplifiedInformation> GetAccessories()
+        {
+            return _context.v_accessorySimplifiedInformation.AsNoTracking().ToList();
+        }
+
+        public List<string> GetStringListDeliveryAddressOrders()
+        {
+            var list = new List<string>();
+
+            GetDeliveryAddressOrders().ForEach(d => list.Add(d.DeliveryAddress));
+
+            return list;
+        }
+
+        public List<string> GetStringListCitiesOrders()
+        {
+            var list = new List<string>();
+
+            GetCitiesOrders().ForEach(c => list.Add(c.City));
+
+            return list;
+        }
+
+        public DateTime GetMinProductionStartDate()
+        {
+            return _context.Boat.Min(b => b.ProductionStartDate);
+        }
+
+        public DateTime GetMaxProductionStartDate()
+        {
+            return _context.Boat.Max(b => b.ProductionStartDate);
+        }
+
+        public List<v_accessory> GetAccessories(string modelBoat)
+        {
+            return _context.v_accessory.Where(a =>
+            a.ListCompatibleModelBoats.ToLower().Contains(modelBoat.ToLower())).AsNoTracking().ToList();
+        }
+
+        public List<v_customer> GetCustomers()
+        {
+            return _context.v_customer.AsNoTracking().ToList();
+        }
+
+        public v_contract GetContract(int idContract)
+        {
+            return _context.v_contract.Single(c => c.IdContract == idContract);
+        }
+
+        public Order GetOrder(int idOrder)
+        {
+            return _context.Order.Single(o => o.IdOrder == idOrder);
         }
     }
 }

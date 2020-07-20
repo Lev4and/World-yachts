@@ -214,22 +214,52 @@
     <Compile Include="Model\Database\Models\v_accessory.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Database\Models\v_accessorySimplifiedInformation.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Database\Models\v_boat.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Database\Models\v_boatSimplifiedInformation.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Database\Models\v_briefReportBestSalesPersonAllTime.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_briefReportPopularBoatsAllTime.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Database\Models\v_cityCustomer.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_cityOrder.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Database\Models\v_cityPartner.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Database\Models\v_contract.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Database\Models\v_customer.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Database\Models\v_deliveryAddressOrder.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_detailReportBestSalesPersonAllTime.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_detailReportPopularBoatsAllTime.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_order.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Database\Models\v_organisationNameCustomer.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_salesPerson.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Database\Models\v_user.cs">
@@ -245,6 +275,7 @@
     <Compile Include="ViewModels\AccessoriesViewModel.cs" />
     <Compile Include="ViewModels\AddAccessoryViewModel.cs" />
     <Compile Include="ViewModels\AddBoatViewModel.cs" />
+    <Compile Include="ViewModels\AddContractViewModel.cs" />
     <Compile Include="ViewModels\AddCustomerViewModel.cs" />
     <Compile Include="ViewModels\AddPartnerViewModel.cs" />
     <Compile Include="ViewModels\AddUserViewModel.cs" />
@@ -252,10 +283,12 @@
     <Compile Include="ViewModels\BoatsViewModel.cs" />
     <Compile Include="ViewModels\ChangeAccessoryViewModel.cs" />
     <Compile Include="ViewModels\ChangeBoatViewModel.cs" />
+    <Compile Include="ViewModels\ChangeContractViewModel.cs" />
     <Compile Include="ViewModels\ChangeCustomerViewModel.cs" />
     <Compile Include="ViewModels\ChangePartnerViewModel.cs" />
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\ChangeUserViewModel.cs" />
+    <Compile Include="ViewModels\ContractsViewModel.cs" />
     <Compile Include="ViewModels\CustomersViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -275,6 +308,9 @@
     </Compile>
     <Compile Include="Views\Pages\ChangePassword.xaml.cs">
       <DependentUpon>ChangePassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Contracts.xaml.cs">
+      <DependentUpon>Contracts.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Customers.xaml.cs">
       <DependentUpon>Customers.xaml</DependentUpon>
@@ -313,6 +349,9 @@
     <Compile Include="Views\Windows\AddBoat.xaml.cs">
       <DependentUpon>AddBoat.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Windows\AddContract.xaml.cs">
+      <DependentUpon>AddContract.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\AddCustomer.xaml.cs">
       <DependentUpon>AddCustomer.xaml</DependentUpon>
     </Compile>
@@ -327,6 +366,9 @@
     </Compile>
     <Compile Include="Views\Windows\ChangeBoat.xaml.cs">
       <DependentUpon>ChangeBoat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\ChangeContract.xaml.cs">
+      <DependentUpon>ChangeContract.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\ChangeCustomer.xaml.cs">
       <DependentUpon>ChangeCustomer.xaml</DependentUpon>
@@ -392,6 +434,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\Contracts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\Customers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -440,6 +486,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Windows\AddContract.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Windows\AddCustomer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -457,6 +507,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\ChangeBoat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\ChangeContract.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

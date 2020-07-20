@@ -50,6 +50,16 @@ namespace World_yachts.Model.Database.Models
         public virtual DbSet<v_customer> v_customer { get; set; }
         public virtual DbSet<v_organisationNameCustomer> v_organisationNameCustomer { get; set; }
         public virtual DbSet<v_cityPartner> v_cityPartner { get; set; }
+        public virtual DbSet<v_order> v_order { get; set; }
+        public virtual DbSet<v_salesPerson> v_salesPerson { get; set; }
+        public virtual DbSet<v_cityOrder> v_cityOrder { get; set; }
+        public virtual DbSet<v_deliveryAddressOrder> v_deliveryAddressOrder { get; set; }
+        public virtual DbSet<v_accessorySimplifiedInformation> v_accessorySimplifiedInformation { get; set; }
+        public virtual DbSet<v_briefReportBestSalesPersonAllTime> v_briefReportBestSalesPersonAllTime { get; set; }
+        public virtual DbSet<v_briefReportPopularBoatsAllTime> v_briefReportPopularBoatsAllTime { get; set; }
+        public virtual DbSet<v_detailReportBestSalesPersonAllTime> v_detailReportBestSalesPersonAllTime { get; set; }
+        public virtual DbSet<v_detailReportPopularBoatsAllTime> v_detailReportPopularBoatsAllTime { get; set; }
+        public virtual DbSet<v_contract> v_contract { get; set; }
     
         public virtual int sp_toBlockUser()
         {

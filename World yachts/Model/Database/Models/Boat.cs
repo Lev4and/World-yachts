@@ -30,6 +30,7 @@ namespace World_yachts.Model.Database.Models
         public int IdWood { get; set; }
         public int BasePrice { get; set; }
         public double VAT { get; set; }
+        public System.DateTime ProductionStartDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AccToBoats> AccToBoats { get; set; }

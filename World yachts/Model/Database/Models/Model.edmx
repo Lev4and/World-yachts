@@ -33,6 +33,7 @@
           </Key>
           <Property Name="IdBoat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Model" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ProductionStartDate" Type="date" Nullable="false" />
           <Property Name="IdBoatType" Type="int" Nullable="false" />
           <Property Name="NumberOfRowers" Type="int" Nullable="false" />
           <Property Name="Mast" Type="bit" Nullable="false" />
@@ -184,11 +185,22 @@
           <Property Name="ListCompatibleModelBoats" Type="nvarchar(max)" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_accessorySimplifiedInformation" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_accessorySimplifiedInformation">
+          <Key>
+            <PropertyRef Name="IdAccessory" />
+            <PropertyRef Name="AccName" />
+          </Key>
+          <Property Name="IdAccessory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccName" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_boat" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="v_boat">
           <Key>
             <PropertyRef Name="IdBoat" />
             <PropertyRef Name="Model" />
+            <PropertyRef Name="ProductionStartDate" />
             <PropertyRef Name="NameBoatType" />
             <PropertyRef Name="NumberOfRowers" />
             <PropertyRef Name="Mast" />
@@ -199,6 +211,7 @@
           </Key>
           <Property Name="IdBoat" Type="int" Nullable="false" />
           <Property Name="Model" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ProductionStartDate" Type="date" Nullable="false" />
           <Property Name="NameBoatType" Type="nvarchar(max)" Nullable="false" />
           <Property Name="NumberOfRowers" Type="int" Nullable="false" />
           <Property Name="Mast" Type="bit" Nullable="false" />
@@ -213,9 +226,37 @@
           <Key>
             <PropertyRef Name="IdBoat" />
             <PropertyRef Name="Model" />
+            <PropertyRef Name="BasePrice" />
+            <PropertyRef Name="VAT" />
           </Key>
           <Property Name="IdBoat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Model" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="BasePrice" Type="int" Nullable="false" />
+          <Property Name="VAT" Type="float" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_briefReportBestSalesPersonAllTime" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_briefReportBestSalesPersonAllTime">
+          <Key>
+            <PropertyRef Name="IdSalesPerson" />
+            <PropertyRef Name="Rank" />
+          </Key>
+          <Property Name="IdSalesPerson" Type="int" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar(max)" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Rank" Type="bigint" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_briefReportPopularBoatsAllTime" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_briefReportPopularBoatsAllTime">
+          <Key>
+            <PropertyRef Name="IdBoat" />
+            <PropertyRef Name="Rank" />
+          </Key>
+          <Property Name="IdBoat" Type="int" Nullable="false" />
+          <Property Name="Model" Type="nvarchar(max)" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Rank" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_cityCustomer" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -228,6 +269,16 @@
           <Property Name="City" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_cityOrder" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_cityOrder">
+          <Key>
+            <PropertyRef Name="IdDeliveryAddress" />
+            <PropertyRef Name="City" />
+          </Key>
+          <Property Name="IdDeliveryAddress" Type="bigint" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_cityPartner" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="v_cityPartner">
           <Key>
@@ -236,6 +287,35 @@
           </Key>
           <Property Name="IdCity" Type="bigint" Nullable="false" />
           <Property Name="City" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_contract" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_contract">
+          <Key>
+            <PropertyRef Name="IdContract" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="DepositPayed" />
+            <PropertyRef Name="IdOrder" />
+            <PropertyRef Name="Model" />
+            <PropertyRef Name="DeliveryAddress" />
+            <PropertyRef Name="City" />
+            <PropertyRef Name="ContractTotalPrice" />
+            <PropertyRef Name="ContractTotalPriceInclVAT" />
+            <PropertyRef Name="ProductionProcess" />
+          </Key>
+          <Property Name="IdContract" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="DepositPayed" Type="int" Nullable="false" />
+          <Property Name="IdOrder" Type="int" Nullable="false" />
+          <Property Name="FullNameSalesPerson" Type="nvarchar(max)" />
+          <Property Name="FullNameCustomer" Type="nvarchar(max)" />
+          <Property Name="Model" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="SelectedAccessoriesAtOrder" Type="nvarchar(max)" />
+          <Property Name="DeliveryAddress" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ContractTotalPrice" Type="int" Nullable="false" />
+          <Property Name="ContractTotalPriceInclVAT" Type="int" Nullable="false" />
+          <Property Name="ProductionProcess" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_customer" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -262,6 +342,59 @@
           <Property Name="IdDocumentName" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_deliveryAddressOrder" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_deliveryAddressOrder">
+          <Key>
+            <PropertyRef Name="IdDeliveryAddress" />
+            <PropertyRef Name="DeliveryAddress" />
+          </Key>
+          <Property Name="IdDeliveryAddress" Type="bigint" Nullable="false" />
+          <Property Name="DeliveryAddress" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_detailReportBestSalesPersonAllTime" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_detailReportBestSalesPersonAllTime">
+          <Key>
+            <PropertyRef Name="IdSalesPerson" />
+          </Key>
+          <Property Name="Date" Type="date" />
+          <Property Name="IdSalesPerson" Type="int" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar(max)" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Rate" Type="int" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_detailReportPopularBoatsAllTime" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_detailReportPopularBoatsAllTime">
+          <Key>
+            <PropertyRef Name="IdBoat" />
+          </Key>
+          <Property Name="Date" Type="date" />
+          <Property Name="IdBoat" Type="int" Nullable="false" />
+          <Property Name="Model" Type="nvarchar(max)" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Rate" Type="int" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_order" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_order">
+          <Key>
+            <PropertyRef Name="IdOrder" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Model" />
+            <PropertyRef Name="DeliveryAddress" />
+            <PropertyRef Name="City" />
+          </Key>
+          <Property Name="IdOrder" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="FullNameSalesPerson" Type="nvarchar(max)" />
+          <Property Name="FullNameCustomer" Type="nvarchar(max)" />
+          <Property Name="Model" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="SelectedAccessoriesAtOrder" Type="nvarchar(max)" />
+          <Property Name="DeliveryAddress" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_organisationNameCustomer" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="v_organisationNameCustomer">
           <Key>
@@ -269,6 +402,15 @@
           </Key>
           <Property Name="IdOrganisationName" Type="bigint" Nullable="false" />
           <Property Name="OrganisationName" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_salesPerson" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_salesPerson">
+          <Key>
+            <PropertyRef Name="IdSalesPerson" />
+          </Key>
+          <Property Name="IdSalesPerson" Type="int" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar(max)" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_user" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -516,10 +658,17 @@
     [v_accessory].[ListCompatibleModelBoats] AS [ListCompatibleModelBoats]
     FROM [dbo].[v_accessory] AS [v_accessory]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="v_accessorySimplifiedInformation" EntityType="Self.v_accessorySimplifiedInformation" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_accessorySimplifiedInformation].[IdAccessory] AS [IdAccessory], 
+    [v_accessorySimplifiedInformation].[AccName] AS [AccName]
+    FROM [dbo].[v_accessorySimplifiedInformation] AS [v_accessorySimplifiedInformation]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="v_boat" EntityType="Self.v_boat" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [v_boat].[IdBoat] AS [IdBoat], 
     [v_boat].[Model] AS [Model], 
+    [v_boat].[ProductionStartDate] AS [ProductionStartDate], 
     [v_boat].[NameBoatType] AS [NameBoatType], 
     [v_boat].[NumberOfRowers] AS [NumberOfRowers], 
     [v_boat].[Mast] AS [Mast], 
@@ -532,8 +681,26 @@
           <EntitySet Name="v_boatSimplifiedInformation" EntityType="Self.v_boatSimplifiedInformation" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [v_boatSimplifiedInformation].[IdBoat] AS [IdBoat], 
-    [v_boatSimplifiedInformation].[Model] AS [Model]
+    [v_boatSimplifiedInformation].[Model] AS [Model], 
+    [v_boatSimplifiedInformation].[BasePrice] AS [BasePrice], 
+    [v_boatSimplifiedInformation].[VAT] AS [VAT]
     FROM [dbo].[v_boatSimplifiedInformation] AS [v_boatSimplifiedInformation]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_briefReportBestSalesPersonAllTime" EntityType="Self.v_briefReportBestSalesPersonAllTime" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_briefReportBestSalesPersonAllTime].[IdSalesPerson] AS [IdSalesPerson], 
+    [v_briefReportBestSalesPersonAllTime].[FullName] AS [FullName], 
+    [v_briefReportBestSalesPersonAllTime].[Count] AS [Count], 
+    [v_briefReportBestSalesPersonAllTime].[Rank] AS [Rank]
+    FROM [dbo].[v_briefReportBestSalesPersonAllTime] AS [v_briefReportBestSalesPersonAllTime]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_briefReportPopularBoatsAllTime" EntityType="Self.v_briefReportPopularBoatsAllTime" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_briefReportPopularBoatsAllTime].[IdBoat] AS [IdBoat], 
+    [v_briefReportPopularBoatsAllTime].[Model] AS [Model], 
+    [v_briefReportPopularBoatsAllTime].[Count] AS [Count], 
+    [v_briefReportPopularBoatsAllTime].[Rank] AS [Rank]
+    FROM [dbo].[v_briefReportPopularBoatsAllTime] AS [v_briefReportPopularBoatsAllTime]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="v_cityCustomer" EntityType="Self.v_cityCustomer" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -541,11 +708,34 @@
     [v_cityCustomer].[City] AS [City]
     FROM [dbo].[v_cityCustomer] AS [v_cityCustomer]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="v_cityOrder" EntityType="Self.v_cityOrder" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_cityOrder].[IdDeliveryAddress] AS [IdDeliveryAddress], 
+    [v_cityOrder].[City] AS [City]
+    FROM [dbo].[v_cityOrder] AS [v_cityOrder]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="v_cityPartner" EntityType="Self.v_cityPartner" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [v_cityPartner].[IdCity] AS [IdCity], 
     [v_cityPartner].[City] AS [City]
     FROM [dbo].[v_cityPartner] AS [v_cityPartner]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_contract" EntityType="Self.v_contract" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_contract].[IdContract] AS [IdContract], 
+    [v_contract].[Date] AS [Date], 
+    [v_contract].[DepositPayed] AS [DepositPayed], 
+    [v_contract].[IdOrder] AS [IdOrder], 
+    [v_contract].[FullNameSalesPerson] AS [FullNameSalesPerson], 
+    [v_contract].[FullNameCustomer] AS [FullNameCustomer], 
+    [v_contract].[Model] AS [Model], 
+    [v_contract].[SelectedAccessoriesAtOrder] AS [SelectedAccessoriesAtOrder], 
+    [v_contract].[DeliveryAddress] AS [DeliveryAddress], 
+    [v_contract].[City] AS [City], 
+    [v_contract].[ContractTotalPrice] AS [ContractTotalPrice], 
+    [v_contract].[ContractTotalPriceInclVAT] AS [ContractTotalPriceInclVAT], 
+    [v_contract].[ProductionProcess] AS [ProductionProcess]
+    FROM [dbo].[v_contract] AS [v_contract]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="v_customer" EntityType="Self.v_customer" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -561,11 +751,53 @@
     [v_customer].[IdDocumentName] AS [IdDocumentName]
     FROM [dbo].[v_customer] AS [v_customer]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="v_deliveryAddressOrder" EntityType="Self.v_deliveryAddressOrder" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_deliveryAddressOrder].[IdDeliveryAddress] AS [IdDeliveryAddress], 
+    [v_deliveryAddressOrder].[DeliveryAddress] AS [DeliveryAddress]
+    FROM [dbo].[v_deliveryAddressOrder] AS [v_deliveryAddressOrder]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_detailReportBestSalesPersonAllTime" EntityType="Self.v_detailReportBestSalesPersonAllTime" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_detailReportBestSalesPersonAllTime].[Date] AS [Date], 
+    [v_detailReportBestSalesPersonAllTime].[IdSalesPerson] AS [IdSalesPerson], 
+    [v_detailReportBestSalesPersonAllTime].[FullName] AS [FullName], 
+    [v_detailReportBestSalesPersonAllTime].[Count] AS [Count], 
+    [v_detailReportBestSalesPersonAllTime].[Rate] AS [Rate]
+    FROM [dbo].[v_detailReportBestSalesPersonAllTime] AS [v_detailReportBestSalesPersonAllTime]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_detailReportPopularBoatsAllTime" EntityType="Self.v_detailReportPopularBoatsAllTime" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_detailReportPopularBoatsAllTime].[Date] AS [Date], 
+    [v_detailReportPopularBoatsAllTime].[IdBoat] AS [IdBoat], 
+    [v_detailReportPopularBoatsAllTime].[Model] AS [Model], 
+    [v_detailReportPopularBoatsAllTime].[Count] AS [Count], 
+    [v_detailReportPopularBoatsAllTime].[Rate] AS [Rate]
+    FROM [dbo].[v_detailReportPopularBoatsAllTime] AS [v_detailReportPopularBoatsAllTime]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_order" EntityType="Self.v_order" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_order].[IdOrder] AS [IdOrder], 
+    [v_order].[Date] AS [Date], 
+    [v_order].[FullNameSalesPerson] AS [FullNameSalesPerson], 
+    [v_order].[FullNameCustomer] AS [FullNameCustomer], 
+    [v_order].[Model] AS [Model], 
+    [v_order].[SelectedAccessoriesAtOrder] AS [SelectedAccessoriesAtOrder], 
+    [v_order].[DeliveryAddress] AS [DeliveryAddress], 
+    [v_order].[City] AS [City]
+    FROM [dbo].[v_order] AS [v_order]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="v_organisationNameCustomer" EntityType="Self.v_organisationNameCustomer" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [v_organisationNameCustomer].[IdOrganisationName] AS [IdOrganisationName], 
     [v_organisationNameCustomer].[OrganisationName] AS [OrganisationName]
     FROM [dbo].[v_organisationNameCustomer] AS [v_organisationNameCustomer]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_salesPerson" EntityType="Self.v_salesPerson" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_salesPerson].[IdSalesPerson] AS [IdSalesPerson], 
+    [v_salesPerson].[FullName] AS [FullName]
+    FROM [dbo].[v_salesPerson] AS [v_salesPerson]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="v_user" EntityType="Self.v_user" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -684,6 +916,7 @@
           <NavigationProperty Name="Colour" Relationship="Self.FK_Boat_Colour" FromRole="Boat" ToRole="Colour" />
           <NavigationProperty Name="Wood" Relationship="Self.FK_Boat_Wood" FromRole="Boat" ToRole="Wood" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Order_Boat" FromRole="Boat" ToRole="Order" />
+          <Property Name="ProductionStartDate" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="BoatType">
           <Key>
@@ -854,6 +1087,7 @@
             <PropertyRef Name="NameWood" />
             <PropertyRef Name="BasePrice" />
             <PropertyRef Name="VAT" />
+            <PropertyRef Name="ProductionStartDate" />
           </Key>
           <Property Name="IdBoat" Type="Int32" Nullable="false" />
           <Property Name="Model" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
@@ -864,6 +1098,7 @@
           <Property Name="NameWood" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="BasePrice" Type="Int32" Nullable="false" />
           <Property Name="VAT" Type="Double" Nullable="false" />
+          <Property Name="ProductionStartDate" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="v_user">
           <Key>
@@ -1159,14 +1394,28 @@
           <EntitySet Name="v_customer" EntityType="Model.v_customer" />
           <EntitySet Name="v_organisationNameCustomer" EntityType="Model.v_organisationNameCustomer" />
           <EntitySet Name="v_cityPartner" EntityType="Model.v_cityPartner" />
+          <EntitySet Name="v_order" EntityType="Model.v_order" />
+          <EntitySet Name="v_salesPerson" EntityType="Model.v_salesPerson" />
+          <EntitySet Name="v_cityOrder" EntityType="Model.v_cityOrder" />
+          <EntitySet Name="v_deliveryAddressOrder" EntityType="Model.v_deliveryAddressOrder" />
+          <EntitySet Name="v_accessorySimplifiedInformation" EntityType="Model.v_accessorySimplifiedInformation" />
+          <EntitySet Name="v_briefReportBestSalesPersonAllTime" EntityType="Model.v_briefReportBestSalesPersonAllTime" />
+          <EntitySet Name="v_briefReportPopularBoatsAllTime" EntityType="Model.v_briefReportPopularBoatsAllTime" />
+          <EntitySet Name="v_detailReportBestSalesPersonAllTime" EntityType="Model.v_detailReportBestSalesPersonAllTime" />
+          <EntitySet Name="v_detailReportPopularBoatsAllTime" EntityType="Model.v_detailReportPopularBoatsAllTime" />
+          <EntitySet Name="v_contract" EntityType="Model.v_contract" />
         </EntityContainer>
         <EntityType Name="v_boatSimplifiedInformation">
           <Key>
             <PropertyRef Name="Model" />
             <PropertyRef Name="IdBoat" />
+            <PropertyRef Name="BasePrice" />
+            <PropertyRef Name="VAT" />
           </Key>
           <Property Name="Model" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="IdBoat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BasePrice" Type="Int32" Nullable="false" />
+          <Property Name="VAT" Type="Double" Nullable="false" />
         </EntityType>
         <EntityType Name="v_cityCustomer">
           <Key>
@@ -1213,6 +1462,121 @@
           <Property Name="IdCity" Type="Int64" Nullable="false" />
           <Property Name="City" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="v_order">
+          <Key>
+            <PropertyRef Name="IdOrder" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Model" />
+            <PropertyRef Name="DeliveryAddress" />
+            <PropertyRef Name="City" />
+          </Key>
+          <Property Name="IdOrder" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FullNameSalesPerson" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FullNameCustomer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SelectedAccessoriesAtOrder" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DeliveryAddress" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="v_salesPerson">
+          <Key>
+            <PropertyRef Name="IdSalesPerson" />
+          </Key>
+          <Property Name="IdSalesPerson" Type="Int32" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="v_cityOrder">
+          <Key>
+            <PropertyRef Name="IdDeliveryAddress" />
+            <PropertyRef Name="City" />
+          </Key>
+          <Property Name="IdDeliveryAddress" Type="Int64" Nullable="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="v_deliveryAddressOrder">
+          <Key>
+            <PropertyRef Name="IdDeliveryAddress" />
+            <PropertyRef Name="DeliveryAddress" />
+          </Key>
+          <Property Name="IdDeliveryAddress" Type="Int64" Nullable="false" />
+          <Property Name="DeliveryAddress" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="v_accessorySimplifiedInformation">
+          <Key>
+            <PropertyRef Name="IdAccessory" />
+            <PropertyRef Name="AccName" />
+          </Key>
+          <Property Name="IdAccessory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="v_briefReportBestSalesPersonAllTime">
+          <Key>
+            <PropertyRef Name="IdSalesPerson" />
+            <PropertyRef Name="Rank" />
+          </Key>
+          <Property Name="IdSalesPerson" Type="Int32" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Rank" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_briefReportPopularBoatsAllTime">
+          <Key>
+            <PropertyRef Name="IdBoat" />
+            <PropertyRef Name="Rank" />
+          </Key>
+          <Property Name="IdBoat" Type="Int32" Nullable="false" />
+          <Property Name="Model" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Rank" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_detailReportBestSalesPersonAllTime">
+          <Key>
+            <PropertyRef Name="IdSalesPerson" />
+          </Key>
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="IdSalesPerson" Type="Int32" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Rate" Type="Int32" />
+        </EntityType>
+        <EntityType Name="v_detailReportPopularBoatsAllTime">
+          <Key>
+            <PropertyRef Name="IdBoat" />
+          </Key>
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="IdBoat" Type="Int32" Nullable="false" />
+          <Property Name="Model" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Rate" Type="Int32" />
+        </EntityType>
+        <EntityType Name="v_contract">
+          <Key>
+            <PropertyRef Name="IdContract" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="DepositPayed" />
+            <PropertyRef Name="IdOrder" />
+            <PropertyRef Name="Model" />
+            <PropertyRef Name="DeliveryAddress" />
+            <PropertyRef Name="City" />
+            <PropertyRef Name="ContractTotalPrice" />
+            <PropertyRef Name="ContractTotalPriceInclVAT" />
+            <PropertyRef Name="ProductionProcess" />
+          </Key>
+          <Property Name="IdContract" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DepositPayed" Type="Int32" Nullable="false" />
+          <Property Name="IdOrder" Type="Int32" Nullable="false" />
+          <Property Name="FullNameSalesPerson" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FullNameCustomer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SelectedAccessoriesAtOrder" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DeliveryAddress" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ContractTotalPrice" Type="Int32" Nullable="false" />
+          <Property Name="ContractTotalPriceInclVAT" Type="Int32" Nullable="false" />
+          <Property Name="ProductionProcess" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1246,6 +1610,7 @@
           <EntitySetMapping Name="Boat">
             <EntityTypeMapping TypeName="Model.Boat">
               <MappingFragment StoreEntitySet="Boat">
+                <ScalarProperty Name="ProductionStartDate" ColumnName="ProductionStartDate" />
                 <ScalarProperty Name="IdBoat" ColumnName="IdBoat" />
                 <ScalarProperty Name="Model" ColumnName="Model" />
                 <ScalarProperty Name="IdBoatType" ColumnName="IdBoatType" />
@@ -1406,6 +1771,7 @@
           <EntitySetMapping Name="v_boat">
             <EntityTypeMapping TypeName="Model.v_boat">
               <MappingFragment StoreEntitySet="v_boat">
+                <ScalarProperty Name="ProductionStartDate" ColumnName="ProductionStartDate" />
                 <ScalarProperty Name="IdBoat" ColumnName="IdBoat" />
                 <ScalarProperty Name="Model" ColumnName="Model" />
                 <ScalarProperty Name="NameBoatType" ColumnName="NameBoatType" />
@@ -1435,6 +1801,8 @@
           <EntitySetMapping Name="v_boatSimplifiedInformation">
             <EntityTypeMapping TypeName="Model.v_boatSimplifiedInformation">
               <MappingFragment StoreEntitySet="v_boatSimplifiedInformation">
+                <ScalarProperty Name="VAT" ColumnName="VAT" />
+                <ScalarProperty Name="BasePrice" ColumnName="BasePrice" />
                 <ScalarProperty Name="IdBoat" ColumnName="IdBoat" />
                 <ScalarProperty Name="Model" ColumnName="Model" />
               </MappingFragment>
@@ -1477,6 +1845,113 @@
               <MappingFragment StoreEntitySet="v_cityPartner">
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_order">
+            <EntityTypeMapping TypeName="Model.v_order">
+              <MappingFragment StoreEntitySet="v_order">
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="DeliveryAddress" ColumnName="DeliveryAddress" />
+                <ScalarProperty Name="SelectedAccessoriesAtOrder" ColumnName="SelectedAccessoriesAtOrder" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="FullNameCustomer" ColumnName="FullNameCustomer" />
+                <ScalarProperty Name="FullNameSalesPerson" ColumnName="FullNameSalesPerson" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_salesPerson">
+            <EntityTypeMapping TypeName="Model.v_salesPerson">
+              <MappingFragment StoreEntitySet="v_salesPerson">
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IdSalesPerson" ColumnName="IdSalesPerson" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_cityOrder">
+            <EntityTypeMapping TypeName="Model.v_cityOrder">
+              <MappingFragment StoreEntitySet="v_cityOrder">
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="IdDeliveryAddress" ColumnName="IdDeliveryAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_deliveryAddressOrder">
+            <EntityTypeMapping TypeName="Model.v_deliveryAddressOrder">
+              <MappingFragment StoreEntitySet="v_deliveryAddressOrder">
+                <ScalarProperty Name="DeliveryAddress" ColumnName="DeliveryAddress" />
+                <ScalarProperty Name="IdDeliveryAddress" ColumnName="IdDeliveryAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_accessorySimplifiedInformation">
+            <EntityTypeMapping TypeName="Model.v_accessorySimplifiedInformation">
+              <MappingFragment StoreEntitySet="v_accessorySimplifiedInformation">
+                <ScalarProperty Name="AccName" ColumnName="AccName" />
+                <ScalarProperty Name="IdAccessory" ColumnName="IdAccessory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_briefReportBestSalesPersonAllTime">
+            <EntityTypeMapping TypeName="Model.v_briefReportBestSalesPersonAllTime">
+              <MappingFragment StoreEntitySet="v_briefReportBestSalesPersonAllTime">
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IdSalesPerson" ColumnName="IdSalesPerson" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_briefReportPopularBoatsAllTime">
+            <EntityTypeMapping TypeName="Model.v_briefReportPopularBoatsAllTime">
+              <MappingFragment StoreEntitySet="v_briefReportPopularBoatsAllTime">
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="IdBoat" ColumnName="IdBoat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_detailReportBestSalesPersonAllTime">
+            <EntityTypeMapping TypeName="Model.v_detailReportBestSalesPersonAllTime">
+              <MappingFragment StoreEntitySet="v_detailReportBestSalesPersonAllTime">
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IdSalesPerson" ColumnName="IdSalesPerson" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_detailReportPopularBoatsAllTime">
+            <EntityTypeMapping TypeName="Model.v_detailReportPopularBoatsAllTime">
+              <MappingFragment StoreEntitySet="v_detailReportPopularBoatsAllTime">
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="IdBoat" ColumnName="IdBoat" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_contract">
+            <EntityTypeMapping TypeName="Model.v_contract">
+              <MappingFragment StoreEntitySet="v_contract">
+                <ScalarProperty Name="ProductionProcess" ColumnName="ProductionProcess" />
+                <ScalarProperty Name="ContractTotalPriceInclVAT" ColumnName="ContractTotalPriceInclVAT" />
+                <ScalarProperty Name="ContractTotalPrice" ColumnName="ContractTotalPrice" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="DeliveryAddress" ColumnName="DeliveryAddress" />
+                <ScalarProperty Name="SelectedAccessoriesAtOrder" ColumnName="SelectedAccessoriesAtOrder" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="FullNameCustomer" ColumnName="FullNameCustomer" />
+                <ScalarProperty Name="FullNameSalesPerson" ColumnName="FullNameSalesPerson" />
+                <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
+                <ScalarProperty Name="DepositPayed" ColumnName="DepositPayed" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IdContract" ColumnName="IdContract" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

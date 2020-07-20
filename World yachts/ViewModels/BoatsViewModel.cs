@@ -1,5 +1,6 @@
 ﻿using Converters;
 using DevExpress.Mvvm;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -50,6 +51,14 @@ namespace World_yachts.ViewModels
 
         public string FilterText { get; set; }
 
+        public DateTime MinValueProductionStartDate { get; set; }
+
+        public DateTime MaxValueProductionStartDate { get; set; }
+
+        public DateTime BeginValueProductionStartDate { get; set; }
+
+        public DateTime EndValueProductionStartDate { get; set; }
+
         public ObservableCollection<string> BoatTypes { get; set; }
 
         public ObservableCollection<string> Colours { get; set; }
@@ -94,17 +103,21 @@ namespace World_yachts.ViewModels
             MinValueBasePrice = _eF.GetMinBasePrice();
             MinValueNumberOfRowers = _eF.GetMinNumberOfRowers();
             MinValueVATBoat = _eF.GetMinVATBoat();
+            MinValueProductionStartDate = _eF.GetMinProductionStartDate();
             MaxValueBasePrice = _eF.GetMaxBasePrice();
             MaxValueNumberOfRowers = _eF.GetMaxNumberOfRowers();
             MaxValueVATBoat = _eF.GetMaxVATBoat();
+            MaxValueProductionStartDate = _eF.GetMaxProductionStartDate();
 
             BeginValueBasePrice = MinValueBasePrice;
             BeginValueNumberOfRowers = MinValueNumberOfRowers;
             BeginValueVATBoat = MinValueVATBoat;
+            BeginValueProductionStartDate = MinValueProductionStartDate;
 
             EndValueBasePrice = MaxValueBasePrice;
             EndValueNumberOfRowers = MaxValueNumberOfRowers;
             EndValueVATBoat = MaxValueVATBoat;
+            EndValueProductionStartDate = MaxValueProductionStartDate;
 
             FilterText = "";
 
@@ -170,7 +183,8 @@ namespace World_yachts.ViewModels
                                                                                            ListSelectedColours.ToList(),
                                                                                            ListSelectedWoods.ToList(),
                                                                                            new Range<int>(BeginValueBasePrice, EndValueBasePrice),
-                                                                                           new Range<double>(BeginValueVATBoat, EndValueVATBoat)));
+                                                                                           new Range<double>(BeginValueVATBoat, EndValueVATBoat),
+                                                                                           new Range<DateTime>(BeginValueProductionStartDate, EndValueProductionStartDate)));
         }
     }
 }

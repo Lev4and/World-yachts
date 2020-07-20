@@ -1,4 +1,4 @@
-﻿<Page x:Class="World_yachts.Views.Pages.Boats"
+﻿<Page x:Class="World_yachts.Views.Pages.Contracts"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,8 +9,8 @@
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      DataContext="{Binding BoatsViewModel, Source={StaticResource ViewModelLocator}}"
-      Title="Boats">
+      DataContext="{Binding ContractsViewModel, Source={StaticResource ViewModelLocator}}"
+      Title="Contracts">
     <Grid>
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="Loaded">
@@ -34,11 +34,7 @@
                     Command="{Binding Back}"/>
         </Grid>
         <Grid Grid.Row="0" Grid.Column="1">
-            <TextBox Text="{Binding Path=FilterText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                     FontFamily="Comic Sans MS"
-                     FontSize="36"
-                     Height="52"
-                     Margin="10,10,10,0"/>
+            
         </Grid>
         <Grid Grid.Row="0" Grid.Column="2">
             <Button Content="Поиск"
@@ -70,9 +66,9 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                <uc:ExpanderWithCheckBoxes ElementHeader="Тип лодки"
-                                                           Data="{Binding Path=BoatTypes, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                           ListSelectedValues="{Binding Path=ListSelectedBoatTypes, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                <uc:ExpanderWithCheckBoxes ElementHeader="Лодки"
+                                                           Data="{Binding Path=Boats, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                           ListSelectedValues="{Binding Path=ListSelectedModelsBoats, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                                            Margin="0,0,5,0"/>
                             </Grid>
                         </Grid>
@@ -81,10 +77,10 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                <uc:ExpanderWithCheckBoxes ElementHeader="Цвет лодки"
-                                                           Data="{Binding Path=Colours, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                           ListSelectedValues="{Binding Path=ListSelectedColours, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                           Margin="0,5,5,0"/>
+                                <uc:ExpanderWithCheckBoxes ElementHeader="Аксессуары"
+                                                           Data="{Binding Path=Accessories, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                           ListSelectedValues="{Binding Path=ListSelectedAccessoriesAtOrder, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                           Margin="0,0,5,0"/>
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="2">
@@ -92,10 +88,10 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                <uc:ExpanderWithCheckBoxes ElementHeader="Тип модели"
-                                                           Data="{Binding Path=TypesModel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                           ListSelectedValues="{Binding Path=ListSelectedTypesModel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                           Margin="0,5,5,0"/>
+                                <uc:ExpanderWithCheckBoxes ElementHeader="Производственный процесс"
+                                                           Data="{Binding Path=ProductionProcess, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                           ListSelectedValues="{Binding Path=ListSelectedProductionProcess, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                           Margin="0,0,5,0"/>
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="3">
@@ -103,10 +99,10 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                <uc:ExpanderWithCheckBoxes ElementHeader="Материал лодки"
-                                                           Data="{Binding Path=Woods, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                           ListSelectedValues="{Binding Path=ListSelectedWoods, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                           Margin="0,5,5,0"/>
+                                <uc:ExpanderWithCheckBoxes ElementHeader="Адрес доставки заказа"
+                                                           Data="{Binding Path=DeliveryAddressOrders, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                           ListSelectedValues="{Binding Path=ListSelectedDeliveryAddressOrders, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                           Margin="0,0,5,0"/>
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="4">
@@ -114,13 +110,10 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                <CheckBox Content="Есть ли мачта?"
-                                          VerticalAlignment="Center"
-                                          HorizontalAlignment="Center"
-                                          VerticalContentAlignment="Center"
-                                          HorizontalContentAlignment="Center"
-                                          IsChecked="{Binding Path=ThereIsMast, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                          Margin="0,5,5,0"/>
+                                <uc:ExpanderWithCheckBoxes ElementHeader="Город доставки заказа"
+                                                           Data="{Binding Path=CitiesOrders, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                           ListSelectedValues="{Binding Path=ListSelectedCitiesOrders, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                           Margin="0,0,5,0"/>
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="5">
@@ -129,16 +122,16 @@
                                 <RowDefinition Height="60"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                <Label Content="Базовая стоимость"
+                                <Label Content="Депозит"
                                        HorizontalContentAlignment="Center"
                                        Margin="0,0,5,0"/>
                             </Grid>
                             <Grid Grid.Row="1">
-                                <uc:DoubleSlider MinValue="{Binding Path=MinValueBasePrice, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                 MaxValue="{Binding Path=MaxValueBasePrice, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                 BeginValue="{Binding Path=BeginValueBasePrice, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                 EndValue="{Binding Path=EndValueBasePrice, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                 TickFrequency="10000"
+                                <uc:DoubleSlider MinValue="{Binding Path=MinValueDepositPayed, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                 MaxValue="{Binding Path=MaxValueDepositPayed, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                 BeginValue="{Binding Path=BeginValueDepositPayed, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                 EndValue="{Binding Path=EndValueDepositPayed, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                 TickFrequency="100"
                                                  IsSnapToTickEnabled="True"
                                                  Margin="0,0,5,0"/>
                             </Grid>
@@ -149,16 +142,16 @@
                                 <RowDefinition Height="60"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                <Label Content="Количество гребцов"
+                                <Label Content="Общая стоимость контракта"
                                        HorizontalContentAlignment="Center"
                                        Margin="0,0,5,0"/>
                             </Grid>
                             <Grid Grid.Row="1">
-                                <uc:DoubleSlider MinValue="{Binding Path=MinValueNumberOfRowers, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                 MaxValue="{Binding Path=MaxValueNumberOfRowers, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                 BeginValue="{Binding Path=BeginValueNumberOfRowers, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                 EndValue="{Binding Path=EndValueNumberOfRowers, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                 TickFrequency="1"
+                                <uc:DoubleSlider MinValue="{Binding Path=MinValueContractTotalPrice, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                 MaxValue="{Binding Path=MaxValueContractTotalPrice, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                 BeginValue="{Binding Path=BeginValueContractTotalPrice, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                 EndValue="{Binding Path=EndValueContractTotalPrice, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                 TickFrequency="100"
                                                  IsSnapToTickEnabled="True"
                                                  Margin="0,0,5,0"/>
                             </Grid>
@@ -169,16 +162,16 @@
                                 <RowDefinition Height="60"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                <Label Content="НДС"
+                                <Label Content="Общая стоимость контракта c НДС"
                                        HorizontalContentAlignment="Center"
                                        Margin="0,0,5,0"/>
                             </Grid>
                             <Grid Grid.Row="1">
-                                <uc:DoubleSlider MinValue="{Binding Path=MinValueVATBoat, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                 MaxValue="{Binding Path=MaxValueVATBoat, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                 BeginValue="{Binding Path=BeginValueVATBoat, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                 EndValue="{Binding Path=EndValueVATBoat, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                 TickFrequency="0.01"
+                                <uc:DoubleSlider MinValue="{Binding Path=MinValueContractTotalPriceInclVAT, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                 MaxValue="{Binding Path=MaxValueContractTotalPriceInclVAT, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                 BeginValue="{Binding Path=BeginValueContractTotalPriceInclVAT, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                 EndValue="{Binding Path=EndValueContractTotalPriceInclVAT, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                 TickFrequency="100"
                                                  IsSnapToTickEnabled="True"
                                                  Margin="0,0,5,0"/>
                             </Grid>
@@ -189,15 +182,15 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                <Label Content="Дата начала производства"
+                                <Label Content="Дата заключения контракта"
                                        HorizontalContentAlignment="Center"
                                        Margin="0,0,5,0"/>
                             </Grid>
                             <Grid Grid.Row="1">
-                                <uc:DoubleDatePicker MinSelectedDate="{Binding Path=MinValueProductionStartDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                     MaxSelectedDate="{Binding Path=MaxValueProductionStartDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                     BeginSelectedDate="{Binding Path=BeginValueProductionStartDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                     EndSelectedDate="{Binding Path=EndValueProductionStartDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                <uc:DoubleDatePicker MinSelectedDate="{Binding Path=MinValueDateOfConclusionContract, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                     MaxSelectedDate="{Binding Path=MaxValueDateOfConclusionContract, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                     BeginSelectedDate="{Binding Path=BeginValueDateOfConclusionContract, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                     EndSelectedDate="{Binding Path=EndValueDateOfConclusionContract, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                                      Height="60"
                                                      Margin="0,0,5,0"/>
                             </Grid>
@@ -219,9 +212,9 @@
             </GroupBox>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="1">
-            <DataGrid ItemsSource="{Binding Path=Boats, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                      SelectedValuePath="IdBoat"
-                      SelectedValue="{Binding Path=SelectedIdBoat, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            <DataGrid ItemsSource="{Binding Path=Contracts, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                      SelectedValuePath="IdContract"
+                      SelectedValue="{Binding Path=SelectedIdContract, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                       CanUserAddRows="False"
                       CanUserDeleteRows="False"
                       Margin="10,10,10,10"/>

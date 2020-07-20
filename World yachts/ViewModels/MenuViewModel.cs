@@ -10,7 +10,7 @@ namespace World_yachts.ViewModels
     public class MenuViewModel : BindableBase
     {
         private readonly PageService _pageService;
-        private readonly ConfigurationUser _config;
+        private ConfigurationUser _config;
 
         public MenuViewModel(PageService pageService)
         {
@@ -51,7 +51,7 @@ namespace World_yachts.ViewModels
 
         public ICommand Orders => new DelegateCommand(() =>
         {
-
+            _pageService.ChangePage(new Contracts());
         }, () => _config.TypeUser == "Administrator" || _config.TypeUser == "Manager");
 
         public ICommand Statistics => new DelegateCommand(() =>
