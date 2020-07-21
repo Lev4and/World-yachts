@@ -56,34 +56,8 @@
                             <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0">
-                                <uc:ExpanderWithCheckBoxes ElementHeader="Лодки"
-                                                           Data="{Binding Path=Boats, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                           ListSelectedValues="{Binding Path=ListSelectedModelsBoats, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                           Margin="0,0,5,0"/>
-                            </Grid>
-                        </Grid>
-                        <Grid Grid.Row="1">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0">
-                                <uc:ExpanderWithCheckBoxes ElementHeader="Аксессуары"
-                                                           Data="{Binding Path=Accessories, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                           ListSelectedValues="{Binding Path=ListSelectedAccessoriesAtOrder, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                           Margin="0,0,5,0"/>
-                            </Grid>
-                        </Grid>
-                        <Grid Grid.Row="2">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
@@ -94,29 +68,7 @@
                                                            Margin="0,0,5,0"/>
                             </Grid>
                         </Grid>
-                        <Grid Grid.Row="3">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0">
-                                <uc:ExpanderWithCheckBoxes ElementHeader="Адрес доставки заказа"
-                                                           Data="{Binding Path=DeliveryAddressOrders, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                           ListSelectedValues="{Binding Path=ListSelectedDeliveryAddressOrders, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                           Margin="0,0,5,0"/>
-                            </Grid>
-                        </Grid>
-                        <Grid Grid.Row="4">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0">
-                                <uc:ExpanderWithCheckBoxes ElementHeader="Город доставки заказа"
-                                                           Data="{Binding Path=CitiesOrders, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                           ListSelectedValues="{Binding Path=ListSelectedCitiesOrders, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                           Margin="0,0,5,0"/>
-                            </Grid>
-                        </Grid>
-                        <Grid Grid.Row="5">
+                        <Grid Grid.Row="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="60"></RowDefinition>
@@ -136,7 +88,7 @@
                                                  Margin="0,0,5,0"/>
                             </Grid>
                         </Grid>
-                        <Grid Grid.Row="6">
+                        <Grid Grid.Row="2">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="60"></RowDefinition>
@@ -156,7 +108,7 @@
                                                  Margin="0,0,5,0"/>
                             </Grid>
                         </Grid>
-                        <Grid Grid.Row="7">
+                        <Grid Grid.Row="3">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="60"></RowDefinition>
@@ -176,7 +128,7 @@
                                                  Margin="0,0,5,0"/>
                             </Grid>
                         </Grid>
-                        <Grid Grid.Row="8">
+                        <Grid Grid.Row="4">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
@@ -195,7 +147,7 @@
                                                      Margin="0,0,5,0"/>
                             </Grid>
                         </Grid>
-                        <Grid Grid.Row="9">
+                        <Grid Grid.Row="5">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>

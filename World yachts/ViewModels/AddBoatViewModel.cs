@@ -1,7 +1,5 @@
 ﻿using Converters;
 using DevExpress.Mvvm;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
@@ -97,7 +95,7 @@ namespace World_yachts.ViewModels
             }
             else
             {
-                colour = _eF.GetColour(OwnColor);
+                colour = _eF.GetColour((int)SelectedIdColour);
             }
 
             return colour;

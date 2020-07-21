@@ -140,8 +140,6 @@
     <Compile Include="Converters\TextToDouble.cs" />
     <Compile Include="Converters\TextToInt32.cs" />
     <Compile Include="Converters\ValueToVisibility.cs" />
-    <Compile Include="Messages\IMessage.cs" />
-    <Compile Include="Messages\UserMessage.cs" />
     <Compile Include="Model\Configurations\ConfigurationUser.cs" />
     <Compile Include="Model\Database\Interactions\DataActions\IAccordanable.cs" />
     <Compile Include="Model\Database\Interactions\DataActions\IAddable.cs" />
@@ -241,6 +239,9 @@
     <Compile Include="Model\Database\Models\v_contract.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Database\Models\v_contract2.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Database\Models\v_customer.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -257,6 +258,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Database\Models\v_organisationNameCustomer.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_partner.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Database\Models\v_salesPerson.cs">

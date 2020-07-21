@@ -4,18 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:World_yachts.Views.Windows"
-        xmlns:uc="clr-namespace:World_yachts.Views.UserControls"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:c="clr-namespace:World_yachts.Converters"
         mc:Ignorable="d"
         DataContext="{Binding ChangeCustomerViewModel, Source={StaticResource ViewModelLocator}}"
         x:Name="_this"
-        Title="ChangeCustomer" Height="500" Width="800">
-    <Window.Resources>
-        <c:SelectedValueToNullableInt32 x:Key="selectedValueToNullableInt32"/>
-        <c:TextToInt32 x:Key="textToInt32"/>
-        <c:TextToDouble x:Key="textToDouble"/>
-    </Window.Resources>
+        Title="ChangeCustomer" MinHeight="500" MinWidth="800" Height="500" Width="800" MaxHeight="500" MaxWidth="800">
     <Grid>
         <Grid Margin="10">
             <i:Interaction.Triggers>
@@ -209,7 +202,7 @@
                              FontSize="18"/>
                 </Grid>
             </Grid>
-            <Grid Grid.Row="10" Grid.ColumnSpan="2" Width="300">
+            <Grid Grid.Row="10" Grid.ColumnSpan="2" Margin="0,5,0,0" Width="300">
                 <Grid>
                     <Button Content="Изменить"
                             VerticalAlignment="Bottom"

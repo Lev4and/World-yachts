@@ -12,7 +12,7 @@ namespace World_yachts.ViewModels
         private string _firstName;
         private string _familyName;
         private readonly PageService _pageService;
-        private readonly EntityFramework _eF;
+        private EntityFramework _eF;
 
         public static int? IdUser { get; set; }
 
@@ -45,6 +45,10 @@ namespace World_yachts.ViewModels
         public UserInformationSupplementViewModel(PageService pageService)
         {
             _pageService = pageService;
+        }
+
+        public ICommand Loaded => new DelegateCommand(() =>
+        {
             _eF = new EntityFramework();
 
             FirstName = "";
@@ -52,7 +56,7 @@ namespace World_yachts.ViewModels
 
             CorrectFirstName = false;
             CorrectFamilyName = false;
-        }
+        });
 
         public ICommand Supplement => new DelegateCommand(() =>
         {

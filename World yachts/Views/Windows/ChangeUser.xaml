@@ -5,12 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:World_yachts.Views.Windows"
       xmlns:vm="clr-namespace:World_yachts.ViewModels"
-      xmlns:uc="clr-namespace:World_yachts.Views.UserControls"
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-      xmlns:c="clr-namespace:World_yachts.Converters"
       DataContext="{Binding ChangeUserViewModel, Source={StaticResource ViewModelLocator}}"
       mc:Ignorable="d" 
-      Height="300" Width="800"
+      MinHeight="300" MinWidth="800" Height="300" Width="800" MaxHeight="300" MaxWidth="800"
       Title="ChangeUser">
     <Grid>
         <Grid Margin="10">
@@ -192,7 +190,7 @@
                     </TextBox>
                 </Grid>
             </Grid>
-            <Grid Grid.Row="5" Grid.ColumnSpan="2" Width="300">
+            <Grid Grid.Row="5" Grid.ColumnSpan="2" Margin="0,5,0,0" Width="300">
                 <Grid>
                     <Button Content="Изменить"
                             VerticalAlignment="Bottom"

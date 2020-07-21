@@ -2,7 +2,6 @@
 using DevExpress.Mvvm;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Windows;
 using System.Windows.Input;
 using World_yachts.Model.Database.Interactions;

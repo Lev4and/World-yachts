@@ -12,12 +12,18 @@ namespace World_yachts.Model.Database.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class v_contract
+    public partial class v_contract2
     {
         public int IdContract { get; set; }
         public System.DateTime Date { get; set; }
         public int DepositPayed { get; set; }
         public int IdOrder { get; set; }
+        public string FullNameSalesPerson { get; set; }
+        public string FullNameCustomer { get; set; }
+        public string Model { get; set; }
+        public string SelectedAccessoriesAtOrder { get; set; }
+        public string DeliveryAddress { get; set; }
+        public string City { get; set; }
         public int ContractTotalPrice { get; set; }
         public int ContractTotalPriceInclVAT { get; set; }
         public string ProductionProcess { get; set; }

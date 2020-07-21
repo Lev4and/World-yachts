@@ -1,4 +1,5 @@
-﻿using DevExpress.Mvvm;
+﻿using Converters;
+using DevExpress.Mvvm;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using World_yachts.Model.Configurations;
@@ -16,9 +17,8 @@ namespace World_yachts.ViewModels
         private string _password;
         private string _repeatPassword;
         private string _selectedRoleName;
-        private ObservableCollection<Role> _roles;
         private readonly PageService _pageService;
-        private readonly EntityFramework _eF;
+        private EntityFramework _eF;
 
         public int? SelectedIdRole
         {
@@ -81,18 +81,15 @@ namespace World_yachts.ViewModels
 
         public bool CorrectRepeatPassword { get; set; }
 
-        public ObservableCollection<Role> Roles
-        {
-            get
-            {
-                return _roles = GetRoles();
-            }
-            set { _roles = value; }
-        }
+        public ObservableCollection<Role> Roles { get; set; }
 
         public RegistrationViewModel(PageService pageService)
         {
             _pageService = pageService;
+        }
+
+        public ICommand Loaded => new DelegateCommand(() =>
+        {
             _eF = new EntityFramework();
 
             SelectedIdRole = null;
@@ -105,7 +102,9 @@ namespace World_yachts.ViewModels
             CorrectLogin = false;
             CorrectPassword = false;
             CorrectRepeatPassword = false;
-        }
+
+            Roles = CollectionConverter<Role>.ConvertToObservableCollection(_eF.GetRoles());
+        });
 
         public ICommand Back => new DelegateCommand(() =>
         {

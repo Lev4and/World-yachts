@@ -12,19 +12,23 @@ namespace World_yachts.ViewModels
     public class MainViewModel : BindableBase
     {
         private readonly PageService _pageService;
-        private readonly EntityFramework _eF;
+        private EntityFramework _eF;
 
         public bool IsBackgroundTaskRunning { get; set; }
 
         public MainViewModel(PageService pageService)
         {
             _pageService = pageService;
+        }
+
+        public ICommand Loaded => new DelegateCommand(() =>
+        {
             _eF = new EntityFramework();
 
             IsBackgroundTaskRunning = true;
 
             Loading();
-        }
+        });
 
         public async void Loading()
         {

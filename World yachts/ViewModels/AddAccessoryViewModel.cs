@@ -35,7 +35,7 @@ namespace World_yachts.ViewModels
 
         public ObservableCollection<string> Boats { get; set; }
 
-        public ObservableCollection<Partner> Partners { get; set; }
+        public ObservableCollection<v_partner> Partners { get; set; }
 
         public AddAccessoryViewModel(PageService pageService)
         {
@@ -56,7 +56,7 @@ namespace World_yachts.ViewModels
             DescriptionOfAccessory = "";
             ListSelectedModelBoats = new ObservableCollection<string>();
             Boats = CollectionConverter<string>.ConvertToObservableCollection(_eF.GetStringListBoats());
-            Partners = CollectionConverter<Partner>.ConvertToObservableCollection(_eF.GetPartners());
+            Partners = CollectionConverter<v_partner>.ConvertToObservableCollection(_eF.GetPartners());
         });
 
         public ICommand Add => new DelegateCommand(() =>

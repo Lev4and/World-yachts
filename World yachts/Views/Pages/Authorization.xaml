@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:World_yachts.Views.Pages"
       xmlns:vm="clr-namespace:World_yachts.ViewModels"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       xmlns:c="clr-namespace:World_yachts.Converters"
       mc:Ignorable="d"
       DataContext="{Binding AuthorizationViewModel, Source={StaticResource ViewModelLocator}}"
@@ -14,8 +15,13 @@
         <c:ValueToVisibility x:Key="valueToVisibility"/>
     </Page.Resources>
     <Grid>
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding Loaded}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>

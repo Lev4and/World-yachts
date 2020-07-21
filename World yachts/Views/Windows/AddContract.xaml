@@ -10,11 +10,9 @@
         DataContext="{Binding AddContractViewModel, Source={StaticResource ViewModelLocator}}"
         mc:Ignorable="d"
         x:Name="_this"
-        Title="AddContract" Height="425" Width="800">
+        Title="AddContract" MinHeight="425" MinWidth="800" Height="425" Width="800" MaxHeight="425" MaxWidth="800">
     <Window.Resources>
-        <c:SelectedValueToNullableInt32 x:Key="selectedValueToNullableInt32"/>
         <c:TextToInt32 x:Key="textToInt32"/>
-        <c:TextToDouble x:Key="textToDouble"/>
     </Window.Resources>
     <Grid>
         <ScrollViewer>
@@ -182,11 +180,11 @@
                                  FontSize="18"/>
                     </Grid>
                 </Grid>
-                <Grid Grid.Row="8" Grid.ColumnSpan="2" Width="300">
+                <Grid Grid.Row="8" Grid.ColumnSpan="2" Margin="0,5,0,0" Width="300">
                     <Grid>
                         <Button Content="Добавить"
                             VerticalAlignment="Bottom"
-                            Margin="0,5,0,5"
+                            Margin="0,0,0,5"
                             FontFamily="Comic Sans MS"
                             FontSize="18"
                             Command="{Binding Path=Add}"/>

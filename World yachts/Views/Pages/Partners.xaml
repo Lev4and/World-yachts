@@ -5,7 +5,6 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:World_yachts.Views.Pages"
       xmlns:vm="clr-namespace:World_yachts.ViewModels"
-      xmlns:uc="clr-namespace:World_yachts.Views.UserControls"
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       mc:Ignorable="d" 
       DataContext="{Binding PartnersViewModel, Source={StaticResource ViewModelLocator}}"

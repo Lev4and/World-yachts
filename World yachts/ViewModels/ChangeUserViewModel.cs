@@ -13,8 +13,8 @@ namespace World_yachts.ViewModels
     public class ChangeUserViewModel : BindableBase
     {
         private readonly PageService _pageService;
-        private EntityFramework _eF;
         private ConfigurationUser _config;
+        private EntityFramework _eF;
         private User _user;
         private SalesPerson _salesPerson;
 

@@ -17,8 +17,8 @@ namespace World_yachts.ViewModels
     public class AccessoriesViewModel : BindableBase
     {
         private readonly PageService _pageService;
-        private EntityFramework _eF;
         private ConfigurationUser _config;
+        private EntityFramework _eF;
 
         public int MinValuePrice { get; set; }
 
@@ -77,12 +77,12 @@ namespace World_yachts.ViewModels
         public AccessoriesViewModel(PageService pageService)
         {
             _pageService = pageService;
+            _config = ConfigurationUser.GetConfiguration();
         }
 
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _eF = new EntityFramework();
-            _config = ConfigurationUser.GetConfiguration();
 
             ListSelectedBoats = new ObservableCollection<string>();
             ListSelectedPartners = new ObservableCollection<string>();
@@ -108,14 +108,14 @@ namespace World_yachts.ViewModels
         public ICommand Add => new DelegateCommand(() =>
         {
             WindowService.ShowWindow(new AddAccessory());
-        });
+        }, () => _config.TypeUser == "Administrator");
 
         public ICommand Change => new DelegateCommand(() =>
         {
             ChangeAccessoryViewModel.IdAccessory = (int)SelectedIdAccessory;
 
             WindowService.ShowWindow(new ChangeAccessory());
-        }, () => SelectedIdAccessory != null);
+        }, () => SelectedIdAccessory != null && _config.TypeUser == "Administrator");
 
         public ICommand Remove => new DelegateCommand(() =>
         {
@@ -127,7 +127,7 @@ namespace World_yachts.ViewModels
 
                 Searching();
             }
-        }, () => SelectedIdAccessory != null);
+        }, () => SelectedIdAccessory != null && _config.TypeUser == "Administrator");
 
         private void ResetFilters()
         {
@@ -170,13 +170,13 @@ namespace World_yachts.ViewModels
         private void Searching()
         {
             Accessories = CollectionConverter<v_accessory>.ConvertToObservableCollection(_eF.GetAccessories(FilterText,
-                                             new Range<int>(BeginValuePrice, EndValuePrice), 
-                                             new Range<double>(BeginValueVATAccessory, EndValueVATAccessory), 
-                                             new Range<int>(BeginValueInventory, EndValueInventory), 
-                                             new Range<int>(BeginValueOrderLevel, EndValueOrderLevel),
-                                             new Range<int>(BeginValueOrderBatch, EndValueOrderBatch), 
-                                             ListSelectedPartners.ToList(),
-                                             ListSelectedBoats.ToList()));
+                                                                                         new Range<int>(BeginValuePrice, EndValuePrice), 
+                                                                                         new Range<double>(BeginValueVATAccessory, EndValueVATAccessory), 
+                                                                                         new Range<int>(BeginValueInventory, EndValueInventory), 
+                                                                                         new Range<int>(BeginValueOrderLevel, EndValueOrderLevel),
+                                                                                         new Range<int>(BeginValueOrderBatch, EndValueOrderBatch), 
+                                                                                         ListSelectedPartners.ToList(),
+                                                                                         ListSelectedBoats.ToList()));
         }
     }
 }

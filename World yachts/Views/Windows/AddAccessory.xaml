@@ -11,11 +11,9 @@
         DataContext="{Binding AddAccessoryViewModel, Source={StaticResource ViewModelLocator}}"
         mc:Ignorable="d"
         x:Name="_this"
-        Title="AddAccessory" Height="500" Width="800">
+        Title="AddAccessory" MinHeight="500" MinWidth="800" Height="500" Width="800" MaxHeight="500" MaxWidth="800">
     <Window.Resources>
-        <c:SelectedValueToNullableInt32 x:Key="selectedValueToNullableInt32"/>
         <c:TextToInt32 x:Key="textToInt32"/>
-        <c:TextToDouble x:Key="textToDouble"/>
     </Window.Resources>
     <Grid>
         <ScrollViewer>
@@ -200,6 +198,8 @@
                 <Grid Grid.Row="9" Grid.ColumnSpan="2" Margin="0,5,0,0" Width="300">
                     <Grid>
                         <Button Content="Добавить"
+                                VerticalAlignment="Bottom"
+                                Margin="0,0,0,5"
                                 FontFamily="Comic Sans MS"
                                 FontSize="18"
                                 Command="{Binding Path=Add}"/>

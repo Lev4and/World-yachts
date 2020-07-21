@@ -26,17 +26,17 @@ namespace World_yachts.ViewModels
 
         public ObservableCollection<v_cityPartner> CitiesPartners { get; set; }
 
-        public ObservableCollection<Partner> Partners { get; set; }
+        public ObservableCollection<v_partner> Partners { get; set; }
 
         public PartnersViewModel(PageService pageService)
         {
             _pageService = pageService;
+            _config = ConfigurationUser.GetConfiguration();
         }
 
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _eF = new EntityFramework();
-            _config = ConfigurationUser.GetConfiguration();
 
             ResetFilters();
         });
@@ -49,14 +49,14 @@ namespace World_yachts.ViewModels
         public ICommand Add => new DelegateCommand(() =>
         {
             WindowService.ShowWindow(new AddPartner());
-        });
+        }, () => _config.TypeUser == "Administrator");
 
         public ICommand Change => new DelegateCommand(() =>
         {
             ChangePartnerViewModel.IdPartner = (int)SelectedIdPartner;
 
             WindowService.ShowWindow(new ChangePartner());
-        }, () => SelectedIdPartner != null);
+        }, () => SelectedIdPartner != null && _config.TypeUser == "Administrator");
 
         public ICommand Remove => new DelegateCommand(() =>
         {
@@ -68,7 +68,7 @@ namespace World_yachts.ViewModels
 
                 Searching();
             }
-        }, () => SelectedIdPartner != null);
+        }, () => SelectedIdPartner != null && _config.TypeUser == "Administrator");
 
         public ICommand Reset => new DelegateCommand(() =>
         {
@@ -94,8 +94,8 @@ namespace World_yachts.ViewModels
 
         private void Searching()
         {
-            Partners = CollectionConverter<Partner>.ConvertToObservableCollection(_eF.GetPartners(FilterText,
-                                                                                                  City));
+            Partners = CollectionConverter<v_partner>.ConvertToObservableCollection(_eF.GetPartners(FilterText,
+                                                                                                    City));
         }
     }
 }

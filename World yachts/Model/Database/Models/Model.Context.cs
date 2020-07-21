@@ -60,6 +60,8 @@ namespace World_yachts.Model.Database.Models
         public virtual DbSet<v_detailReportBestSalesPersonAllTime> v_detailReportBestSalesPersonAllTime { get; set; }
         public virtual DbSet<v_detailReportPopularBoatsAllTime> v_detailReportPopularBoatsAllTime { get; set; }
         public virtual DbSet<v_contract> v_contract { get; set; }
+        public virtual DbSet<v_contract2> v_contract2 { get; set; }
+        public virtual DbSet<v_partner> v_partner { get; set; }
     
         public virtual int sp_toBlockUser()
         {

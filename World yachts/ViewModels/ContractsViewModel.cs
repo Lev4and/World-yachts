@@ -55,25 +55,9 @@ namespace World_yachts.ViewModels
 
         public DateTime EndValueDateOfConclusionContract { get; set; }
 
-        public ObservableCollection<string> ListSelectedModelsBoats { get; set; }
-
-        public ObservableCollection<string> ListSelectedAccessoriesAtOrder { get; set; }
-
         public ObservableCollection<string> ListSelectedProductionProcess { get; set; }
 
-        public ObservableCollection<string> ListSelectedDeliveryAddressOrders { get; set; }
-
-        public ObservableCollection<string> ListSelectedCitiesOrders { get; set; }
-
-        public ObservableCollection<string> Boats { get; set; }
-
-        public ObservableCollection<string> Accessories { get; set; }
-
         public ObservableCollection<string> ProductionProcess { get; set; }
-
-        public ObservableCollection<string> DeliveryAddressOrders { get; set; }
-
-        public ObservableCollection<string> CitiesOrders { get; set; }
 
         public ObservableCollection<v_contract> Contracts { get; set; }
 
@@ -87,11 +71,7 @@ namespace World_yachts.ViewModels
             _config = ConfigurationUser.GetConfiguration();
             _eF = new EntityFramework();
 
-            ListSelectedModelsBoats = new ObservableCollection<string>();
-            ListSelectedAccessoriesAtOrder = new ObservableCollection<string>();
             ListSelectedProductionProcess = new ObservableCollection<string>();
-            ListSelectedDeliveryAddressOrders = new ObservableCollection<string>();
-            ListSelectedCitiesOrders = new ObservableCollection<string>();
 
             ResetFilters();
         });
@@ -157,32 +137,20 @@ namespace World_yachts.ViewModels
             EndValueContractTotalPriceInclVAT = MaxValueContractTotalPriceInclVAT;
             EndValueDateOfConclusionContract = MaxValueDateOfConclusionContract;
 
-            Boats = CollectionConverter<String>.ConvertToObservableCollection(_eF.GetStringListBoats());
-            Accessories = CollectionConverter<String>.ConvertToObservableCollection(_eF.GetStringListAccessories());
             ProductionProcess = CollectionConverter<String>.ConvertToObservableCollection(_eF.GetProductionProcess());
-            DeliveryAddressOrders = CollectionConverter<String>.ConvertToObservableCollection(_eF.GetStringListDeliveryAddressOrders());
-            CitiesOrders = CollectionConverter<String>.ConvertToObservableCollection(_eF.GetStringListCitiesOrders());
 
-            ListSelectedModelsBoats.Clear();
-            ListSelectedAccessoriesAtOrder.Clear();
             ListSelectedProductionProcess.Clear();
-            ListSelectedDeliveryAddressOrders.Clear();
-            ListSelectedCitiesOrders.Clear();
 
             Searching();
         }
 
         private void Searching()
         {
-            Contracts = CollectionConverter<v_contract>.ConvertToObservableCollection(_eF.GetContracts(ListSelectedModelsBoats.ToList(),
-                                                                                                        ListSelectedAccessoriesAtOrder.ToList(),
-                                                                                                        ListSelectedProductionProcess.ToList(),
-                                                                                                        ListSelectedDeliveryAddressOrders.ToList(),
-                                                                                                        ListSelectedCitiesOrders.ToList(),
-                                                                                                        new Range<DateTime>(BeginValueDateOfConclusionContract, EndValueDateOfConclusionContract),
-                                                                                                        new Range<int>(BeginValueDepositPayed, EndValueDepositPayed), 
-                                                                                                        new Range<int>(BeginValueContractTotalPrice, EndValueContractTotalPrice), 
-                                                                                                        new Range<int>(BeginValueContractTotalPriceInclVAT, EndValueContractTotalPriceInclVAT)));
+            Contracts = CollectionConverter<v_contract>.ConvertToObservableCollection(_eF.GetContracts(ListSelectedProductionProcess.ToList(),
+                                                                                                       new Range<DateTime>(BeginValueDateOfConclusionContract, EndValueDateOfConclusionContract),
+                                                                                                       new Range<int>(BeginValueDepositPayed, EndValueDepositPayed), 
+                                                                                                       new Range<int>(BeginValueContractTotalPrice, EndValueContractTotalPrice), 
+                                                                                                       new Range<int>(BeginValueContractTotalPriceInclVAT, EndValueContractTotalPriceInclVAT)));
         }
     }
 }

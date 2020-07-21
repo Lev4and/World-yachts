@@ -18,8 +18,8 @@ namespace World_yachts.ViewModels
     public class BoatsViewModel : BindableBase
     {
         private readonly PageService _pageService;
-        private EntityFramework _eF;
         private ConfigurationUser _config;
+        private EntityFramework _eF;
 
         public bool? ThereIsMast { get; set; }
 
@@ -80,12 +80,12 @@ namespace World_yachts.ViewModels
         public BoatsViewModel(PageService pageService)
         {
             _pageService = pageService;
+            _config = ConfigurationUser.GetConfiguration();
         }
 
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _eF = new EntityFramework();
-            _config = ConfigurationUser.GetConfiguration();
 
             ListSelectedBoatTypes = new ObservableCollection<string>();
             ListSelectedColours = new ObservableCollection<string>();
@@ -152,14 +152,14 @@ namespace World_yachts.ViewModels
         public ICommand Add => new DelegateCommand(() =>
         {
             WindowService.ShowWindow(new AddBoat());
-        });
+        }, () => _config.TypeUser == "Administrator");
 
         public ICommand Change => new DelegateCommand(() =>
         {
             ChangeBoatViewModel.IdBoat = (int)SelectedIdBoat;
 
             WindowService.ShowWindow(new ChangeBoat());
-        }, () => SelectedIdBoat != null);
+        }, () => SelectedIdBoat != null && _config.TypeUser == "Administrator");
 
         public ICommand Remove => new DelegateCommand(() =>
         {
@@ -171,7 +171,7 @@ namespace World_yachts.ViewModels
 
                 Searching();
             }
-        }, () => SelectedIdBoat != null);
+        }, () => SelectedIdBoat != null && _config.TypeUser == "Administrator");
 
         private void Searching()
         {

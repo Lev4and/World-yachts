@@ -296,6 +296,26 @@
             <PropertyRef Name="Date" />
             <PropertyRef Name="DepositPayed" />
             <PropertyRef Name="IdOrder" />
+            <PropertyRef Name="ContractTotalPrice" />
+            <PropertyRef Name="ContractTotalPriceInclVAT" />
+            <PropertyRef Name="ProductionProcess" />
+          </Key>
+          <Property Name="IdContract" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="DepositPayed" Type="int" Nullable="false" />
+          <Property Name="IdOrder" Type="int" Nullable="false" />
+          <Property Name="ContractTotalPrice" Type="int" Nullable="false" />
+          <Property Name="ContractTotalPriceInclVAT" Type="int" Nullable="false" />
+          <Property Name="ProductionProcess" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_contract2" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_contract2">
+          <Key>
+            <PropertyRef Name="IdContract" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="DepositPayed" />
+            <PropertyRef Name="IdOrder" />
             <PropertyRef Name="Model" />
             <PropertyRef Name="DeliveryAddress" />
             <PropertyRef Name="City" />
@@ -402,6 +422,20 @@
           </Key>
           <Property Name="IdOrganisationName" Type="bigint" Nullable="false" />
           <Property Name="OrganisationName" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_partner" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_partner">
+          <Key>
+            <PropertyRef Name="IdPartner" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="City" />
+          </Key>
+          <Property Name="IdPartner" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_salesPerson" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -726,16 +760,27 @@
     [v_contract].[Date] AS [Date], 
     [v_contract].[DepositPayed] AS [DepositPayed], 
     [v_contract].[IdOrder] AS [IdOrder], 
-    [v_contract].[FullNameSalesPerson] AS [FullNameSalesPerson], 
-    [v_contract].[FullNameCustomer] AS [FullNameCustomer], 
-    [v_contract].[Model] AS [Model], 
-    [v_contract].[SelectedAccessoriesAtOrder] AS [SelectedAccessoriesAtOrder], 
-    [v_contract].[DeliveryAddress] AS [DeliveryAddress], 
-    [v_contract].[City] AS [City], 
     [v_contract].[ContractTotalPrice] AS [ContractTotalPrice], 
     [v_contract].[ContractTotalPriceInclVAT] AS [ContractTotalPriceInclVAT], 
     [v_contract].[ProductionProcess] AS [ProductionProcess]
     FROM [dbo].[v_contract] AS [v_contract]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_contract2" EntityType="Self.v_contract2" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_contract2].[IdContract] AS [IdContract], 
+    [v_contract2].[Date] AS [Date], 
+    [v_contract2].[DepositPayed] AS [DepositPayed], 
+    [v_contract2].[IdOrder] AS [IdOrder], 
+    [v_contract2].[FullNameSalesPerson] AS [FullNameSalesPerson], 
+    [v_contract2].[FullNameCustomer] AS [FullNameCustomer], 
+    [v_contract2].[Model] AS [Model], 
+    [v_contract2].[SelectedAccessoriesAtOrder] AS [SelectedAccessoriesAtOrder], 
+    [v_contract2].[DeliveryAddress] AS [DeliveryAddress], 
+    [v_contract2].[City] AS [City], 
+    [v_contract2].[ContractTotalPrice] AS [ContractTotalPrice], 
+    [v_contract2].[ContractTotalPriceInclVAT] AS [ContractTotalPriceInclVAT], 
+    [v_contract2].[ProductionProcess] AS [ProductionProcess]
+    FROM [dbo].[v_contract2] AS [v_contract2]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="v_customer" EntityType="Self.v_customer" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -792,6 +837,14 @@
     [v_organisationNameCustomer].[IdOrganisationName] AS [IdOrganisationName], 
     [v_organisationNameCustomer].[OrganisationName] AS [OrganisationName]
     FROM [dbo].[v_organisationNameCustomer] AS [v_organisationNameCustomer]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_partner" EntityType="Self.v_partner" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_partner].[IdPartner] AS [IdPartner], 
+    [v_partner].[Name] AS [Name], 
+    [v_partner].[Address] AS [Address], 
+    [v_partner].[City] AS [City]
+    FROM [dbo].[v_partner] AS [v_partner]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="v_salesPerson" EntityType="Self.v_salesPerson" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1404,6 +1457,8 @@
           <EntitySet Name="v_detailReportBestSalesPersonAllTime" EntityType="Model.v_detailReportBestSalesPersonAllTime" />
           <EntitySet Name="v_detailReportPopularBoatsAllTime" EntityType="Model.v_detailReportPopularBoatsAllTime" />
           <EntitySet Name="v_contract" EntityType="Model.v_contract" />
+          <EntitySet Name="v_contract2" EntityType="Model.v_contract2" />
+          <EntitySet Name="v_partner" EntityType="Model.v_partner" />
         </EntityContainer>
         <EntityType Name="v_boatSimplifiedInformation">
           <Key>
@@ -1556,6 +1611,24 @@
             <PropertyRef Name="Date" />
             <PropertyRef Name="DepositPayed" />
             <PropertyRef Name="IdOrder" />
+            <PropertyRef Name="ContractTotalPrice" />
+            <PropertyRef Name="ContractTotalPriceInclVAT" />
+            <PropertyRef Name="ProductionProcess" />
+          </Key>
+          <Property Name="IdContract" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DepositPayed" Type="Int32" Nullable="false" />
+          <Property Name="IdOrder" Type="Int32" Nullable="false" />
+          <Property Name="ContractTotalPrice" Type="Int32" Nullable="false" />
+          <Property Name="ContractTotalPriceInclVAT" Type="Int32" Nullable="false" />
+          <Property Name="ProductionProcess" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="v_contract2">
+          <Key>
+            <PropertyRef Name="IdContract" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="DepositPayed" />
+            <PropertyRef Name="IdOrder" />
             <PropertyRef Name="Model" />
             <PropertyRef Name="DeliveryAddress" />
             <PropertyRef Name="City" />
@@ -1576,6 +1649,18 @@
           <Property Name="ContractTotalPrice" Type="Int32" Nullable="false" />
           <Property Name="ContractTotalPriceInclVAT" Type="Int32" Nullable="false" />
           <Property Name="ProductionProcess" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="v_partner">
+          <Key>
+            <PropertyRef Name="IdPartner" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="City" />
+          </Key>
+          <Property Name="IdPartner" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1942,6 +2027,19 @@
                 <ScalarProperty Name="ProductionProcess" ColumnName="ProductionProcess" />
                 <ScalarProperty Name="ContractTotalPriceInclVAT" ColumnName="ContractTotalPriceInclVAT" />
                 <ScalarProperty Name="ContractTotalPrice" ColumnName="ContractTotalPrice" />
+                <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
+                <ScalarProperty Name="DepositPayed" ColumnName="DepositPayed" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IdContract" ColumnName="IdContract" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_contract2">
+            <EntityTypeMapping TypeName="Model.v_contract2">
+              <MappingFragment StoreEntitySet="v_contract2">
+                <ScalarProperty Name="ProductionProcess" ColumnName="ProductionProcess" />
+                <ScalarProperty Name="ContractTotalPriceInclVAT" ColumnName="ContractTotalPriceInclVAT" />
+                <ScalarProperty Name="ContractTotalPrice" ColumnName="ContractTotalPrice" />
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="DeliveryAddress" ColumnName="DeliveryAddress" />
                 <ScalarProperty Name="SelectedAccessoriesAtOrder" ColumnName="SelectedAccessoriesAtOrder" />
@@ -1952,6 +2050,16 @@
                 <ScalarProperty Name="DepositPayed" ColumnName="DepositPayed" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="IdContract" ColumnName="IdContract" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_partner">
+            <EntityTypeMapping TypeName="Model.v_partner">
+              <MappingFragment StoreEntitySet="v_partner">
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdPartner" ColumnName="IdPartner" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

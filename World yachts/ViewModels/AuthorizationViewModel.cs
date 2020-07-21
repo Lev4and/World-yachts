@@ -14,7 +14,7 @@ namespace World_yachts.ViewModels
     {
         private int _countIncorrectAttempts;
         private readonly PageService _pageService;
-        private readonly EntityFramework _eF;
+        private EntityFramework _eF;
 
         public bool IsLocked { get; set; }
 
@@ -40,8 +40,12 @@ namespace World_yachts.ViewModels
 
         public AuthorizationViewModel(PageService pageService)
         {
-            _countIncorrectAttempts = 0;
             _pageService = pageService;
+        }
+
+        public ICommand Loaded => new DelegateCommand(() =>
+        {
+            _countIncorrectAttempts = 0;
             _eF = new EntityFramework();
 
             IsLocked = false;
@@ -50,7 +54,7 @@ namespace World_yachts.ViewModels
             CountSecondsLock = 0;
             Login = "";
             Password = "";
-        }
+        });
 
         public ICommand Back => new DelegateCommand(() =>
         {
@@ -85,7 +89,7 @@ namespace World_yachts.ViewModels
 
                 CountIncorrectAttempts++;
             }
-        }, () => Login.Length > 0 && Password.Length > 0 && CountSecondsLock == 0);
+        }, () => (Login != null ? Login.Length > 0 : false) && (Password != null ? Password.Length > 0 : false) && CountSecondsLock == 0);
 
         private async void Locking()
         {

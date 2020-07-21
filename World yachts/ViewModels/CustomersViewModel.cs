@@ -35,12 +35,12 @@ namespace World_yachts.ViewModels
         public CustomersViewModel(PageService pageService)
         {
             _pageService = pageService;
+            _config = ConfigurationUser.GetConfiguration();
         }
 
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _eF = new EntityFramework();
-            _config = ConfigurationUser.GetConfiguration();
 
             ResetFilters();
         });
@@ -65,7 +65,7 @@ namespace World_yachts.ViewModels
             ChangeCustomerViewModel.IdCustomer = (int)SelectedIdCustomer;
 
             WindowService.ShowWindow(new ChangeCustomer());
-        }, () => SelectedIdCustomer != null);
+        }, () => SelectedIdCustomer != null && _config.TypeUser == "Administrator");
 
         public ICommand Remove => new DelegateCommand(() =>
         {
@@ -78,7 +78,7 @@ namespace World_yachts.ViewModels
                 Searching();
             }
 
-        }, () => SelectedIdCustomer != null);
+        }, () => SelectedIdCustomer != null && _config.TypeUser == "Administrator");
 
         public ICommand Back => new DelegateCommand(() =>
         {

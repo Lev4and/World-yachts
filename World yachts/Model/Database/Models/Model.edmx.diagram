@@ -51,7 +51,9 @@
         <EntityTypeShape EntityType="Model.v_briefReportPopularBoatsAllTime" Width="1.5" PointX="16.375" PointY="16.75" />
         <EntityTypeShape EntityType="Model.v_detailReportBestSalesPersonAllTime" Width="1.5" PointX="17.375" PointY="3.75" />
         <EntityTypeShape EntityType="Model.v_detailReportPopularBoatsAllTime" Width="1.5" PointX="17.375" PointY="6.75" />
-        <EntityTypeShape EntityType="Model.v_contract" Width="1.5" PointX="10.375" PointY="17.75" />
+        <EntityTypeShape EntityType="Model.v_contract" Width="1.5" PointX="15.375" PointY="9.75" />
+        <EntityTypeShape EntityType="Model.v_contract2" Width="1.5" PointX="10.375" PointY="17.75" />
+        <EntityTypeShape EntityType="Model.v_partner" Width="1.5" PointX="17.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

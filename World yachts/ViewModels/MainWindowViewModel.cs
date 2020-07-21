@@ -11,8 +11,8 @@ namespace World_yachts.ViewModels
     public class MainWindowViewModel : BindableBase
     {
         private readonly PageService _pageService;
-        private readonly EntityFramework _eF;
-        private readonly ConfigurationUser _config;
+        private EntityFramework _eF;
+        private ConfigurationUser _config;
 
         public Page PageSource { get; set; }
 

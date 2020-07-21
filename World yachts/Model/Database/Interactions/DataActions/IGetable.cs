@@ -77,9 +77,13 @@ namespace World_yachts.Model.Database.Interactions.DataActions
 
         v_boat GetBoat(int idBoat);
 
+        Colour GetColour(int idColour);
+
         Colour GetColour(string nameColour);
 
         v_contract GetContract(int idContract);
+
+        v_contract2 GetContractExtendedVersion(int idContract);
 
         Customer GetCustomer(int idCustomer);
 
@@ -115,9 +119,9 @@ namespace World_yachts.Model.Database.Interactions.DataActions
 
         List<Colour> GetColours();
 
-        List<Partner> GetPartners();
+        List<v_partner> GetPartners();
 
-        List<Partner> GetPartners(string name, string city);
+        List<v_partner> GetPartners(string name, string city);
 
         List<Wood> GetWoods();
 
@@ -129,6 +133,8 @@ namespace World_yachts.Model.Database.Interactions.DataActions
 
         List<v_accessory> GetAccessories(string modelBoat);
 
+        List<v_boat> GetAllBoats();
+
         List<v_boat> GetBoats(string model, List<string> listSelectedBoatTypes, List<string> listSelectedModelType, Range<int> rangeNumberOfRowers, bool? thereIsMast, List<string> listSelectedColours, List<string> listSelectedWoods, Range<int> rangeBasePrice, Range<double> rangeVAT, Range<DateTime> rangeProductionStartDate);
 
         List<v_boatSimplifiedInformation> GetBoats();
@@ -139,7 +145,9 @@ namespace World_yachts.Model.Database.Interactions.DataActions
 
         List<v_cityOrder> GetCitiesOrders();
 
-        List<v_contract> GetContracts(List<string> listSelectedModelsBoats, List<string> listSelectedAccessoriesAtOrder, List<string> listSelectedProductionProcess, List<string> listSelectedDeliveryAddressOrders, List<string> listSelectedCitiesOrders, Range<DateTime> rangeDateOfConclusionContract, Range<int> rangeDepositPayed, Range<int> rangeContractTotalPrice, Range<int> rangeContractTotalPriceInclVAT);
+        List<v_contract> GetContracts(List<string> listSelectedProductionProcess, Range<DateTime> rangeDateOfConclusionContract, Range<int> rangeDepositPayed, Range<int> rangeContractTotalPrice, Range<int> rangeContractTotalPriceInclVAT);
+
+        List<v_contract2> GetContracts(List<string> listSelectedModelsBoats, List<string> listSelectedAccessoriesAtOrder, List<string> listSelectedProductionProcess, List<string> listSelectedDeliveryAddressOrders, List<string> listSelectedCitiesOrders, Range<DateTime> rangeDateOfConclusionContract, Range<int> rangeDepositPayed, Range<int> rangeContractTotalPrice, Range<int> rangeContractTotalPriceInclVAT);
 
         List<v_customer> GetCustomers();
         
@@ -148,6 +156,8 @@ namespace World_yachts.Model.Database.Interactions.DataActions
         List<v_deliveryAddressOrder> GetDeliveryAddressOrders();
 
         List<v_organisationNameCustomer> GetOrganisationsNamesCustomers();
+
+        List<v_user> GetUsers();
 
         List<v_user> GetUsers(string login, string roleName, Range<DateTime> rangeDateOfRegistration, Range<DateTime> rangeDateOfLastChangePassword, Range<DateTime> rangeWasOnline);
     }

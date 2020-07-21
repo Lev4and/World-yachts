@@ -14,7 +14,7 @@ namespace World_yachts.ViewModels
         private readonly PageService _pageService;
         private EntityFramework _eF;
         private Customer _customer;
-        private v_contract _contract;
+        private v_contract2 _contract;
         private Order _order;
         private v_boat _boat;
 
@@ -48,7 +48,7 @@ namespace World_yachts.ViewModels
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _eF = new EntityFramework();
-            _contract = _eF.GetContract(IdContract);
+            _contract = _eF.GetContractExtendedVersion(IdContract);
             _order = _eF.GetOrder(_contract.IdOrder);
             _customer = _eF.GetCustomer(_order.IdCustomer);
             _boat = _eF.GetBoat(_order.IdBoat);

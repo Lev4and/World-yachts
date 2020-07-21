@@ -372,9 +372,9 @@ namespace World_yachts.Model.Database.Interactions
             return _context.Boat.Min(b => b.VAT);
         }
 
-        public List<Partner> GetPartners()
+        public List<v_partner> GetPartners()
         {
-            return _context.Partner.AsNoTracking().ToList();
+            return _context.v_partner.AsNoTracking().ToList();
         }
 
         public List<Role> GetRoles()
@@ -719,9 +719,9 @@ namespace World_yachts.Model.Database.Interactions
             return _context.Partner.SingleOrDefault(p => p.IdPartner == idPartner);
         }
 
-        public List<Partner> GetPartners(string name, string city)
+        public List<v_partner> GetPartners(string name, string city)
         {
-            return _context.Partner.Where(p =>
+            return _context.v_partner.Where(p =>
             (name.Length > 0 ? p.Name.ToLower().StartsWith(name.ToLower()) : true) &&
             (city.Length > 0 ? p.City == city : true)).AsNoTracking().ToList();
         }
@@ -839,9 +839,9 @@ namespace World_yachts.Model.Database.Interactions
             return _context.v_cityOrder.AsNoTracking().ToList();
         }
 
-        public List<v_contract> GetContracts(List<string> listSelectedModelsBoats, List<string> listSelectedAccessoriesAtOrder, List<string> listSelectedProductionProcess, List<string> listSelectedDeliveryAddressOrders, List<string> listSelectedCitiesOrders, Range<DateTime> rangeDateOfConclusionContract, Range<int> rangeDepositPayed, Range<int> rangeContractTotalPrice, Range<int> rangeContractTotalPriceInclVAT)
+        public List<v_contract2> GetContracts(List<string> listSelectedModelsBoats, List<string> listSelectedAccessoriesAtOrder, List<string> listSelectedProductionProcess, List<string> listSelectedDeliveryAddressOrders, List<string> listSelectedCitiesOrders, Range<DateTime> rangeDateOfConclusionContract, Range<int> rangeDepositPayed, Range<int> rangeContractTotalPrice, Range<int> rangeContractTotalPriceInclVAT)
         {
-            return _context.v_contract.Where(c =>
+            return _context.v_contract2.Where(c =>
             (listSelectedModelsBoats.Count > 0 ? listSelectedModelsBoats.Contains(c.Model) : true) &&
             (listSelectedAccessoriesAtOrder.Count > 0 ? listSelectedAccessoriesAtOrder.All(l => c.SelectedAccessoriesAtOrder.ToLower().Contains(l.ToLower())) : true) &&
             (listSelectedProductionProcess.Count > 0 ? listSelectedProductionProcess.Contains(c.ProductionProcess) : true) &&
@@ -972,6 +972,203 @@ namespace World_yachts.Model.Database.Interactions
         public Order GetOrder(int idOrder)
         {
             return _context.Order.Single(o => o.IdOrder == idOrder);
+        }
+
+        public void DatabaseAutocomplete()
+        {
+            Random rand = new Random();
+
+            DateTime minDate = new DateTime(2020, 6, 30).Date;
+            DateTime maxDate = DateTime.Now.Date;
+
+            var users = GetUsers();
+            var customers = GetCustomers();
+            var boats = GetAllBoats();
+            var cities = GetStringListCitiesOrders();
+
+            List<v_accessory> accessories = null;
+
+            for (DateTime dateTime = minDate; dateTime <= maxDate; dateTime = dateTime.AddDays(1))
+            {
+                int countContract = rand.Next(0, 10);
+
+                var verifiedUsers = users.Where(u => u.RoleName == "Manager" && u.DateOfRegistration <= dateTime).ToList();
+
+                for (int i = 0; i < countContract; i++)
+                {
+                    var verifiedBoats = boats.Where(b => b.ProductionStartDate <= dateTime).ToList();
+
+                    var user = verifiedUsers[rand.Next(0, verifiedUsers.Count)];
+                    var customer = customers[rand.Next(0, customers.Count)];
+                    var boat = verifiedBoats[rand.Next(0, verifiedBoats.Count)];
+                    var city = cities[rand.Next(0, cities.Count)];
+
+                    string address = "";
+
+                    switch(city)
+                    {
+                        case "Санкт-Петербург":
+                            {
+                                address = new string[2] { "Санкт-Петербург, порт", "Санкт-Петербург" }[rand.Next(0, 2)];
+                            }
+                            break;
+                        case "Москва":
+                            {
+                                address = new string[2] { "Москва, Северный порт", "Москва" }[rand.Next(0, 2)];
+                            }
+                            break;
+                        default:
+                            {
+                                address = city;
+                            }
+                            break;
+                    }
+
+                    accessories = GetAccessories(boat.Model);
+
+                    var countSelectedAccessories = rand.Next(0, accessories.Count);
+                    var selectedAccessories = new List<v_accessory>();
+
+                    for(int j = 0; j < countSelectedAccessories; j++)
+                    {
+                        while(true)
+                        {
+                            var accessory = accessories[rand.Next(0, accessories.Count)];
+
+                            if(!selectedAccessories.Contains(accessory))
+                            {
+                                selectedAccessories.Add(accessory);
+
+                                break;
+                            }
+                        }
+                    }
+
+                    int depositPayed = 0;
+                    int contractTotalPrice = 0;
+                    int contractTotalPriceInclVAT = 0;
+
+                    contractTotalPrice = boat.BasePrice;
+                    contractTotalPriceInclVAT = (int)((double)boat.BasePrice + ((double)boat.BasePrice * (double)boat.VAT));
+
+                    selectedAccessories.ForEach(sa =>
+                    {
+                        contractTotalPrice += sa.Price;
+                        contractTotalPriceInclVAT += (int)((double)sa.Price + ((double)sa.Price * (double)sa.VAT));
+                    });
+
+                    depositPayed = (int)((double)contractTotalPrice / (double)3);
+
+                    EnterIntoContract(dateTime, user.IdUser, customer.IdCustomer, boat.IdBoat, address, city, selectedAccessories, depositPayed, contractTotalPrice, contractTotalPriceInclVAT);
+                }
+            }
+        }
+
+        public void EnterIntoContract(int idSalesPerson, int idCustomer, int idBoat, string deliveryAddress, string city, List<v_accessory> listSelectedAccessories, int depositPayed, int contractTotalPrice, int contractTotalPriceInclVAT)
+        {
+            DateTime time = DateTime.Now;
+
+            Order order = _context.Order.Add(new Order
+            {
+                Date = time,
+                IdSalesPerson = idSalesPerson,
+                IdCustomer = idCustomer,
+                IdBoat = idBoat,
+                DeliveryAddress = deliveryAddress,
+                City = city
+            });
+            _context.SaveChanges();
+
+            for (int i = 0; i < listSelectedAccessories.Count; i++)
+            {
+                AddOrderDetails(listSelectedAccessories[i].IdAccessory, order.IdOrder);
+            }
+
+            AddContract(time, depositPayed, order.IdOrder, contractTotalPrice, contractTotalPriceInclVAT, "Работы не начаты");
+        }
+
+        public List<v_user> GetUsers()
+        {
+            return _context.v_user.AsNoTracking().ToList();
+        }
+
+        public List<v_boat> GetAllBoats()
+        {
+            return _context.v_boat.AsNoTracking().ToList();
+        }
+
+        public void EnterIntoContract(DateTime dateOfConclusionContract, int idSalesPerson, int idCustomer, int idBoat, string deliveryAddress, string city, List<int> listSelectedAccessories, int depositPayed, int contractTotalPrice, int contractTotalPriceInclVAT)
+        {
+            Random rand = new Random();
+
+            dateOfConclusionContract = dateOfConclusionContract.Date.AddHours(rand.Next(9, 21)).AddMinutes(rand.Next(0, 60)).AddMinutes(rand.Next(0, 60)).AddMilliseconds(rand.Next(0, 1000));
+
+            Order order = _context.Order.Add(new Order
+            {
+                Date = dateOfConclusionContract,
+                IdSalesPerson = idSalesPerson,
+                IdCustomer = idCustomer,
+                IdBoat = idBoat,
+                DeliveryAddress = deliveryAddress,
+                City = city
+            });
+            _context.SaveChanges();
+
+            for (int i = 0; i < listSelectedAccessories.Count; i++)
+            {
+                AddOrderDetails(listSelectedAccessories[i], order.IdOrder);
+            }
+
+            AddContract(dateOfConclusionContract, depositPayed, order.IdOrder, contractTotalPrice, contractTotalPriceInclVAT, "Работы не начаты");
+        }
+
+        public void EnterIntoContract(DateTime dateOfConclusionContract, int idSalesPerson, int idCustomer, int idBoat, string deliveryAddress, string city, List<v_accessory> listSelectedAccessories, int depositPayed, int contractTotalPrice, int contractTotalPriceInclVAT)
+        {
+            Random rand = new Random();
+
+            dateOfConclusionContract = dateOfConclusionContract.Date.AddHours(rand.Next(9, 21)).AddMinutes(rand.Next(0, 60)).AddMinutes(rand.Next(0, 60)).AddMilliseconds(rand.Next(0, 1000));
+
+            Order order = _context.Order.Add(new Order
+            {
+                Date = dateOfConclusionContract,
+                IdSalesPerson = idSalesPerson,
+                IdCustomer = idCustomer,
+                IdBoat = idBoat,
+                DeliveryAddress = deliveryAddress,
+                City = city
+            });
+            _context.SaveChanges();
+
+            for (int i = 0; i < listSelectedAccessories.Count; i++)
+            {
+                AddOrderDetails(listSelectedAccessories[i].IdAccessory, order.IdOrder);
+            }
+
+            AddContract(dateOfConclusionContract, depositPayed, order.IdOrder, contractTotalPrice, contractTotalPriceInclVAT, "Работы не начаты");
+        }
+
+        public List<v_contract> GetContracts(List<string> listSelectedProductionProcess, Range<DateTime> rangeDateOfConclusionContract, Range<int> rangeDepositPayed, Range<int> rangeContractTotalPrice, Range<int> rangeContractTotalPriceInclVAT)
+        {
+            return _context.v_contract.Where(c =>
+            (listSelectedProductionProcess.Count > 0 ? listSelectedProductionProcess.Contains(c.ProductionProcess) : true) &&
+            c.Date >= rangeDateOfConclusionContract.BeginValue &&
+            c.Date <= rangeDateOfConclusionContract.EndValue &&
+            c.DepositPayed >= rangeDepositPayed.BeginValue &&
+            c.DepositPayed <= rangeDepositPayed.EndValue &&
+            c.ContractTotalPrice >= rangeContractTotalPrice.BeginValue &&
+            c.ContractTotalPrice <= rangeContractTotalPrice.EndValue &&
+            c.ContractTotalPriceInclVAT >= rangeContractTotalPriceInclVAT.BeginValue &&
+            c.ContractTotalPriceInclVAT <= rangeContractTotalPriceInclVAT.EndValue).AsNoTracking().ToList();
+        }
+
+        public v_contract2 GetContractExtendedVersion(int idContract)
+        {
+            return _context.v_contract2.Single(c => c.IdContract == idContract);
+        }
+
+        public Colour GetColour(int idColour)
+        {
+            return _context.Colour.Single(c => c.IdColour == idColour);
         }
     }
 }
