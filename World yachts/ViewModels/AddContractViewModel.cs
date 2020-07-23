@@ -9,7 +9,6 @@ using System.Windows.Input;
 using World_yachts.Model.Configurations;
 using World_yachts.Model.Database.Interactions;
 using World_yachts.Model.Database.Models;
-using World_yachts.Services;
 
 namespace World_yachts.ViewModels
 {
@@ -17,7 +16,6 @@ namespace World_yachts.ViewModels
     {
         private int _idSalesPerson;
         private int? _selectedIdBoat;
-        private readonly PageService _pageService;
         private ConfigurationUser _config;
         private EntityFramework _eF;
         private v_boat _boat;
@@ -71,9 +69,9 @@ namespace World_yachts.ViewModels
 
         public ObservableCollection<v_boatSimplifiedInformation> Boats { get; set; }
 
-        public AddContractViewModel(PageService pageService)
+        public AddContractViewModel()
         {
-            _pageService = pageService;
+
         }
 
         public ICommand Loaded => new DelegateCommand(() =>

@@ -69,12 +69,6 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="ExportInExcel">
-      <HintPath>..\..\..\Class libraries\ExportInExcel\ExportInExcel\bin\Debug\ExportInExcel.dll</HintPath>
-    </Reference>
-    <Reference Include="ExportInWord">
-      <HintPath>..\..\..\Class libraries\ExportInWord\ExportInWord\bin\Debug\ExportInWord.dll</HintPath>
-    </Reference>
     <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
     </Reference>
@@ -221,7 +215,7 @@
     <Compile Include="Model\Database\Models\v_boatSimplifiedInformation.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Database\Models\v_briefReportBestSalesPersonAllTime.cs">
+    <Compile Include="Model\Database\Models\v_briefReportBestSalesPersonsAllTime.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Database\Models\v_briefReportPopularBoatsAllTime.cs">
@@ -248,10 +242,49 @@
     <Compile Include="Model\Database\Models\v_deliveryAddressOrder.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Database\Models\v_detailReportBestSalesPersonAllTime.cs">
+    <Compile Include="Model\Database\Models\v_detailDailyEconomicReportAllTime.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Database\Models\v_detailReportPopularBoatsAllTime.cs">
+    <Compile Include="Model\Database\Models\v_detailDailyReportBestSalesPersonsAllTime.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_detailDailyReportPopularBoatsAllTime.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_detailMonthlyEconomicReportAllTime.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_detailMonthlyReportBestSalesPersonsAllTime.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_detailMonthlyReportPopularBoatsAllTime.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_detailQuarterlyEconomicReportAllTime.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_detailQuarterlyReportBestSalesPersonsAllTime.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_detailQuarterlyReportPopularBoatsAllTime.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_detailWeeklyEconomicReportAllTime.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_detailWeeklyReportBestSalesPersonsAllTime.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_detailWeeklyReportPopularBoatsAllTime.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_detailYearlyEconomicReportAllTime.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_detailYearlyReportBestSalesPersonsAllTime.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_detailYearlyReportPopularBoatsAllTime.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Database\Models\v_order.cs">
@@ -272,7 +305,9 @@
     <Compile Include="Model\Database\Models\Wood.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Logic\Date.cs" />
     <Compile Include="Model\Logic\FormattingList.cs" />
+    <Compile Include="Model\Logic\PathParser.cs" />
     <Compile Include="Model\Logic\Range.cs" />
     <Compile Include="Services\PageService.cs" />
     <Compile Include="Services\WindowService.cs" />
@@ -284,6 +319,7 @@
     <Compile Include="ViewModels\AddPartnerViewModel.cs" />
     <Compile Include="ViewModels\AddUserViewModel.cs" />
     <Compile Include="ViewModels\AuthorizationViewModel.cs" />
+    <Compile Include="ViewModels\BestSalesPersonsViewModel.cs" />
     <Compile Include="ViewModels\BoatsViewModel.cs" />
     <Compile Include="ViewModels\ChangeAccessoryViewModel.cs" />
     <Compile Include="ViewModels\ChangeBoatViewModel.cs" />
@@ -294,11 +330,14 @@
     <Compile Include="ViewModels\ChangeUserViewModel.cs" />
     <Compile Include="ViewModels\ContractsViewModel.cs" />
     <Compile Include="ViewModels\CustomersViewModel.cs" />
+    <Compile Include="ViewModels\EconomicReportViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\PartnersViewModel.cs" />
+    <Compile Include="ViewModels\PopularBoatsViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
+    <Compile Include="ViewModels\ReportsViewModel.cs" />
     <Compile Include="ViewModels\UserInformationSupplementViewModel.cs" />
     <Compile Include="ViewModels\UsersViewModel.cs" />
     <Compile Include="Views\Pages\Accessories.xaml.cs">
@@ -306,6 +345,9 @@
     </Compile>
     <Compile Include="Views\Pages\Authorization.xaml.cs">
       <DependentUpon>Authorization.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\BestSalesPersons.xaml.cs">
+      <DependentUpon>BestSalesPersons.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Boats.xaml.cs">
       <DependentUpon>Boats.xaml</DependentUpon>
@@ -319,6 +361,9 @@
     <Compile Include="Views\Pages\Customers.xaml.cs">
       <DependentUpon>Customers.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\EconomicReport.xaml.cs">
+      <DependentUpon>EconomicReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
@@ -328,8 +373,14 @@
     <Compile Include="Views\Pages\Partners.xaml.cs">
       <DependentUpon>Partners.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\PopularBoats.xaml.cs">
+      <DependentUpon>PopularBoats.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Reports.xaml.cs">
+      <DependentUpon>Reports.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\UserInformationSupplement.xaml.cs">
       <DependentUpon>UserInformationSupplement.xaml</DependentUpon>
@@ -430,6 +481,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\BestSalesPersons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\Boats.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -446,6 +501,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\EconomicReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\Main.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -458,7 +517,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\PopularBoats.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\Registration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Reports.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -535,10 +602,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\Images\Icons\" />
-    <Folder Include="Resources\Images\Interface\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\Images\Loading\Gear-0.2s-200px.gif" />
     <Resource Include="Resources\Images\Loading\Infinity-1s-200px.gif" />
@@ -570,6 +634,18 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Images\Icons\Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.2.0\build\Fody.targets" Condition="Exists('..\packages\Fody.6.2.0\build\Fody.targets')" />

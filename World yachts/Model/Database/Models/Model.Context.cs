@@ -55,13 +55,26 @@ namespace World_yachts.Model.Database.Models
         public virtual DbSet<v_cityOrder> v_cityOrder { get; set; }
         public virtual DbSet<v_deliveryAddressOrder> v_deliveryAddressOrder { get; set; }
         public virtual DbSet<v_accessorySimplifiedInformation> v_accessorySimplifiedInformation { get; set; }
-        public virtual DbSet<v_briefReportBestSalesPersonAllTime> v_briefReportBestSalesPersonAllTime { get; set; }
-        public virtual DbSet<v_briefReportPopularBoatsAllTime> v_briefReportPopularBoatsAllTime { get; set; }
-        public virtual DbSet<v_detailReportBestSalesPersonAllTime> v_detailReportBestSalesPersonAllTime { get; set; }
-        public virtual DbSet<v_detailReportPopularBoatsAllTime> v_detailReportPopularBoatsAllTime { get; set; }
         public virtual DbSet<v_contract> v_contract { get; set; }
         public virtual DbSet<v_contract2> v_contract2 { get; set; }
         public virtual DbSet<v_partner> v_partner { get; set; }
+        public virtual DbSet<v_briefReportPopularBoatsAllTime> v_briefReportPopularBoatsAllTime { get; set; }
+        public virtual DbSet<v_detailDailyReportPopularBoatsAllTime> v_detailDailyReportPopularBoatsAllTime { get; set; }
+        public virtual DbSet<v_detailMonthlyReportPopularBoatsAllTime> v_detailMonthlyReportPopularBoatsAllTime { get; set; }
+        public virtual DbSet<v_detailQuarterlyReportPopularBoatsAllTime> v_detailQuarterlyReportPopularBoatsAllTime { get; set; }
+        public virtual DbSet<v_detailWeeklyReportPopularBoatsAllTime> v_detailWeeklyReportPopularBoatsAllTime { get; set; }
+        public virtual DbSet<v_detailYearlyReportPopularBoatsAllTime> v_detailYearlyReportPopularBoatsAllTime { get; set; }
+        public virtual DbSet<v_briefReportBestSalesPersonsAllTime> v_briefReportBestSalesPersonsAllTime { get; set; }
+        public virtual DbSet<v_detailDailyEconomicReportAllTime> v_detailDailyEconomicReportAllTime { get; set; }
+        public virtual DbSet<v_detailDailyReportBestSalesPersonsAllTime> v_detailDailyReportBestSalesPersonsAllTime { get; set; }
+        public virtual DbSet<v_detailMonthlyEconomicReportAllTime> v_detailMonthlyEconomicReportAllTime { get; set; }
+        public virtual DbSet<v_detailMonthlyReportBestSalesPersonsAllTime> v_detailMonthlyReportBestSalesPersonsAllTime { get; set; }
+        public virtual DbSet<v_detailQuarterlyEconomicReportAllTime> v_detailQuarterlyEconomicReportAllTime { get; set; }
+        public virtual DbSet<v_detailQuarterlyReportBestSalesPersonsAllTime> v_detailQuarterlyReportBestSalesPersonsAllTime { get; set; }
+        public virtual DbSet<v_detailWeeklyEconomicReportAllTime> v_detailWeeklyEconomicReportAllTime { get; set; }
+        public virtual DbSet<v_detailWeeklyReportBestSalesPersonsAllTime> v_detailWeeklyReportBestSalesPersonsAllTime { get; set; }
+        public virtual DbSet<v_detailYearlyEconomicReportAllTime> v_detailYearlyEconomicReportAllTime { get; set; }
+        public virtual DbSet<v_detailYearlyReportBestSalesPersonsAllTime> v_detailYearlyReportBestSalesPersonsAllTime { get; set; }
     
         public virtual int sp_toBlockUser()
         {

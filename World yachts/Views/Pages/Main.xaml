@@ -62,10 +62,10 @@
                 FontSize="18"
                 Command="{Binding Exit}"/>
         </Grid>
-        <Grid Visibility="{Binding Path=IsBackgroundTaskRunning, Converter={StaticResource valueToVisibility}}" Width="275" Height="300">
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding Path=IsBackgroundTaskRunning, Converter={StaticResource valueToVisibility}}">
             <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Image wpfag:ImageBehavior.AnimatedSource="/World yachts;component/Resources/Images/Loading/Rolling-1s-200px.gif"
@@ -77,6 +77,7 @@
                 <TextBlock Text="Выполнение фоновых задач. Пожалуйста подождите..."
                            TextWrapping="Wrap"
                            TextAlignment="Center"
+                           Width="300"
                            FontFamily="Comic Sans MS"
                            FontSize="18"
                            Foreground="Orange"/>

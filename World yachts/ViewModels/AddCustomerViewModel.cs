@@ -3,14 +3,12 @@ using System;
 using System.Windows;
 using System.Windows.Input;
 using World_yachts.Model.Database.Interactions;
-using World_yachts.Services;
 
 namespace World_yachts.ViewModels
 {
     public class AddCustomerViewModel : BindableBase
     {
         private DateTime _now;
-        private readonly PageService _pageService;
         private EntityFramework _eF;
 
         public string FirstName { get; set; }
@@ -37,9 +35,9 @@ namespace World_yachts.ViewModels
 
         public DateTime DateOfBirth { get; set; }
 
-        public AddCustomerViewModel(PageService pageService)
+        public AddCustomerViewModel()
         {
-            _pageService = pageService;
+
         }
 
         public ICommand Loaded => new DelegateCommand(() =>

@@ -1,0 +1,235 @@
+﻿<Page x:Class="World_yachts.Views.Pages.EconomicReport"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:World_yachts.Views.Pages"
+      xmlns:vm="clr-namespace:World_yachts.ViewModels"
+      xmlns:uc="clr-namespace:World_yachts.Views.UserControls"
+      xmlns:lc="clr-namespace:LiveCharts;assembly=LiveCharts"
+      xmlns:lcw="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:c="clr-namespace:World_yachts.Converters"
+      xmlns:wpfag="http://wpfanimatedgif.codeplex.com"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      DataContext="{Binding EconomicReportViewModel, Source={StaticResource ViewModelLocator}}"
+      Title="EconomicReport">
+    <Page.Resources>
+        <c:ValueToVisibility x:Key="valueToVisibility"/>
+    </Page.Resources>
+    <Grid>
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding Loaded}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <Grid Panel.ZIndex="1" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding Path=IsBackgroundTaskRunning, Converter={StaticResource valueToVisibility}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Image wpfag:ImageBehavior.AnimatedSource="/World yachts;component/Resources/Images/Loading/Rolling-1s-200px.gif"
+                       Width="50"
+                       Height="50"
+                       Stretch="Fill"/>
+            </Grid>
+            <Grid Grid.Row="1">
+                <TextBlock Text="Выполнение фоновых задач. Пожалуйста подождите..."
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           Width="300"
+                           FontFamily="Comic Sans MS"
+                           FontSize="18"
+                           Foreground="Orange"/>
+            </Grid>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="300"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsBackgroundTaskRunning}" Value="true">
+                            <Setter Property="Opacity" Value="0.4"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=IsBackgroundTaskRunning}" Value="false">
+                            <Setter Property="Opacity" Value="1"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <Grid Grid.Column="0">
+                <Border BorderThickness="1,1,1,1" BorderBrush="Black"  Margin="10,10,10,10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Row="0" Grid.Column="0">
+                            <lcw:CartesianChart Series="{Binding Path=Series1, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" LegendLocation="None" Zoom="X">
+                                <lcw:CartesianChart.AxisY>
+                                    <lcw:Axis Title="Стоимость"/>
+                                </lcw:CartesianChart.AxisY>
+                                <lcw:CartesianChart.AxisX>
+                                    <lcw:Axis Title="Дата" Labels="{Binding Path=ArrayDates, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                </lcw:CartesianChart.AxisX>
+                            </lcw:CartesianChart>
+                        </Grid>
+                        <Grid Grid.Row="0" Grid.Column="1">
+                            <lcw:CartesianChart Series="{Binding Path=Series2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" LegendLocation="None" Zoom="X">
+                                <lcw:CartesianChart.AxisY>
+                                    <lcw:Axis Title="Стоимость"/>
+                                </lcw:CartesianChart.AxisY>
+                                <lcw:CartesianChart.AxisX>
+                                    <lcw:Axis Title="Дата" Labels="{Binding Path=ArrayDates, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                </lcw:CartesianChart.AxisX>
+                            </lcw:CartesianChart>
+                        </Grid>
+                        <Grid Grid.Row="1" Grid.Column="0">
+                            <lcw:CartesianChart Series="{Binding Path=Series3, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" LegendLocation="None" Zoom="X">
+                                <lcw:CartesianChart.AxisY>
+                                    <lcw:Axis Title="Количество"/>
+                                </lcw:CartesianChart.AxisY>
+                                <lcw:CartesianChart.AxisX>
+                                    <lcw:Axis Title="Дата" Labels="{Binding Path=ArrayDates, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                </lcw:CartesianChart.AxisX>
+                            </lcw:CartesianChart>
+                        </Grid>
+                        <Grid Grid.Row="1" Grid.Column="1">
+                            <lcw:CartesianChart Series="{Binding Path=Series4, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" LegendLocation="None" Zoom="X">
+                                <lcw:CartesianChart.AxisY>
+                                    <lcw:Axis Title="Количество"/>
+                                </lcw:CartesianChart.AxisY>
+                                <lcw:CartesianChart.AxisX>
+                                    <lcw:Axis Title="Дата" Labels="{Binding Path=ArrayDates, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                </lcw:CartesianChart.AxisX>
+                            </lcw:CartesianChart>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=IsBackgroundTaskRunning}" Value="true">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=IsBackgroundTaskRunning}" Value="false">
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+                <Grid Grid.Row="0">
+                    <GroupBox Header="Действия" 
+                      FontFamily="Comic Sans MS"
+                      Margin="10,10,10,10">
+                        <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0">
+                                        <Label Content="Тип отчёта"
+                                       HorizontalContentAlignment="Center"
+                                       Margin="0,0,5,0"/>
+                                    </Grid>
+                                    <Grid Grid.Row="1">
+                                        <ComboBox Text="{Binding Path=TypeReport, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                          VerticalContentAlignment="Center"
+                                          FontFamily="Comic Sans MS"
+                                          Margin="0,0,5,0">
+                                            <ComboBoxItem Content="Группировка по дням"/>
+                                            <ComboBoxItem Content="Группировка по неделям"/>
+                                            <ComboBoxItem Content="Группировка по месяцам"/>
+                                            <ComboBoxItem Content="Группировка по кварталам"/>
+                                            <ComboBoxItem Content="Группировка по годам"/>
+                                        </ComboBox>
+                                    </Grid>
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0">
+                                        <Label Content="Временной промежуток"
+                                       HorizontalContentAlignment="Center"
+                                       Margin="0,0,5,0"/>
+                                    </Grid>
+                                    <Grid Grid.Row="1">
+                                        <uc:DoubleDatePicker MinSelectedDate="{Binding Path=MinValueDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                             MaxSelectedDate="{Binding Path=MaxValueDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                             BeginSelectedDate="{Binding Path=BeginValueDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                             EndSelectedDate="{Binding Path=EndValueDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                             Height="60"
+                                                             Margin="0,0,5,0">
+                                            <uc:DoubleDatePicker.Style>
+                                                <Style TargetType="uc:DoubleDatePicker">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Path=TypeReport}" Value="">
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Path=TypeReport}" Value="Группировка по дням">
+                                                            <Setter Property="IsEnabled" Value="True"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Path=TypeReport}" Value="Группировка по неделям">
+                                                            <Setter Property="IsEnabled" Value="True"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Path=TypeReport}" Value="Группировка по месяцам">
+                                                            <Setter Property="IsEnabled" Value="True"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Path=TypeReport}" Value="Группировка по кварталам">
+                                                            <Setter Property="IsEnabled" Value="True"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Path=TypeReport}" Value="Группировка по годам">
+                                                            <Setter Property="IsEnabled" Value="True"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </uc:DoubleDatePicker.Style>
+                                        </uc:DoubleDatePicker>
+                                    </Grid>
+                                </Grid>
+                                <Grid Grid.Row="2">
+                                    <Button Content="Отобразить"
+                                    FontFamily="Comic Sans MS"
+                                    FontSize="22"
+                                    Command="{Binding Show}"
+                                    Margin="0,5,5,0"/>
+                                </Grid>
+                                <Grid Grid.Row="3">
+                                    <Button Content="Назад"
+                                    FontFamily="Comic Sans MS"
+                                    FontSize="22"
+                                    Command="{Binding Back}"
+                                    Margin="0,5,5,0"/>
+                                </Grid>
+                            </Grid>
+                        </ScrollViewer>
+                    </GroupBox>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

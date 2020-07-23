@@ -4,13 +4,11 @@ using System.Windows;
 using System.Windows.Input;
 using World_yachts.Model.Database.Interactions;
 using World_yachts.Model.Database.Models;
-using World_yachts.Services;
 
 namespace World_yachts.ViewModels
 {
     public class ChangeCustomerViewModel : BindableBase
     {
-        private readonly PageService _pageService;
         private EntityFramework _eF;
         private Customer _customer;
 
@@ -36,9 +34,9 @@ namespace World_yachts.ViewModels
 
         public DateTime DateOfBirth { get; set; }
 
-        public ChangeCustomerViewModel(PageService pageService)
+        public ChangeCustomerViewModel()
         {
-            _pageService = pageService;
+
         }
 
         public ICommand Loaded => new DelegateCommand(() =>

@@ -47,7 +47,7 @@
             <GroupBox Header="Фильтры"
                       FontFamily="Comic Sans MS"
                       Margin="10,10,10,10">
-                <ScrollViewer HorizontalScrollBarVisibility="Visible">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"></RowDefinition>

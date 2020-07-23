@@ -10,7 +10,7 @@
         DataContext="{Binding AddBoatViewModel, Source={StaticResource ViewModelLocator}}"
         mc:Ignorable="d"
         x:Name="_this"
-        Title="AddBoat" MinHeight="415" MinWidth="800" Height="415" Width="800" MaxHeight="415" MaxWidth="800">
+        Title="World yachts - AddBoat" MinHeight="415" MinWidth="800" Height="415" Width="800" MaxHeight="415" MaxWidth="800">
     <Window.Resources>
         <c:TextToInt32 x:Key="textToInt32"/>
     </Window.Resources>

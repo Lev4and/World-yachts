@@ -9,7 +9,7 @@
         DataContext="{Binding AddUserViewModel, Source={StaticResource ViewModelLocator}}"
         mc:Ignorable="d"
         x:Name="_this"
-        Title="AddUser" MinHeight="300" MinWidth="800" Height="300" Width="800" MaxHeight="300" MaxWidth="800">
+        Title="World yachts - AddUser" MinHeight="300" MinWidth="800" Height="300" Width="800" MaxHeight="300" MaxWidth="800">
     <Grid Margin="10">
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="Loaded">

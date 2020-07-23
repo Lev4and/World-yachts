@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="48e8f7b4d6674238b1425b3f837b34ae" Name="Diagram1">
+      <Diagram DiagramId="48e8f7b4d6674238b1425b3f837b34ae" Name="Diagram1" ZoomLevel="77">
         <EntityTypeShape EntityType="Model.Accessory" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.AccToBoats" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Boat" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
@@ -47,13 +47,26 @@
         <EntityTypeShape EntityType="Model.v_cityOrder" Width="1.5" PointX="16.75" PointY="0.75" />
         <EntityTypeShape EntityType="Model.v_deliveryAddressOrder" Width="1.5" PointX="0.75" PointY="16.75" />
         <EntityTypeShape EntityType="Model.v_accessorySimplifiedInformation" Width="1.5" PointX="3.375" PointY="16.75" />
-        <EntityTypeShape EntityType="Model.v_briefReportBestSalesPersonAllTime" Width="1.5" PointX="16.375" PointY="13.75" />
-        <EntityTypeShape EntityType="Model.v_briefReportPopularBoatsAllTime" Width="1.5" PointX="16.375" PointY="16.75" />
-        <EntityTypeShape EntityType="Model.v_detailReportBestSalesPersonAllTime" Width="1.5" PointX="17.375" PointY="3.75" />
-        <EntityTypeShape EntityType="Model.v_detailReportPopularBoatsAllTime" Width="1.5" PointX="17.375" PointY="6.75" />
         <EntityTypeShape EntityType="Model.v_contract" Width="1.5" PointX="15.375" PointY="9.75" />
         <EntityTypeShape EntityType="Model.v_contract2" Width="1.5" PointX="10.375" PointY="17.75" />
         <EntityTypeShape EntityType="Model.v_partner" Width="1.5" PointX="17.375" PointY="9.75" />
+        <EntityTypeShape EntityType="Model.v_briefReportPopularBoatsAllTime" Width="1.5" PointX="16.75" PointY="16.75" />
+        <EntityTypeShape EntityType="Model.v_detailDailyReportPopularBoatsAllTime" Width="1.5" PointX="5.75" PointY="18.75" />
+        <EntityTypeShape EntityType="Model.v_detailMonthlyReportPopularBoatsAllTime" Width="1.5" PointX="18.75" PointY="12.75" />
+        <EntityTypeShape EntityType="Model.v_detailQuarterlyReportPopularBoatsAllTime" Width="1.5" PointX="18.75" PointY="16.75" />
+        <EntityTypeShape EntityType="Model.v_detailWeeklyReportPopularBoatsAllTime" Width="1.5" PointX="0.75" PointY="19.75" />
+        <EntityTypeShape EntityType="Model.v_detailYearlyReportPopularBoatsAllTime" Width="1.5" PointX="19.75" PointY="4.75" />
+        <EntityTypeShape EntityType="Model.v_briefReportBestSalesPersonsAllTime" Width="1.5" PointX="19.375" PointY="7.75" />
+        <EntityTypeShape EntityType="Model.v_detailDailyEconomicReportAllTime" Width="1.5" PointX="15.375" PointY="19.75" />
+        <EntityTypeShape EntityType="Model.v_detailDailyReportBestSalesPersonsAllTime" Width="1.5" PointX="17.375" PointY="20.75" />
+        <EntityTypeShape EntityType="Model.v_detailMonthlyEconomicReportAllTime" Width="1.5" PointX="19.375" PointY="20.75" />
+        <EntityTypeShape EntityType="Model.v_detailMonthlyReportBestSalesPersonsAllTime" Width="1.5" PointX="21.375" PointY="7.75" />
+        <EntityTypeShape EntityType="Model.v_detailQuarterlyEconomicReportAllTime" Width="1.5" PointX="21.375" PointY="11.75" />
+        <EntityTypeShape EntityType="Model.v_detailQuarterlyReportBestSalesPersonsAllTime" Width="1.5" PointX="21.375" PointY="16.75" />
+        <EntityTypeShape EntityType="Model.v_detailWeeklyEconomicReportAllTime" Width="1.5" PointX="21.375" PointY="20.75" />
+        <EntityTypeShape EntityType="Model.v_detailWeeklyReportBestSalesPersonsAllTime" Width="1.5" PointX="22.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.v_detailYearlyEconomicReportAllTime" Width="1.5" PointX="3.375" PointY="22.75" />
+        <EntityTypeShape EntityType="Model.v_detailYearlyReportBestSalesPersonsAllTime" Width="1.5" PointX="12.375" PointY="18.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

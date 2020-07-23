@@ -4,13 +4,11 @@ using System.Windows;
 using System.Windows.Input;
 using World_yachts.Model.Database.Interactions;
 using World_yachts.Model.Database.Models;
-using World_yachts.Services;
 
 namespace World_yachts.ViewModels
 {
     public class ChangeBoatViewModel : BindableBase
     {
-        private readonly PageService _pageService;
         private EntityFramework _eF;
         private v_boat _boat;
 
@@ -32,9 +30,9 @@ namespace World_yachts.ViewModels
 
         public string NameWood { get; set; }
 
-        public ChangeBoatViewModel(PageService pageService)
+        public ChangeBoatViewModel()
         {
-            _pageService = pageService;
+
         }
 
         public ICommand Loaded => new DelegateCommand(() =>

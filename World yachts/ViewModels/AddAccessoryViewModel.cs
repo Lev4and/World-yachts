@@ -6,13 +6,11 @@ using System.Windows;
 using System.Windows.Input;
 using World_yachts.Model.Database.Interactions;
 using World_yachts.Model.Database.Models;
-using World_yachts.Services;
 
 namespace World_yachts.ViewModels
 {
     public class AddAccessoryViewModel : BindableBase
     {
-        private readonly PageService _pageService;
         private EntityFramework _eF;
 
         public int Price { get; set; }
@@ -37,9 +35,9 @@ namespace World_yachts.ViewModels
 
         public ObservableCollection<v_partner> Partners { get; set; }
 
-        public AddAccessoryViewModel(PageService pageService)
+        public AddAccessoryViewModel()
         {
-            _pageService = pageService;
+
         }
 
         public ICommand Loaded => new DelegateCommand(() =>

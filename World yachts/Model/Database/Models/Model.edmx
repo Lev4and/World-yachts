@@ -235,8 +235,8 @@
           <Property Name="VAT" Type="float" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_briefReportBestSalesPersonAllTime" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
-        <EntityType Name="v_briefReportBestSalesPersonAllTime">
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_briefReportBestSalesPersonsAllTime" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_briefReportBestSalesPersonsAllTime">
           <Key>
             <PropertyRef Name="IdSalesPerson" />
             <PropertyRef Name="Rank" />
@@ -372,24 +372,241 @@
           <Property Name="DeliveryAddress" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_detailReportBestSalesPersonAllTime" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
-        <EntityType Name="v_detailReportBestSalesPersonAllTime">
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_detailDailyEconomicReportAllTime" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_detailDailyEconomicReportAllTime">
+          <Key>
+            <PropertyRef Name="Rank" />
+          </Key>
+          <Property Name="Date" Type="date" />
+          <Property Name="Day" Type="int" />
+          <Property Name="Week" Type="int" />
+          <Property Name="Month" Type="int" />
+          <Property Name="Quarter" Type="int" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Count" Type="int" />
+          <Property Name="DepositPayed" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="ContractTotalPrice" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="ContractTotalPriceInclVAT" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="TotalCount" Type="int" />
+          <Property Name="TotalDepositPayed" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="TotalContractTotalPrice" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="TotalContractTotalPriceInclVAT" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="Rank" Type="bigint" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_detailDailyReportBestSalesPersonsAllTime" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_detailDailyReportBestSalesPersonsAllTime">
           <Key>
             <PropertyRef Name="IdSalesPerson" />
           </Key>
           <Property Name="Date" Type="date" />
+          <Property Name="Day" Type="int" />
+          <Property Name="Week" Type="int" />
+          <Property Name="Month" Type="int" />
+          <Property Name="Quarter" Type="int" />
+          <Property Name="Year" Type="int" />
+          <Property Name="IdSalesPerson" Type="int" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar(max)" />
+          <Property Name="Rate" Type="int" />
+          <Property Name="Count" Type="int" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_detailDailyReportPopularBoatsAllTime" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_detailDailyReportPopularBoatsAllTime">
+          <Key>
+            <PropertyRef Name="IdBoat" />
+          </Key>
+          <Property Name="Date" Type="date" />
+          <Property Name="IdBoat" Type="int" Nullable="false" />
+          <Property Name="Day" Type="int" />
+          <Property Name="Week" Type="int" />
+          <Property Name="Month" Type="int" />
+          <Property Name="Quarter" Type="int" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Model" Type="nvarchar(max)" />
+          <Property Name="Rate" Type="int" />
+          <Property Name="Count" Type="int" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_detailMonthlyEconomicReportAllTime" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_detailMonthlyEconomicReportAllTime">
+          <Key>
+            <PropertyRef Name="Rank" />
+          </Key>
+          <Property Name="Date" Type="nvarchar(max)" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Month" Type="int" />
+          <Property Name="Count" Type="int" />
+          <Property Name="DepositPayed" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="ContractTotalPrice" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="ContractTotalPriceInclVAT" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="TotalCount" Type="int" />
+          <Property Name="TotalDepositPayed" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="TotalContractTotalPrice" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="TotalContractTotalPriceInclVAT" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="Rank" Type="bigint" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_detailMonthlyReportBestSalesPersonsAllTime" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_detailMonthlyReportBestSalesPersonsAllTime">
+          <Key>
+            <PropertyRef Name="IdSalesPerson" />
+          </Key>
+          <Property Name="Date" Type="nvarchar(max)" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Month" Type="int" />
           <Property Name="IdSalesPerson" Type="int" Nullable="false" />
           <Property Name="FullName" Type="nvarchar(max)" />
           <Property Name="Count" Type="int" />
           <Property Name="Rate" Type="int" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_detailReportPopularBoatsAllTime" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
-        <EntityType Name="v_detailReportPopularBoatsAllTime">
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_detailMonthlyReportPopularBoatsAllTime" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_detailMonthlyReportPopularBoatsAllTime">
           <Key>
             <PropertyRef Name="IdBoat" />
           </Key>
-          <Property Name="Date" Type="date" />
+          <Property Name="Date" Type="nvarchar(max)" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Month" Type="int" />
+          <Property Name="IdBoat" Type="int" Nullable="false" />
+          <Property Name="Model" Type="nvarchar(max)" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Rate" Type="int" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_detailQuarterlyEconomicReportAllTime" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_detailQuarterlyEconomicReportAllTime">
+          <Key>
+            <PropertyRef Name="Rank" />
+          </Key>
+          <Property Name="Date" Type="nvarchar(max)" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Quarter" Type="int" />
+          <Property Name="Count" Type="int" />
+          <Property Name="DepositPayed" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="ContractTotalPrice" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="ContractTotalPriceInclVAT" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="TotalCount" Type="int" />
+          <Property Name="TotalDepositPayed" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="TotalContractTotalPrice" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="TotalContractTotalPriceInclVAT" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="Rank" Type="bigint" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_detailQuarterlyReportBestSalesPersonsAllTime" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_detailQuarterlyReportBestSalesPersonsAllTime">
+          <Key>
+            <PropertyRef Name="IdSalesPerson" />
+          </Key>
+          <Property Name="Date" Type="nvarchar(max)" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Quarter" Type="int" />
+          <Property Name="IdSalesPerson" Type="int" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar(max)" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Rate" Type="int" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_detailQuarterlyReportPopularBoatsAllTime" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_detailQuarterlyReportPopularBoatsAllTime">
+          <Key>
+            <PropertyRef Name="IdBoat" />
+          </Key>
+          <Property Name="Date" Type="nvarchar(max)" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Quarter" Type="int" />
+          <Property Name="IdBoat" Type="int" Nullable="false" />
+          <Property Name="Model" Type="nvarchar(max)" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Rate" Type="int" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_detailWeeklyEconomicReportAllTime" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_detailWeeklyEconomicReportAllTime">
+          <Key>
+            <PropertyRef Name="Rank" />
+          </Key>
+          <Property Name="Date" Type="nvarchar(max)" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Week" Type="int" />
+          <Property Name="Count" Type="int" />
+          <Property Name="DepositPayed" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="ContractTotalPrice" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="ContractTotalPriceInclVAT" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="TotalCount" Type="int" />
+          <Property Name="TotalDepositPayed" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="TotalContractTotalPrice" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="TotalContractTotalPriceInclVAT" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="Rank" Type="bigint" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_detailWeeklyReportBestSalesPersonsAllTime" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_detailWeeklyReportBestSalesPersonsAllTime">
+          <Key>
+            <PropertyRef Name="IdSalesPerson" />
+          </Key>
+          <Property Name="Date" Type="nvarchar(max)" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Week" Type="int" />
+          <Property Name="IdSalesPerson" Type="int" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar(max)" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Rate" Type="int" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_detailWeeklyReportPopularBoatsAllTime" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_detailWeeklyReportPopularBoatsAllTime">
+          <Key>
+            <PropertyRef Name="IdBoat" />
+          </Key>
+          <Property Name="Date" Type="nvarchar(max)" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Week" Type="int" />
+          <Property Name="IdBoat" Type="int" Nullable="false" />
+          <Property Name="Model" Type="nvarchar(max)" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Rate" Type="int" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_detailYearlyEconomicReportAllTime" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_detailYearlyEconomicReportAllTime">
+          <Key>
+            <PropertyRef Name="Rank" />
+          </Key>
+          <Property Name="Date" Type="nvarchar(max)" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Count" Type="int" />
+          <Property Name="DepositPayed" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="ContractTotalPrice" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="ContractTotalPriceInclVAT" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="TotalCount" Type="int" />
+          <Property Name="TotalDepositPayed" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="TotalContractTotalPrice" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="TotalContractTotalPriceInclVAT" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="Rank" Type="bigint" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_detailYearlyReportBestSalesPersonsAllTime" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_detailYearlyReportBestSalesPersonsAllTime">
+          <Key>
+            <PropertyRef Name="IdSalesPerson" />
+          </Key>
+          <Property Name="Date" Type="nvarchar(max)" />
+          <Property Name="Year" Type="int" />
+          <Property Name="IdSalesPerson" Type="int" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar(max)" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Rate" Type="int" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "World yachts 2.dbo.v_detailYearlyReportPopularBoatsAllTime" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_detailYearlyReportPopularBoatsAllTime">
+          <Key>
+            <PropertyRef Name="IdBoat" />
+          </Key>
+          <Property Name="Date" Type="nvarchar(max)" />
+          <Property Name="Year" Type="int" />
           <Property Name="IdBoat" Type="int" Nullable="false" />
           <Property Name="Model" Type="nvarchar(max)" />
           <Property Name="Count" Type="int" />
@@ -720,13 +937,13 @@
     [v_boatSimplifiedInformation].[VAT] AS [VAT]
     FROM [dbo].[v_boatSimplifiedInformation] AS [v_boatSimplifiedInformation]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="v_briefReportBestSalesPersonAllTime" EntityType="Self.v_briefReportBestSalesPersonAllTime" store:Type="Views" store:Schema="dbo">
+          <EntitySet Name="v_briefReportBestSalesPersonsAllTime" EntityType="Self.v_briefReportBestSalesPersonsAllTime" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [v_briefReportBestSalesPersonAllTime].[IdSalesPerson] AS [IdSalesPerson], 
-    [v_briefReportBestSalesPersonAllTime].[FullName] AS [FullName], 
-    [v_briefReportBestSalesPersonAllTime].[Count] AS [Count], 
-    [v_briefReportBestSalesPersonAllTime].[Rank] AS [Rank]
-    FROM [dbo].[v_briefReportBestSalesPersonAllTime] AS [v_briefReportBestSalesPersonAllTime]</DefiningQuery>
+    [v_briefReportBestSalesPersonsAllTime].[IdSalesPerson] AS [IdSalesPerson], 
+    [v_briefReportBestSalesPersonsAllTime].[FullName] AS [FullName], 
+    [v_briefReportBestSalesPersonsAllTime].[Count] AS [Count], 
+    [v_briefReportBestSalesPersonsAllTime].[Rank] AS [Rank]
+    FROM [dbo].[v_briefReportBestSalesPersonsAllTime] AS [v_briefReportBestSalesPersonsAllTime]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="v_briefReportPopularBoatsAllTime" EntityType="Self.v_briefReportPopularBoatsAllTime" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -802,23 +1019,201 @@
     [v_deliveryAddressOrder].[DeliveryAddress] AS [DeliveryAddress]
     FROM [dbo].[v_deliveryAddressOrder] AS [v_deliveryAddressOrder]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="v_detailReportBestSalesPersonAllTime" EntityType="Self.v_detailReportBestSalesPersonAllTime" store:Type="Views" store:Schema="dbo">
+          <EntitySet Name="v_detailDailyEconomicReportAllTime" EntityType="Self.v_detailDailyEconomicReportAllTime" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [v_detailReportBestSalesPersonAllTime].[Date] AS [Date], 
-    [v_detailReportBestSalesPersonAllTime].[IdSalesPerson] AS [IdSalesPerson], 
-    [v_detailReportBestSalesPersonAllTime].[FullName] AS [FullName], 
-    [v_detailReportBestSalesPersonAllTime].[Count] AS [Count], 
-    [v_detailReportBestSalesPersonAllTime].[Rate] AS [Rate]
-    FROM [dbo].[v_detailReportBestSalesPersonAllTime] AS [v_detailReportBestSalesPersonAllTime]</DefiningQuery>
+    [v_detailDailyEconomicReportAllTime].[Date] AS [Date], 
+    [v_detailDailyEconomicReportAllTime].[Day] AS [Day], 
+    [v_detailDailyEconomicReportAllTime].[Week] AS [Week], 
+    [v_detailDailyEconomicReportAllTime].[Month] AS [Month], 
+    [v_detailDailyEconomicReportAllTime].[Quarter] AS [Quarter], 
+    [v_detailDailyEconomicReportAllTime].[Year] AS [Year], 
+    [v_detailDailyEconomicReportAllTime].[Count] AS [Count], 
+    [v_detailDailyEconomicReportAllTime].[DepositPayed] AS [DepositPayed], 
+    [v_detailDailyEconomicReportAllTime].[ContractTotalPrice] AS [ContractTotalPrice], 
+    [v_detailDailyEconomicReportAllTime].[ContractTotalPriceInclVAT] AS [ContractTotalPriceInclVAT], 
+    [v_detailDailyEconomicReportAllTime].[TotalCount] AS [TotalCount], 
+    [v_detailDailyEconomicReportAllTime].[TotalDepositPayed] AS [TotalDepositPayed], 
+    [v_detailDailyEconomicReportAllTime].[TotalContractTotalPrice] AS [TotalContractTotalPrice], 
+    [v_detailDailyEconomicReportAllTime].[TotalContractTotalPriceInclVAT] AS [TotalContractTotalPriceInclVAT], 
+    [v_detailDailyEconomicReportAllTime].[Rank] AS [Rank]
+    FROM [dbo].[v_detailDailyEconomicReportAllTime] AS [v_detailDailyEconomicReportAllTime]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="v_detailReportPopularBoatsAllTime" EntityType="Self.v_detailReportPopularBoatsAllTime" store:Type="Views" store:Schema="dbo">
+          <EntitySet Name="v_detailDailyReportBestSalesPersonsAllTime" EntityType="Self.v_detailDailyReportBestSalesPersonsAllTime" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [v_detailReportPopularBoatsAllTime].[Date] AS [Date], 
-    [v_detailReportPopularBoatsAllTime].[IdBoat] AS [IdBoat], 
-    [v_detailReportPopularBoatsAllTime].[Model] AS [Model], 
-    [v_detailReportPopularBoatsAllTime].[Count] AS [Count], 
-    [v_detailReportPopularBoatsAllTime].[Rate] AS [Rate]
-    FROM [dbo].[v_detailReportPopularBoatsAllTime] AS [v_detailReportPopularBoatsAllTime]</DefiningQuery>
+    [v_detailDailyReportBestSalesPersonsAllTime].[Date] AS [Date], 
+    [v_detailDailyReportBestSalesPersonsAllTime].[Day] AS [Day], 
+    [v_detailDailyReportBestSalesPersonsAllTime].[Week] AS [Week], 
+    [v_detailDailyReportBestSalesPersonsAllTime].[Month] AS [Month], 
+    [v_detailDailyReportBestSalesPersonsAllTime].[Quarter] AS [Quarter], 
+    [v_detailDailyReportBestSalesPersonsAllTime].[Year] AS [Year], 
+    [v_detailDailyReportBestSalesPersonsAllTime].[IdSalesPerson] AS [IdSalesPerson], 
+    [v_detailDailyReportBestSalesPersonsAllTime].[FullName] AS [FullName], 
+    [v_detailDailyReportBestSalesPersonsAllTime].[Rate] AS [Rate], 
+    [v_detailDailyReportBestSalesPersonsAllTime].[Count] AS [Count]
+    FROM [dbo].[v_detailDailyReportBestSalesPersonsAllTime] AS [v_detailDailyReportBestSalesPersonsAllTime]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_detailDailyReportPopularBoatsAllTime" EntityType="Self.v_detailDailyReportPopularBoatsAllTime" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_detailDailyReportPopularBoatsAllTime].[Date] AS [Date], 
+    [v_detailDailyReportPopularBoatsAllTime].[IdBoat] AS [IdBoat], 
+    [v_detailDailyReportPopularBoatsAllTime].[Day] AS [Day], 
+    [v_detailDailyReportPopularBoatsAllTime].[Week] AS [Week], 
+    [v_detailDailyReportPopularBoatsAllTime].[Month] AS [Month], 
+    [v_detailDailyReportPopularBoatsAllTime].[Quarter] AS [Quarter], 
+    [v_detailDailyReportPopularBoatsAllTime].[Year] AS [Year], 
+    [v_detailDailyReportPopularBoatsAllTime].[Model] AS [Model], 
+    [v_detailDailyReportPopularBoatsAllTime].[Rate] AS [Rate], 
+    [v_detailDailyReportPopularBoatsAllTime].[Count] AS [Count]
+    FROM [dbo].[v_detailDailyReportPopularBoatsAllTime] AS [v_detailDailyReportPopularBoatsAllTime]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_detailMonthlyEconomicReportAllTime" EntityType="Self.v_detailMonthlyEconomicReportAllTime" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_detailMonthlyEconomicReportAllTime].[Date] AS [Date], 
+    [v_detailMonthlyEconomicReportAllTime].[Year] AS [Year], 
+    [v_detailMonthlyEconomicReportAllTime].[Month] AS [Month], 
+    [v_detailMonthlyEconomicReportAllTime].[Count] AS [Count], 
+    [v_detailMonthlyEconomicReportAllTime].[DepositPayed] AS [DepositPayed], 
+    [v_detailMonthlyEconomicReportAllTime].[ContractTotalPrice] AS [ContractTotalPrice], 
+    [v_detailMonthlyEconomicReportAllTime].[ContractTotalPriceInclVAT] AS [ContractTotalPriceInclVAT], 
+    [v_detailMonthlyEconomicReportAllTime].[TotalCount] AS [TotalCount], 
+    [v_detailMonthlyEconomicReportAllTime].[TotalDepositPayed] AS [TotalDepositPayed], 
+    [v_detailMonthlyEconomicReportAllTime].[TotalContractTotalPrice] AS [TotalContractTotalPrice], 
+    [v_detailMonthlyEconomicReportAllTime].[TotalContractTotalPriceInclVAT] AS [TotalContractTotalPriceInclVAT], 
+    [v_detailMonthlyEconomicReportAllTime].[Rank] AS [Rank]
+    FROM [dbo].[v_detailMonthlyEconomicReportAllTime] AS [v_detailMonthlyEconomicReportAllTime]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_detailMonthlyReportBestSalesPersonsAllTime" EntityType="Self.v_detailMonthlyReportBestSalesPersonsAllTime" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_detailMonthlyReportBestSalesPersonsAllTime].[Date] AS [Date], 
+    [v_detailMonthlyReportBestSalesPersonsAllTime].[Year] AS [Year], 
+    [v_detailMonthlyReportBestSalesPersonsAllTime].[Month] AS [Month], 
+    [v_detailMonthlyReportBestSalesPersonsAllTime].[IdSalesPerson] AS [IdSalesPerson], 
+    [v_detailMonthlyReportBestSalesPersonsAllTime].[FullName] AS [FullName], 
+    [v_detailMonthlyReportBestSalesPersonsAllTime].[Count] AS [Count], 
+    [v_detailMonthlyReportBestSalesPersonsAllTime].[Rate] AS [Rate]
+    FROM [dbo].[v_detailMonthlyReportBestSalesPersonsAllTime] AS [v_detailMonthlyReportBestSalesPersonsAllTime]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_detailMonthlyReportPopularBoatsAllTime" EntityType="Self.v_detailMonthlyReportPopularBoatsAllTime" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_detailMonthlyReportPopularBoatsAllTime].[Date] AS [Date], 
+    [v_detailMonthlyReportPopularBoatsAllTime].[Year] AS [Year], 
+    [v_detailMonthlyReportPopularBoatsAllTime].[Month] AS [Month], 
+    [v_detailMonthlyReportPopularBoatsAllTime].[IdBoat] AS [IdBoat], 
+    [v_detailMonthlyReportPopularBoatsAllTime].[Model] AS [Model], 
+    [v_detailMonthlyReportPopularBoatsAllTime].[Count] AS [Count], 
+    [v_detailMonthlyReportPopularBoatsAllTime].[Rate] AS [Rate]
+    FROM [dbo].[v_detailMonthlyReportPopularBoatsAllTime] AS [v_detailMonthlyReportPopularBoatsAllTime]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_detailQuarterlyEconomicReportAllTime" EntityType="Self.v_detailQuarterlyEconomicReportAllTime" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_detailQuarterlyEconomicReportAllTime].[Date] AS [Date], 
+    [v_detailQuarterlyEconomicReportAllTime].[Year] AS [Year], 
+    [v_detailQuarterlyEconomicReportAllTime].[Quarter] AS [Quarter], 
+    [v_detailQuarterlyEconomicReportAllTime].[Count] AS [Count], 
+    [v_detailQuarterlyEconomicReportAllTime].[DepositPayed] AS [DepositPayed], 
+    [v_detailQuarterlyEconomicReportAllTime].[ContractTotalPrice] AS [ContractTotalPrice], 
+    [v_detailQuarterlyEconomicReportAllTime].[ContractTotalPriceInclVAT] AS [ContractTotalPriceInclVAT], 
+    [v_detailQuarterlyEconomicReportAllTime].[TotalCount] AS [TotalCount], 
+    [v_detailQuarterlyEconomicReportAllTime].[TotalDepositPayed] AS [TotalDepositPayed], 
+    [v_detailQuarterlyEconomicReportAllTime].[TotalContractTotalPrice] AS [TotalContractTotalPrice], 
+    [v_detailQuarterlyEconomicReportAllTime].[TotalContractTotalPriceInclVAT] AS [TotalContractTotalPriceInclVAT], 
+    [v_detailQuarterlyEconomicReportAllTime].[Rank] AS [Rank]
+    FROM [dbo].[v_detailQuarterlyEconomicReportAllTime] AS [v_detailQuarterlyEconomicReportAllTime]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_detailQuarterlyReportBestSalesPersonsAllTime" EntityType="Self.v_detailQuarterlyReportBestSalesPersonsAllTime" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_detailQuarterlyReportBestSalesPersonsAllTime].[Date] AS [Date], 
+    [v_detailQuarterlyReportBestSalesPersonsAllTime].[Year] AS [Year], 
+    [v_detailQuarterlyReportBestSalesPersonsAllTime].[Quarter] AS [Quarter], 
+    [v_detailQuarterlyReportBestSalesPersonsAllTime].[IdSalesPerson] AS [IdSalesPerson], 
+    [v_detailQuarterlyReportBestSalesPersonsAllTime].[FullName] AS [FullName], 
+    [v_detailQuarterlyReportBestSalesPersonsAllTime].[Count] AS [Count], 
+    [v_detailQuarterlyReportBestSalesPersonsAllTime].[Rate] AS [Rate]
+    FROM [dbo].[v_detailQuarterlyReportBestSalesPersonsAllTime] AS [v_detailQuarterlyReportBestSalesPersonsAllTime]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_detailQuarterlyReportPopularBoatsAllTime" EntityType="Self.v_detailQuarterlyReportPopularBoatsAllTime" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_detailQuarterlyReportPopularBoatsAllTime].[Date] AS [Date], 
+    [v_detailQuarterlyReportPopularBoatsAllTime].[Year] AS [Year], 
+    [v_detailQuarterlyReportPopularBoatsAllTime].[Quarter] AS [Quarter], 
+    [v_detailQuarterlyReportPopularBoatsAllTime].[IdBoat] AS [IdBoat], 
+    [v_detailQuarterlyReportPopularBoatsAllTime].[Model] AS [Model], 
+    [v_detailQuarterlyReportPopularBoatsAllTime].[Count] AS [Count], 
+    [v_detailQuarterlyReportPopularBoatsAllTime].[Rate] AS [Rate]
+    FROM [dbo].[v_detailQuarterlyReportPopularBoatsAllTime] AS [v_detailQuarterlyReportPopularBoatsAllTime]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_detailWeeklyEconomicReportAllTime" EntityType="Self.v_detailWeeklyEconomicReportAllTime" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_detailWeeklyEconomicReportAllTime].[Date] AS [Date], 
+    [v_detailWeeklyEconomicReportAllTime].[Year] AS [Year], 
+    [v_detailWeeklyEconomicReportAllTime].[Week] AS [Week], 
+    [v_detailWeeklyEconomicReportAllTime].[Count] AS [Count], 
+    [v_detailWeeklyEconomicReportAllTime].[DepositPayed] AS [DepositPayed], 
+    [v_detailWeeklyEconomicReportAllTime].[ContractTotalPrice] AS [ContractTotalPrice], 
+    [v_detailWeeklyEconomicReportAllTime].[ContractTotalPriceInclVAT] AS [ContractTotalPriceInclVAT], 
+    [v_detailWeeklyEconomicReportAllTime].[TotalCount] AS [TotalCount], 
+    [v_detailWeeklyEconomicReportAllTime].[TotalDepositPayed] AS [TotalDepositPayed], 
+    [v_detailWeeklyEconomicReportAllTime].[TotalContractTotalPrice] AS [TotalContractTotalPrice], 
+    [v_detailWeeklyEconomicReportAllTime].[TotalContractTotalPriceInclVAT] AS [TotalContractTotalPriceInclVAT], 
+    [v_detailWeeklyEconomicReportAllTime].[Rank] AS [Rank]
+    FROM [dbo].[v_detailWeeklyEconomicReportAllTime] AS [v_detailWeeklyEconomicReportAllTime]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_detailWeeklyReportBestSalesPersonsAllTime" EntityType="Self.v_detailWeeklyReportBestSalesPersonsAllTime" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_detailWeeklyReportBestSalesPersonsAllTime].[Date] AS [Date], 
+    [v_detailWeeklyReportBestSalesPersonsAllTime].[Year] AS [Year], 
+    [v_detailWeeklyReportBestSalesPersonsAllTime].[Week] AS [Week], 
+    [v_detailWeeklyReportBestSalesPersonsAllTime].[IdSalesPerson] AS [IdSalesPerson], 
+    [v_detailWeeklyReportBestSalesPersonsAllTime].[FullName] AS [FullName], 
+    [v_detailWeeklyReportBestSalesPersonsAllTime].[Count] AS [Count], 
+    [v_detailWeeklyReportBestSalesPersonsAllTime].[Rate] AS [Rate]
+    FROM [dbo].[v_detailWeeklyReportBestSalesPersonsAllTime] AS [v_detailWeeklyReportBestSalesPersonsAllTime]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_detailWeeklyReportPopularBoatsAllTime" EntityType="Self.v_detailWeeklyReportPopularBoatsAllTime" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_detailWeeklyReportPopularBoatsAllTime].[Date] AS [Date], 
+    [v_detailWeeklyReportPopularBoatsAllTime].[Year] AS [Year], 
+    [v_detailWeeklyReportPopularBoatsAllTime].[Week] AS [Week], 
+    [v_detailWeeklyReportPopularBoatsAllTime].[IdBoat] AS [IdBoat], 
+    [v_detailWeeklyReportPopularBoatsAllTime].[Model] AS [Model], 
+    [v_detailWeeklyReportPopularBoatsAllTime].[Count] AS [Count], 
+    [v_detailWeeklyReportPopularBoatsAllTime].[Rate] AS [Rate]
+    FROM [dbo].[v_detailWeeklyReportPopularBoatsAllTime] AS [v_detailWeeklyReportPopularBoatsAllTime]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_detailYearlyEconomicReportAllTime" EntityType="Self.v_detailYearlyEconomicReportAllTime" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_detailYearlyEconomicReportAllTime].[Date] AS [Date], 
+    [v_detailYearlyEconomicReportAllTime].[Year] AS [Year], 
+    [v_detailYearlyEconomicReportAllTime].[Count] AS [Count], 
+    [v_detailYearlyEconomicReportAllTime].[DepositPayed] AS [DepositPayed], 
+    [v_detailYearlyEconomicReportAllTime].[ContractTotalPrice] AS [ContractTotalPrice], 
+    [v_detailYearlyEconomicReportAllTime].[ContractTotalPriceInclVAT] AS [ContractTotalPriceInclVAT], 
+    [v_detailYearlyEconomicReportAllTime].[TotalCount] AS [TotalCount], 
+    [v_detailYearlyEconomicReportAllTime].[TotalDepositPayed] AS [TotalDepositPayed], 
+    [v_detailYearlyEconomicReportAllTime].[TotalContractTotalPrice] AS [TotalContractTotalPrice], 
+    [v_detailYearlyEconomicReportAllTime].[TotalContractTotalPriceInclVAT] AS [TotalContractTotalPriceInclVAT], 
+    [v_detailYearlyEconomicReportAllTime].[Rank] AS [Rank]
+    FROM [dbo].[v_detailYearlyEconomicReportAllTime] AS [v_detailYearlyEconomicReportAllTime]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_detailYearlyReportBestSalesPersonsAllTime" EntityType="Self.v_detailYearlyReportBestSalesPersonsAllTime" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_detailYearlyReportBestSalesPersonsAllTime].[Date] AS [Date], 
+    [v_detailYearlyReportBestSalesPersonsAllTime].[Year] AS [Year], 
+    [v_detailYearlyReportBestSalesPersonsAllTime].[IdSalesPerson] AS [IdSalesPerson], 
+    [v_detailYearlyReportBestSalesPersonsAllTime].[FullName] AS [FullName], 
+    [v_detailYearlyReportBestSalesPersonsAllTime].[Count] AS [Count], 
+    [v_detailYearlyReportBestSalesPersonsAllTime].[Rate] AS [Rate]
+    FROM [dbo].[v_detailYearlyReportBestSalesPersonsAllTime] AS [v_detailYearlyReportBestSalesPersonsAllTime]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_detailYearlyReportPopularBoatsAllTime" EntityType="Self.v_detailYearlyReportPopularBoatsAllTime" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_detailYearlyReportPopularBoatsAllTime].[Date] AS [Date], 
+    [v_detailYearlyReportPopularBoatsAllTime].[Year] AS [Year], 
+    [v_detailYearlyReportPopularBoatsAllTime].[IdBoat] AS [IdBoat], 
+    [v_detailYearlyReportPopularBoatsAllTime].[Model] AS [Model], 
+    [v_detailYearlyReportPopularBoatsAllTime].[Count] AS [Count], 
+    [v_detailYearlyReportPopularBoatsAllTime].[Rate] AS [Rate]
+    FROM [dbo].[v_detailYearlyReportPopularBoatsAllTime] AS [v_detailYearlyReportPopularBoatsAllTime]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="v_order" EntityType="Self.v_order" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1452,13 +1847,26 @@
           <EntitySet Name="v_cityOrder" EntityType="Model.v_cityOrder" />
           <EntitySet Name="v_deliveryAddressOrder" EntityType="Model.v_deliveryAddressOrder" />
           <EntitySet Name="v_accessorySimplifiedInformation" EntityType="Model.v_accessorySimplifiedInformation" />
-          <EntitySet Name="v_briefReportBestSalesPersonAllTime" EntityType="Model.v_briefReportBestSalesPersonAllTime" />
-          <EntitySet Name="v_briefReportPopularBoatsAllTime" EntityType="Model.v_briefReportPopularBoatsAllTime" />
-          <EntitySet Name="v_detailReportBestSalesPersonAllTime" EntityType="Model.v_detailReportBestSalesPersonAllTime" />
-          <EntitySet Name="v_detailReportPopularBoatsAllTime" EntityType="Model.v_detailReportPopularBoatsAllTime" />
           <EntitySet Name="v_contract" EntityType="Model.v_contract" />
           <EntitySet Name="v_contract2" EntityType="Model.v_contract2" />
           <EntitySet Name="v_partner" EntityType="Model.v_partner" />
+          <EntitySet Name="v_briefReportPopularBoatsAllTime" EntityType="Model.v_briefReportPopularBoatsAllTime" />
+          <EntitySet Name="v_detailDailyReportPopularBoatsAllTime" EntityType="Model.v_detailDailyReportPopularBoatsAllTime" />
+          <EntitySet Name="v_detailMonthlyReportPopularBoatsAllTime" EntityType="Model.v_detailMonthlyReportPopularBoatsAllTime" />
+          <EntitySet Name="v_detailQuarterlyReportPopularBoatsAllTime" EntityType="Model.v_detailQuarterlyReportPopularBoatsAllTime" />
+          <EntitySet Name="v_detailWeeklyReportPopularBoatsAllTime" EntityType="Model.v_detailWeeklyReportPopularBoatsAllTime" />
+          <EntitySet Name="v_detailYearlyReportPopularBoatsAllTime" EntityType="Model.v_detailYearlyReportPopularBoatsAllTime" />
+          <EntitySet Name="v_briefReportBestSalesPersonsAllTime" EntityType="Model.v_briefReportBestSalesPersonsAllTime" />
+          <EntitySet Name="v_detailDailyEconomicReportAllTime" EntityType="Model.v_detailDailyEconomicReportAllTime" />
+          <EntitySet Name="v_detailDailyReportBestSalesPersonsAllTime" EntityType="Model.v_detailDailyReportBestSalesPersonsAllTime" />
+          <EntitySet Name="v_detailMonthlyEconomicReportAllTime" EntityType="Model.v_detailMonthlyEconomicReportAllTime" />
+          <EntitySet Name="v_detailMonthlyReportBestSalesPersonsAllTime" EntityType="Model.v_detailMonthlyReportBestSalesPersonsAllTime" />
+          <EntitySet Name="v_detailQuarterlyEconomicReportAllTime" EntityType="Model.v_detailQuarterlyEconomicReportAllTime" />
+          <EntitySet Name="v_detailQuarterlyReportBestSalesPersonsAllTime" EntityType="Model.v_detailQuarterlyReportBestSalesPersonsAllTime" />
+          <EntitySet Name="v_detailWeeklyEconomicReportAllTime" EntityType="Model.v_detailWeeklyEconomicReportAllTime" />
+          <EntitySet Name="v_detailWeeklyReportBestSalesPersonsAllTime" EntityType="Model.v_detailWeeklyReportBestSalesPersonsAllTime" />
+          <EntitySet Name="v_detailYearlyEconomicReportAllTime" EntityType="Model.v_detailYearlyEconomicReportAllTime" />
+          <EntitySet Name="v_detailYearlyReportBestSalesPersonsAllTime" EntityType="Model.v_detailYearlyReportBestSalesPersonsAllTime" />
         </EntityContainer>
         <EntityType Name="v_boatSimplifiedInformation">
           <Key>
@@ -1565,46 +1973,6 @@
           <Property Name="IdAccessory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AccName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="v_briefReportBestSalesPersonAllTime">
-          <Key>
-            <PropertyRef Name="IdSalesPerson" />
-            <PropertyRef Name="Rank" />
-          </Key>
-          <Property Name="IdSalesPerson" Type="Int32" Nullable="false" />
-          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Count" Type="Int32" />
-          <Property Name="Rank" Type="Int64" Nullable="false" />
-        </EntityType>
-        <EntityType Name="v_briefReportPopularBoatsAllTime">
-          <Key>
-            <PropertyRef Name="IdBoat" />
-            <PropertyRef Name="Rank" />
-          </Key>
-          <Property Name="IdBoat" Type="Int32" Nullable="false" />
-          <Property Name="Model" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Count" Type="Int32" />
-          <Property Name="Rank" Type="Int64" Nullable="false" />
-        </EntityType>
-        <EntityType Name="v_detailReportBestSalesPersonAllTime">
-          <Key>
-            <PropertyRef Name="IdSalesPerson" />
-          </Key>
-          <Property Name="Date" Type="DateTime" Precision="0" />
-          <Property Name="IdSalesPerson" Type="Int32" Nullable="false" />
-          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Count" Type="Int32" />
-          <Property Name="Rate" Type="Int32" />
-        </EntityType>
-        <EntityType Name="v_detailReportPopularBoatsAllTime">
-          <Key>
-            <PropertyRef Name="IdBoat" />
-          </Key>
-          <Property Name="Date" Type="DateTime" Precision="0" />
-          <Property Name="IdBoat" Type="Int32" Nullable="false" />
-          <Property Name="Model" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Count" Type="Int32" />
-          <Property Name="Rate" Type="Int32" />
-        </EntityType>
         <EntityType Name="v_contract">
           <Key>
             <PropertyRef Name="IdContract" />
@@ -1661,6 +2029,237 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="City" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="v_briefReportPopularBoatsAllTime">
+          <Key>
+            <PropertyRef Name="IdBoat" />
+            <PropertyRef Name="Rank" />
+          </Key>
+          <Property Name="IdBoat" Type="Int32" Nullable="false" />
+          <Property Name="Model" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Rank" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_detailDailyReportPopularBoatsAllTime">
+          <Key>
+            <PropertyRef Name="IdBoat" />
+          </Key>
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="IdBoat" Type="Int32" Nullable="false" />
+          <Property Name="Day" Type="Int32" />
+          <Property Name="Week" Type="Int32" />
+          <Property Name="Month" Type="Int32" />
+          <Property Name="Quarter" Type="Int32" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Model" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Rate" Type="Int32" />
+          <Property Name="Count" Type="Int32" />
+        </EntityType>
+        <EntityType Name="v_detailMonthlyReportPopularBoatsAllTime">
+          <Key>
+            <PropertyRef Name="IdBoat" />
+          </Key>
+          <Property Name="Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Month" Type="Int32" />
+          <Property Name="IdBoat" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Rate" Type="Int32" />
+          <Property Name="Model" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="v_detailQuarterlyReportPopularBoatsAllTime">
+          <Key>
+            <PropertyRef Name="IdBoat" />
+          </Key>
+          <Property Name="Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Quarter" Type="Int32" />
+          <Property Name="IdBoat" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Rate" Type="Int32" />
+          <Property Name="Model" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="v_detailWeeklyReportPopularBoatsAllTime">
+          <Key>
+            <PropertyRef Name="IdBoat" />
+          </Key>
+          <Property Name="Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Week" Type="Int32" />
+          <Property Name="IdBoat" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Rate" Type="Int32" />
+          <Property Name="Model" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="v_detailYearlyReportPopularBoatsAllTime">
+          <Key>
+            <PropertyRef Name="IdBoat" />
+          </Key>
+          <Property Name="Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="IdBoat" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Rate" Type="Int32" />
+          <Property Name="Model" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="v_briefReportBestSalesPersonsAllTime">
+          <Key>
+            <PropertyRef Name="IdSalesPerson" />
+            <PropertyRef Name="Rank" />
+          </Key>
+          <Property Name="IdSalesPerson" Type="Int32" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Rank" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_detailDailyEconomicReportAllTime">
+          <Key>
+            <PropertyRef Name="Rank" />
+          </Key>
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Day" Type="Int32" />
+          <Property Name="Week" Type="Int32" />
+          <Property Name="Month" Type="Int32" />
+          <Property Name="Quarter" Type="Int32" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="DepositPayed" Type="Decimal" />
+          <Property Name="ContractTotalPrice" Type="Decimal" />
+          <Property Name="ContractTotalPriceInclVAT" Type="Decimal" />
+          <Property Name="TotalCount" Type="Int32" />
+          <Property Name="TotalDepositPayed" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="TotalContractTotalPrice" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="TotalContractTotalPriceInclVAT" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="Rank" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_detailDailyReportBestSalesPersonsAllTime">
+          <Key>
+            <PropertyRef Name="IdSalesPerson" />
+          </Key>
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Day" Type="Int32" />
+          <Property Name="Week" Type="Int32" />
+          <Property Name="Month" Type="Int32" />
+          <Property Name="Quarter" Type="Int32" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="IdSalesPerson" Type="Int32" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Rate" Type="Int32" />
+          <Property Name="Count" Type="Int32" />
+        </EntityType>
+        <EntityType Name="v_detailMonthlyEconomicReportAllTime">
+          <Key>
+            <PropertyRef Name="Rank" />
+          </Key>
+          <Property Name="Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Month" Type="Int32" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="DepositPayed" Type="Decimal" />
+          <Property Name="ContractTotalPrice" Type="Decimal" />
+          <Property Name="ContractTotalPriceInclVAT" Type="Decimal" />
+          <Property Name="TotalCount" Type="Int32" />
+          <Property Name="TotalDepositPayed" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="TotalContractTotalPrice" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="TotalContractTotalPriceInclVAT" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="Rank" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_detailMonthlyReportBestSalesPersonsAllTime">
+          <Key>
+            <PropertyRef Name="IdSalesPerson" />
+          </Key>
+          <Property Name="Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Month" Type="Int32" />
+          <Property Name="IdSalesPerson" Type="Int32" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Rate" Type="Int32" />
+        </EntityType>
+        <EntityType Name="v_detailQuarterlyEconomicReportAllTime">
+          <Key>
+            <PropertyRef Name="Rank" />
+          </Key>
+          <Property Name="Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Quarter" Type="Int32" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="DepositPayed" Type="Decimal" />
+          <Property Name="ContractTotalPrice" Type="Decimal" />
+          <Property Name="ContractTotalPriceInclVAT" Type="Decimal" />
+          <Property Name="TotalCount" Type="Int32" />
+          <Property Name="TotalDepositPayed" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="TotalContractTotalPrice" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="TotalContractTotalPriceInclVAT" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="Rank" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_detailQuarterlyReportBestSalesPersonsAllTime">
+          <Key>
+            <PropertyRef Name="IdSalesPerson" />
+          </Key>
+          <Property Name="Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Quarter" Type="Int32" />
+          <Property Name="IdSalesPerson" Type="Int32" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Rate" Type="Int32" />
+        </EntityType>
+        <EntityType Name="v_detailWeeklyEconomicReportAllTime">
+          <Key>
+            <PropertyRef Name="Rank" />
+          </Key>
+          <Property Name="Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Week" Type="Int32" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="DepositPayed" Type="Decimal" />
+          <Property Name="ContractTotalPrice" Type="Decimal" />
+          <Property Name="ContractTotalPriceInclVAT" Type="Decimal" />
+          <Property Name="TotalCount" Type="Int32" />
+          <Property Name="TotalDepositPayed" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="TotalContractTotalPrice" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="TotalContractTotalPriceInclVAT" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="Rank" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_detailWeeklyReportBestSalesPersonsAllTime">
+          <Key>
+            <PropertyRef Name="IdSalesPerson" />
+          </Key>
+          <Property Name="Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Week" Type="Int32" />
+          <Property Name="IdSalesPerson" Type="Int32" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Rate" Type="Int32" />
+        </EntityType>
+        <EntityType Name="v_detailYearlyEconomicReportAllTime">
+          <Key>
+            <PropertyRef Name="Rank" />
+          </Key>
+          <Property Name="Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="DepositPayed" Type="Decimal" />
+          <Property Name="ContractTotalPrice" Type="Decimal" />
+          <Property Name="ContractTotalPriceInclVAT" Type="Decimal" />
+          <Property Name="TotalCount" Type="Int32" />
+          <Property Name="TotalDepositPayed" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="TotalContractTotalPrice" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="TotalContractTotalPriceInclVAT" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="Rank" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_detailYearlyReportBestSalesPersonsAllTime">
+          <Key>
+            <PropertyRef Name="IdSalesPerson" />
+          </Key>
+          <Property Name="Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="IdSalesPerson" Type="Int32" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Rate" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1979,48 +2578,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="v_briefReportBestSalesPersonAllTime">
-            <EntityTypeMapping TypeName="Model.v_briefReportBestSalesPersonAllTime">
-              <MappingFragment StoreEntitySet="v_briefReportBestSalesPersonAllTime">
-                <ScalarProperty Name="Rank" ColumnName="Rank" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="IdSalesPerson" ColumnName="IdSalesPerson" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="v_briefReportPopularBoatsAllTime">
-            <EntityTypeMapping TypeName="Model.v_briefReportPopularBoatsAllTime">
-              <MappingFragment StoreEntitySet="v_briefReportPopularBoatsAllTime">
-                <ScalarProperty Name="Rank" ColumnName="Rank" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="IdBoat" ColumnName="IdBoat" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="v_detailReportBestSalesPersonAllTime">
-            <EntityTypeMapping TypeName="Model.v_detailReportBestSalesPersonAllTime">
-              <MappingFragment StoreEntitySet="v_detailReportBestSalesPersonAllTime">
-                <ScalarProperty Name="Rate" ColumnName="Rate" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="IdSalesPerson" ColumnName="IdSalesPerson" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="v_detailReportPopularBoatsAllTime">
-            <EntityTypeMapping TypeName="Model.v_detailReportPopularBoatsAllTime">
-              <MappingFragment StoreEntitySet="v_detailReportPopularBoatsAllTime">
-                <ScalarProperty Name="Rate" ColumnName="Rate" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="IdBoat" ColumnName="IdBoat" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="v_contract">
             <EntityTypeMapping TypeName="Model.v_contract">
               <MappingFragment StoreEntitySet="v_contract">
@@ -2060,6 +2617,252 @@
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="IdPartner" ColumnName="IdPartner" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_briefReportPopularBoatsAllTime">
+            <EntityTypeMapping TypeName="Model.v_briefReportPopularBoatsAllTime">
+              <MappingFragment StoreEntitySet="v_briefReportPopularBoatsAllTime">
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="IdBoat" ColumnName="IdBoat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_detailDailyReportPopularBoatsAllTime">
+            <EntityTypeMapping TypeName="Model.v_detailDailyReportPopularBoatsAllTime">
+              <MappingFragment StoreEntitySet="v_detailDailyReportPopularBoatsAllTime">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Quarter" ColumnName="Quarter" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Week" ColumnName="Week" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="IdBoat" ColumnName="IdBoat" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_detailMonthlyReportPopularBoatsAllTime">
+            <EntityTypeMapping TypeName="Model.v_detailMonthlyReportPopularBoatsAllTime">
+              <MappingFragment StoreEntitySet="v_detailMonthlyReportPopularBoatsAllTime">
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="IdBoat" ColumnName="IdBoat" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_detailQuarterlyReportPopularBoatsAllTime">
+            <EntityTypeMapping TypeName="Model.v_detailQuarterlyReportPopularBoatsAllTime">
+              <MappingFragment StoreEntitySet="v_detailQuarterlyReportPopularBoatsAllTime">
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="IdBoat" ColumnName="IdBoat" />
+                <ScalarProperty Name="Quarter" ColumnName="Quarter" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_detailWeeklyReportPopularBoatsAllTime">
+            <EntityTypeMapping TypeName="Model.v_detailWeeklyReportPopularBoatsAllTime">
+              <MappingFragment StoreEntitySet="v_detailWeeklyReportPopularBoatsAllTime">
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="IdBoat" ColumnName="IdBoat" />
+                <ScalarProperty Name="Week" ColumnName="Week" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_detailYearlyReportPopularBoatsAllTime">
+            <EntityTypeMapping TypeName="Model.v_detailYearlyReportPopularBoatsAllTime">
+              <MappingFragment StoreEntitySet="v_detailYearlyReportPopularBoatsAllTime">
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="IdBoat" ColumnName="IdBoat" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_briefReportBestSalesPersonsAllTime">
+            <EntityTypeMapping TypeName="Model.v_briefReportBestSalesPersonsAllTime">
+              <MappingFragment StoreEntitySet="v_briefReportBestSalesPersonsAllTime">
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IdSalesPerson" ColumnName="IdSalesPerson" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_detailDailyEconomicReportAllTime">
+            <EntityTypeMapping TypeName="Model.v_detailDailyEconomicReportAllTime">
+              <MappingFragment StoreEntitySet="v_detailDailyEconomicReportAllTime">
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="TotalContractTotalPriceInclVAT" ColumnName="TotalContractTotalPriceInclVAT" />
+                <ScalarProperty Name="TotalContractTotalPrice" ColumnName="TotalContractTotalPrice" />
+                <ScalarProperty Name="TotalDepositPayed" ColumnName="TotalDepositPayed" />
+                <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+                <ScalarProperty Name="ContractTotalPriceInclVAT" ColumnName="ContractTotalPriceInclVAT" />
+                <ScalarProperty Name="ContractTotalPrice" ColumnName="ContractTotalPrice" />
+                <ScalarProperty Name="DepositPayed" ColumnName="DepositPayed" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Quarter" ColumnName="Quarter" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Week" ColumnName="Week" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_detailDailyReportBestSalesPersonsAllTime">
+            <EntityTypeMapping TypeName="Model.v_detailDailyReportBestSalesPersonsAllTime">
+              <MappingFragment StoreEntitySet="v_detailDailyReportBestSalesPersonsAllTime">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IdSalesPerson" ColumnName="IdSalesPerson" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Quarter" ColumnName="Quarter" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Week" ColumnName="Week" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_detailMonthlyEconomicReportAllTime">
+            <EntityTypeMapping TypeName="Model.v_detailMonthlyEconomicReportAllTime">
+              <MappingFragment StoreEntitySet="v_detailMonthlyEconomicReportAllTime">
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="TotalContractTotalPriceInclVAT" ColumnName="TotalContractTotalPriceInclVAT" />
+                <ScalarProperty Name="TotalContractTotalPrice" ColumnName="TotalContractTotalPrice" />
+                <ScalarProperty Name="TotalDepositPayed" ColumnName="TotalDepositPayed" />
+                <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+                <ScalarProperty Name="ContractTotalPriceInclVAT" ColumnName="ContractTotalPriceInclVAT" />
+                <ScalarProperty Name="ContractTotalPrice" ColumnName="ContractTotalPrice" />
+                <ScalarProperty Name="DepositPayed" ColumnName="DepositPayed" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_detailMonthlyReportBestSalesPersonsAllTime">
+            <EntityTypeMapping TypeName="Model.v_detailMonthlyReportBestSalesPersonsAllTime">
+              <MappingFragment StoreEntitySet="v_detailMonthlyReportBestSalesPersonsAllTime">
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IdSalesPerson" ColumnName="IdSalesPerson" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_detailQuarterlyEconomicReportAllTime">
+            <EntityTypeMapping TypeName="Model.v_detailQuarterlyEconomicReportAllTime">
+              <MappingFragment StoreEntitySet="v_detailQuarterlyEconomicReportAllTime">
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="TotalContractTotalPriceInclVAT" ColumnName="TotalContractTotalPriceInclVAT" />
+                <ScalarProperty Name="TotalContractTotalPrice" ColumnName="TotalContractTotalPrice" />
+                <ScalarProperty Name="TotalDepositPayed" ColumnName="TotalDepositPayed" />
+                <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+                <ScalarProperty Name="ContractTotalPriceInclVAT" ColumnName="ContractTotalPriceInclVAT" />
+                <ScalarProperty Name="ContractTotalPrice" ColumnName="ContractTotalPrice" />
+                <ScalarProperty Name="DepositPayed" ColumnName="DepositPayed" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Quarter" ColumnName="Quarter" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_detailQuarterlyReportBestSalesPersonsAllTime">
+            <EntityTypeMapping TypeName="Model.v_detailQuarterlyReportBestSalesPersonsAllTime">
+              <MappingFragment StoreEntitySet="v_detailQuarterlyReportBestSalesPersonsAllTime">
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IdSalesPerson" ColumnName="IdSalesPerson" />
+                <ScalarProperty Name="Quarter" ColumnName="Quarter" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_detailWeeklyEconomicReportAllTime">
+            <EntityTypeMapping TypeName="Model.v_detailWeeklyEconomicReportAllTime">
+              <MappingFragment StoreEntitySet="v_detailWeeklyEconomicReportAllTime">
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="TotalContractTotalPriceInclVAT" ColumnName="TotalContractTotalPriceInclVAT" />
+                <ScalarProperty Name="TotalContractTotalPrice" ColumnName="TotalContractTotalPrice" />
+                <ScalarProperty Name="TotalDepositPayed" ColumnName="TotalDepositPayed" />
+                <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+                <ScalarProperty Name="ContractTotalPriceInclVAT" ColumnName="ContractTotalPriceInclVAT" />
+                <ScalarProperty Name="ContractTotalPrice" ColumnName="ContractTotalPrice" />
+                <ScalarProperty Name="DepositPayed" ColumnName="DepositPayed" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Week" ColumnName="Week" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_detailWeeklyReportBestSalesPersonsAllTime">
+            <EntityTypeMapping TypeName="Model.v_detailWeeklyReportBestSalesPersonsAllTime">
+              <MappingFragment StoreEntitySet="v_detailWeeklyReportBestSalesPersonsAllTime">
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IdSalesPerson" ColumnName="IdSalesPerson" />
+                <ScalarProperty Name="Week" ColumnName="Week" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_detailYearlyEconomicReportAllTime">
+            <EntityTypeMapping TypeName="Model.v_detailYearlyEconomicReportAllTime">
+              <MappingFragment StoreEntitySet="v_detailYearlyEconomicReportAllTime">
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="TotalContractTotalPriceInclVAT" ColumnName="TotalContractTotalPriceInclVAT" />
+                <ScalarProperty Name="TotalContractTotalPrice" ColumnName="TotalContractTotalPrice" />
+                <ScalarProperty Name="TotalDepositPayed" ColumnName="TotalDepositPayed" />
+                <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+                <ScalarProperty Name="ContractTotalPriceInclVAT" ColumnName="ContractTotalPriceInclVAT" />
+                <ScalarProperty Name="ContractTotalPrice" ColumnName="ContractTotalPrice" />
+                <ScalarProperty Name="DepositPayed" ColumnName="DepositPayed" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_detailYearlyReportBestSalesPersonsAllTime">
+            <EntityTypeMapping TypeName="Model.v_detailYearlyReportBestSalesPersonsAllTime">
+              <MappingFragment StoreEntitySet="v_detailYearlyReportBestSalesPersonsAllTime">
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IdSalesPerson" ColumnName="IdSalesPerson" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

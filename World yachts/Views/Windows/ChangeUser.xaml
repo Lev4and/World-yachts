@@ -9,7 +9,7 @@
       DataContext="{Binding ChangeUserViewModel, Source={StaticResource ViewModelLocator}}"
       mc:Ignorable="d" 
       MinHeight="300" MinWidth="800" Height="300" Width="800" MaxHeight="300" MaxWidth="800"
-      Title="ChangeUser">
+      Title="World yachts - ChangeUser">
     <Grid>
         <Grid Margin="10">
             <i:Interaction.Triggers>

@@ -20,7 +20,6 @@ namespace World_yachts.ViewModels
         {
             _pageService = pageService;
             _eF = new EntityFramework();
-            _config = ConfigurationUser.GetConfiguration();
 
             _pageService.OnPageChanged += (page) => PageSource = page;
             _pageService.ChangePage(new Main());
@@ -28,7 +27,9 @@ namespace World_yachts.ViewModels
 
         public ICommand Closed => new DelegateCommand(() =>
         {
-            if(_config.IsAuthorized)
+            _config = ConfigurationUser.GetConfiguration();
+
+            if (_config.IsAuthorized)
             {
                 _config.IsAuthorized = false;
                 _config.Save();

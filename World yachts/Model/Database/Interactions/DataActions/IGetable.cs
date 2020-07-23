@@ -113,6 +113,8 @@ namespace World_yachts.Model.Database.Interactions.DataActions
 
         List<string> GetStringListBoats();
 
+        List<string> GetStringListSalesPeople();
+
         List<string> GetProductionProcess();
 
         List<BoatType> GetBoatTypes();
@@ -122,6 +124,8 @@ namespace World_yachts.Model.Database.Interactions.DataActions
         List<v_partner> GetPartners();
 
         List<v_partner> GetPartners(string name, string city);
+
+        List<SalesPerson> GetSalesPeople();
 
         List<Wood> GetWoods();
 
@@ -160,5 +164,39 @@ namespace World_yachts.Model.Database.Interactions.DataActions
         List<v_user> GetUsers();
 
         List<v_user> GetUsers(string login, string roleName, Range<DateTime> rangeDateOfRegistration, Range<DateTime> rangeDateOfLastChangePassword, Range<DateTime> rangeWasOnline);
+
+        List<v_briefReportBestSalesPersonsAllTime> GetReportBestSalesPersons(List<string> listSelectedSalesPersons);
+
+        List<v_briefReportPopularBoatsAllTime> GetReportPopularBoats(List<string> listSelectedModelsBoats);
+
+        List<v_detailDailyEconomicReportAllTime> GetDetailDailyEconomicReport(Range<DateTime> rangeDate);
+
+        List<v_detailDailyReportBestSalesPersonsAllTime> GetDetailDailyReportBestSalesPersons(List<string> listSelectedSalesPersons, Range<DateTime> rangeDate);
+
+        List<v_detailDailyReportPopularBoatsAllTime> GetDetailDailyReportPopularBoats(List<string> listSelectedModelsBoats, Range<DateTime> rangeDate);
+
+        List<v_detailWeeklyEconomicReportAllTime> GetDetailWeeklyEconomicReport(Date beginValueRangeDate, Date endValueRangeDate);
+
+        List<v_detailWeeklyReportBestSalesPersonsAllTime> GetDetailWeeklyReportBestSalesPersons(List<string> listSelectedSalesPersons, Date beginValueRangeDate, Date endValueRangeDate);
+
+        List<v_detailWeeklyReportPopularBoatsAllTime> GetDetailWeeklyReportPopularBoats(List<string> listSelectedModelsBoats, Date beginValueRangeDate, Date endValueRangeDate);
+
+        List<v_detailMonthlyEconomicReportAllTime> GetDetailMonthlyEconomicReport(Date beginValueRangeDate, Date endValueRangeDate);
+
+        List<v_detailMonthlyReportBestSalesPersonsAllTime> GetDetailMonthlyReportBestSalesPersons(List<string> listSelectedSalesPersons, Date beginValueRangeDate, Date endValueRangeDate);
+
+        List<v_detailMonthlyReportPopularBoatsAllTime> GetDetailMonthlyReportPopularBoats(List<string> listSelectedModelsBoats, Date beginValueRangeDate, Date endValueRangeDate);
+
+        List<v_detailQuarterlyEconomicReportAllTime> GetDetailQuarterlyEconomicReport(Date beginValueRangeDate, Date endValueRangeDate);
+
+        List<v_detailQuarterlyReportBestSalesPersonsAllTime> GetDetailQuarterlyReportBestSalesPersons(List<string> listSelectedSalesPersons, Date beginValueRangeDate, Date endValueRangeDate);
+
+        List<v_detailQuarterlyReportPopularBoatsAllTime> GetDetailQuarterlyReportPopularBoats(List<string> listSelectedModelsBoats, Date beginValueRangeDate, Date endValueRangeDate);
+
+        List<v_detailYearlyEconomicReportAllTime> GetDetailYearlyEconomicReport(Date beginValueRangeDate, Date endValueRangeDate);
+
+        List<v_detailYearlyReportBestSalesPersonsAllTime> GetDetailYearlyReportBestSalesPersons(List<string> listSelectedSalesPersons, Date beginValueRangeDate, Date endValueRangeDate);
+
+        List<v_detailYearlyReportPopularBoatsAllTime> GetDetailYearlyReportPopularBoats(List<string> listSelectedModelsBoats, Date beginValueRangeDate, Date endValueRangeDate);
     }
 }

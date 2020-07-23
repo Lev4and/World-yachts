@@ -12,12 +12,18 @@ namespace World_yachts.Model.Database.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class v_detailReportPopularBoatsAllTime
+    public partial class v_detailYearlyEconomicReportAllTime
     {
-        public Nullable<System.DateTime> Date { get; set; }
-        public int IdBoat { get; set; }
-        public string Model { get; set; }
+        public string Date { get; set; }
+        public Nullable<int> Year { get; set; }
         public Nullable<int> Count { get; set; }
-        public Nullable<int> Rate { get; set; }
+        public Nullable<decimal> DepositPayed { get; set; }
+        public Nullable<decimal> ContractTotalPrice { get; set; }
+        public Nullable<decimal> ContractTotalPriceInclVAT { get; set; }
+        public Nullable<int> TotalCount { get; set; }
+        public Nullable<decimal> TotalDepositPayed { get; set; }
+        public Nullable<decimal> TotalContractTotalPrice { get; set; }
+        public Nullable<decimal> TotalContractTotalPriceInclVAT { get; set; }
+        public long Rank { get; set; }
     }
 }

@@ -3,13 +3,11 @@ using System.Windows;
 using System.Windows.Input;
 using World_yachts.Model.Database.Interactions;
 using World_yachts.Model.Database.Models;
-using World_yachts.Services;
 
 namespace World_yachts.ViewModels
 {
     public class ChangePartnerViewModel : BindableBase
     {
-        private readonly PageService _pageService;
         private EntityFramework _eF;
         private Partner _partner;
 
@@ -21,9 +19,9 @@ namespace World_yachts.ViewModels
 
         public string City { get; set; }
 
-        public ChangePartnerViewModel(PageService pageService)
+        public ChangePartnerViewModel()
         {
-            _pageService = pageService;
+
         }
 
         public ICommand Loaded => new DelegateCommand(() =>

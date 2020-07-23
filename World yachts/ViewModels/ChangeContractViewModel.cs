@@ -5,13 +5,11 @@ using System.Windows;
 using System.Windows.Input;
 using World_yachts.Model.Database.Interactions;
 using World_yachts.Model.Database.Models;
-using World_yachts.Services;
 
 namespace World_yachts.ViewModels
 {
     public class ChangeContractViewModel : BindableBase
     {
-        private readonly PageService _pageService;
         private EntityFramework _eF;
         private Customer _customer;
         private v_contract2 _contract;
@@ -40,9 +38,9 @@ namespace World_yachts.ViewModels
 
         public ObservableCollection<string> ProductionProcess { get; set; }
 
-        public ChangeContractViewModel(PageService pageService)
+        public ChangeContractViewModel()
         {
-            _pageService = pageService;
+
         }
 
         public ICommand Loaded => new DelegateCommand(() =>

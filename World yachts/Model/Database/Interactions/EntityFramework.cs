@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using World_yachts.Model.Database.Models;
 using World_yachts.Model.Logic;
@@ -15,6 +16,11 @@ namespace World_yachts.Model.Database.Interactions
         public EntityFramework()
         {
             _context = new WorldYachtsContext();
+
+            var adapter = (IObjectContextAdapter)_context;
+            var objectContext = adapter.ObjectContext;
+
+            objectContext.CommandTimeout = 180;
         }
 
         public bool AddAccessory(string accName, string descriptionOfAccessory, int price, double VAT, int inventory, int orderLevel, int orderBatch, int idPartner, List<string> listSelectedCompatibleModelBoats)
@@ -978,7 +984,7 @@ namespace World_yachts.Model.Database.Interactions
         {
             Random rand = new Random();
 
-            DateTime minDate = new DateTime(2020, 6, 30).Date;
+            DateTime minDate = new DateTime(2019, 3, 8).Date;
             DateTime maxDate = DateTime.Now.Date;
 
             var users = GetUsers();
@@ -990,7 +996,7 @@ namespace World_yachts.Model.Database.Interactions
 
             for (DateTime dateTime = minDate; dateTime <= maxDate; dateTime = dateTime.AddDays(1))
             {
-                int countContract = rand.Next(0, 10);
+                int countContract = 3;
 
                 var verifiedUsers = users.Where(u => u.RoleName == "Manager" && u.DateOfRegistration <= dateTime).ToList();
 
@@ -1169,6 +1175,165 @@ namespace World_yachts.Model.Database.Interactions
         public Colour GetColour(int idColour)
         {
             return _context.Colour.Single(c => c.IdColour == idColour);
+        }
+
+        public List<v_briefReportBestSalesPersonsAllTime> GetReportBestSalesPersons(List<string> listSelectedSalesPersons)
+        {
+            return _context.v_briefReportBestSalesPersonsAllTime.Where(r =>
+            (listSelectedSalesPersons.Count > 0 ? listSelectedSalesPersons.Any(l => r.FullName == l) : false)).AsNoTracking().ToList();
+        }
+
+        public List<v_briefReportPopularBoatsAllTime> GetReportPopularBoats(List<string> listSelectedModelsBoats)
+        {
+            return _context.v_briefReportPopularBoatsAllTime.Where(r =>
+            (listSelectedModelsBoats.Count > 0 ? listSelectedModelsBoats.Any(l => r.Model == l) : false)).AsNoTracking().ToList();
+        }
+
+        public List<v_detailDailyEconomicReportAllTime> GetDetailDailyEconomicReport(Range<DateTime> rangeDate)
+        {
+            return _context.v_detailDailyEconomicReportAllTime.Where(r =>
+            r.Date >= rangeDate.BeginValue &&
+            r.Date <= rangeDate.EndValue).OrderBy(r => r.Date).AsNoTracking().ToList();
+        }
+
+        public List<v_detailDailyReportBestSalesPersonsAllTime> GetDetailDailyReportBestSalesPersons(List<string> listSelectedSalesPersons, Range<DateTime> rangeDate)
+        {
+            return _context.v_detailDailyReportBestSalesPersonsAllTime.Where(r =>
+            (listSelectedSalesPersons.Count > 0 ? listSelectedSalesPersons.Any(l => r.FullName == l) : false) &&
+            r.Date >= rangeDate.BeginValue &&
+            r.Date <= rangeDate.EndValue).OrderBy(r => r.Date).AsNoTracking().ToList();
+        }
+
+        public List<v_detailDailyReportPopularBoatsAllTime> GetDetailDailyReportPopularBoats(List<string> listSelectedModelsBoats, Range<DateTime> rangeDate)
+        {
+            return _context.v_detailDailyReportPopularBoatsAllTime.Where(r =>
+            (listSelectedModelsBoats.Count > 0 ? listSelectedModelsBoats.Any(l => r.Model == l) : false) &&
+            r.Date >= rangeDate.BeginValue &&
+            r.Date <= rangeDate.EndValue).OrderBy(r => r.Date).AsNoTracking().ToList();
+        }
+
+        public List<v_detailWeeklyEconomicReportAllTime> GetDetailWeeklyEconomicReport(Date beginValueRangeDate, Date endValueRangeDate)
+        {
+            return _context.v_detailWeeklyEconomicReportAllTime.Where(r =>
+            r.Year >= beginValueRangeDate.Year &&
+            r.Year <= endValueRangeDate.Year &&
+            (r.Year == beginValueRangeDate.Year ? r.Week >= beginValueRangeDate.Week : true) &&
+            (r.Year == endValueRangeDate.Year ? r.Week <= endValueRangeDate.Week : true)).OrderBy(r => r.Year).ThenBy(r => r.Week).AsNoTracking().ToList();
+        }
+
+        public List<v_detailWeeklyReportBestSalesPersonsAllTime> GetDetailWeeklyReportBestSalesPersons(List<string> listSelectedSalesPersons, Date beginValueRangeDate, Date endValueRangeDate)
+        {
+            return _context.v_detailWeeklyReportBestSalesPersonsAllTime.Where(r =>
+            (listSelectedSalesPersons.Count > 0 ? listSelectedSalesPersons.Any(l => r.FullName == l) : false) &&
+            r.Year >= beginValueRangeDate.Year &&
+            r.Year <= endValueRangeDate.Year &&
+            (r.Year == beginValueRangeDate.Year ? r.Week >= beginValueRangeDate.Week : true) &&
+            (r.Year == endValueRangeDate.Year ? r.Week <= endValueRangeDate.Week : true)).OrderBy(r => r.Year).ThenBy(r => r.Week).AsNoTracking().ToList();
+        }
+
+        public List<v_detailWeeklyReportPopularBoatsAllTime> GetDetailWeeklyReportPopularBoats(List<string> listSelectedModelsBoats, Date beginValueRangeDate, Date endValueRangeDate)
+        {
+            return _context.v_detailWeeklyReportPopularBoatsAllTime.Where(r =>
+            (listSelectedModelsBoats.Count > 0 ? listSelectedModelsBoats.Any(l => r.Model == l) : false) &&
+            r.Year >= beginValueRangeDate.Year &&
+            r.Year <= endValueRangeDate.Year &&
+            (r.Year == beginValueRangeDate.Year ? r.Week >= beginValueRangeDate.Week : true) &&
+            (r.Year == endValueRangeDate.Year ? r.Week <= endValueRangeDate.Week : true)).OrderBy(r => r.Year).ThenBy(r => r.Week).AsNoTracking().ToList();
+        }
+
+        public List<v_detailMonthlyEconomicReportAllTime> GetDetailMonthlyEconomicReport(Date beginValueRangeDate, Date endValueRangeDate)
+        {
+            return _context.v_detailMonthlyEconomicReportAllTime.Where(r =>
+            r.Year >= beginValueRangeDate.Year &&
+            r.Year <= endValueRangeDate.Year &&
+            (r.Year == beginValueRangeDate.Year ? r.Month >= beginValueRangeDate.Month : true) &&
+            (r.Year == endValueRangeDate.Year ? r.Month <= endValueRangeDate.Month : true)).OrderBy(r => r.Year).ThenBy(r => r.Month).AsNoTracking().ToList();
+        }
+
+        public List<v_detailMonthlyReportBestSalesPersonsAllTime> GetDetailMonthlyReportBestSalesPersons(List<string> listSelectedSalesPersons, Date beginValueRangeDate, Date endValueRangeDate)
+        {
+            return _context.v_detailMonthlyReportBestSalesPersonsAllTime.Where(r =>
+            (listSelectedSalesPersons.Count > 0 ? listSelectedSalesPersons.Any(l => r.FullName == l) : false) &&
+            r.Year >= beginValueRangeDate.Year &&
+            r.Year <= endValueRangeDate.Year &&
+            (r.Year == beginValueRangeDate.Year ? r.Month >= beginValueRangeDate.Month : true) &&
+            (r.Year == endValueRangeDate.Year ? r.Month <= endValueRangeDate.Month : true)).OrderBy(r => r.Year).ThenBy(r => r.Month).AsNoTracking().ToList();
+        }
+
+        public List<v_detailMonthlyReportPopularBoatsAllTime> GetDetailMonthlyReportPopularBoats(List<string> listSelectedModelsBoats, Date beginValueRangeDate, Date endValueRangeDate)
+        {
+            return _context.v_detailMonthlyReportPopularBoatsAllTime.Where(r =>
+            (listSelectedModelsBoats.Count > 0 ? listSelectedModelsBoats.Any(l => r.Model == l) : false) &&
+            r.Year >= beginValueRangeDate.Year &&
+            r.Year <= endValueRangeDate.Year &&
+            (r.Year == beginValueRangeDate.Year ? r.Month >= beginValueRangeDate.Month : true) &&
+            (r.Year == endValueRangeDate.Year ? r.Month <= endValueRangeDate.Month : true)).OrderBy(r => r.Year).ThenBy(r => r.Month).AsNoTracking().ToList();
+        }
+
+        public List<v_detailQuarterlyEconomicReportAllTime> GetDetailQuarterlyEconomicReport(Date beginValueRangeDate, Date endValueRangeDate)
+        {
+            return _context.v_detailQuarterlyEconomicReportAllTime.Where(r =>
+            r.Year >= beginValueRangeDate.Year &&
+            r.Year <= endValueRangeDate.Year && 
+            (r.Year == beginValueRangeDate.Year ? r.Quarter >= beginValueRangeDate.Quarter : true) &&
+            (r.Year == endValueRangeDate.Year ? r.Quarter <= endValueRangeDate.Quarter : true)).OrderBy(r => r.Year).ThenBy(r => r.Quarter).AsNoTracking().ToList();
+        }
+
+        public List<v_detailQuarterlyReportBestSalesPersonsAllTime> GetDetailQuarterlyReportBestSalesPersons(List<string> listSelectedSalesPersons, Date beginValueRangeDate, Date endValueRangeDate)
+        {
+            return _context.v_detailQuarterlyReportBestSalesPersonsAllTime.Where(r =>
+            (listSelectedSalesPersons.Count > 0 ? listSelectedSalesPersons.Any(l => r.FullName == l) : false) &&
+            r.Year >= beginValueRangeDate.Year &&
+            r.Year <= endValueRangeDate.Year &&
+            (r.Year == beginValueRangeDate.Year ? r.Quarter >= beginValueRangeDate.Quarter : true) &&
+            (r.Year == endValueRangeDate.Year ? r.Quarter <= endValueRangeDate.Quarter : true)).OrderBy(r => r.Year).ThenBy(r => r.Quarter).AsNoTracking().ToList();
+        }
+
+        public List<v_detailQuarterlyReportPopularBoatsAllTime> GetDetailQuarterlyReportPopularBoats(List<string> listSelectedModelsBoats, Date beginValueRangeDate, Date endValueRangeDate)
+        {
+            return _context.v_detailQuarterlyReportPopularBoatsAllTime.Where(r =>
+            (listSelectedModelsBoats.Count > 0 ? listSelectedModelsBoats.Any(l => r.Model == l) : false) &&
+            r.Year >= beginValueRangeDate.Year &&
+            r.Year <= endValueRangeDate.Year &&
+            (r.Year == beginValueRangeDate.Year ? r.Quarter >= beginValueRangeDate.Quarter : true) &&
+            (r.Year == endValueRangeDate.Year ? r.Quarter <= endValueRangeDate.Quarter : true)).OrderBy(r => r.Year).ThenBy(r => r.Quarter).AsNoTracking().ToList();
+        }
+
+        public List<v_detailYearlyEconomicReportAllTime> GetDetailYearlyEconomicReport(Date beginValueRangeDate, Date endValueRangeDate)
+        {
+            return _context.v_detailYearlyEconomicReportAllTime.Where(r =>
+            r.Year >= beginValueRangeDate.Year &&
+            r.Year <= endValueRangeDate.Year).OrderBy(r => r.Year).AsNoTracking().ToList();
+        }
+
+        public List<v_detailYearlyReportBestSalesPersonsAllTime> GetDetailYearlyReportBestSalesPersons(List<string> listSelectedSalesPersons, Date beginValueRangeDate, Date endValueRangeDate)
+        {
+            return _context.v_detailYearlyReportBestSalesPersonsAllTime.Where(r =>
+            (listSelectedSalesPersons.Count > 0 ? listSelectedSalesPersons.Any(l => r.FullName == l) : false) &&
+            r.Year >= beginValueRangeDate.Year &&
+            r.Year <= endValueRangeDate.Year).OrderBy(r => r.Year).AsNoTracking().ToList();
+        }
+
+        public List<v_detailYearlyReportPopularBoatsAllTime> GetDetailYearlyReportPopularBoats(List<string> listSelectedModelsBoats, Date beginValueRangeDate, Date endValueRangeDate)
+        {
+            return _context.v_detailYearlyReportPopularBoatsAllTime.Where(r =>
+            (listSelectedModelsBoats.Count > 0 ? listSelectedModelsBoats.Any(l => r.Model == l) : false) &&
+            r.Year >= beginValueRangeDate.Year &&
+            r.Year <= endValueRangeDate.Year).OrderBy(r => r.Year).AsNoTracking().ToList();
+        }
+
+        public List<string> GetStringListSalesPeople()
+        {
+            var list = new List<string>();
+
+            GetSalesPeople().ForEach(s => list.Add($"{s.FirstName} {s.FamilyName}"));
+
+            return list;
+        }
+
+        public List<SalesPerson> GetSalesPeople()
+        {
+            return _context.SalesPerson.AsNoTracking().ToList();
         }
     }
 }

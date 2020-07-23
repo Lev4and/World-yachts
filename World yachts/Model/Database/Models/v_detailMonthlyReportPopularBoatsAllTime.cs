@@ -12,12 +12,14 @@ namespace World_yachts.Model.Database.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class v_detailReportBestSalesPersonAllTime
+    public partial class v_detailMonthlyReportPopularBoatsAllTime
     {
-        public Nullable<System.DateTime> Date { get; set; }
-        public int IdSalesPerson { get; set; }
-        public string FullName { get; set; }
+        public string Date { get; set; }
+        public Nullable<int> Year { get; set; }
+        public Nullable<int> Month { get; set; }
+        public int IdBoat { get; set; }
         public Nullable<int> Count { get; set; }
         public Nullable<int> Rate { get; set; }
+        public string Model { get; set; }
     }
 }

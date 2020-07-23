@@ -11,7 +11,6 @@ namespace World_yachts.ViewModels
 {
     public class AddBoatViewModel : BindableBase
     {
-        private readonly PageService _pageService;
         private EntityFramework _eF;
 
         public bool ThereIsMast { get; set; }
@@ -40,9 +39,9 @@ namespace World_yachts.ViewModels
 
         public ObservableCollection<Wood> Woods { get; set; }
 
-        public AddBoatViewModel(PageService pageService)
+        public AddBoatViewModel()
         {
-            _pageService = pageService;
+
         }
 
         public ICommand Loaded => new DelegateCommand(() =>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using World_yachts.Services;
 using World_yachts.ViewModels;
 
@@ -37,6 +38,10 @@ namespace World_yachts.Views
             services.AddTransient<ContractsViewModel>();
             services.AddTransient<AddContractViewModel>();
             services.AddTransient<ChangeContractViewModel>();
+            services.AddTransient<EconomicReportViewModel>();
+            services.AddTransient<PopularBoatsViewModel>();
+            services.AddTransient<BestSalesPersonsViewModel>();
+            services.AddTransient<ReportsViewModel>();
 
             services.AddSingleton<PageService>();
 
@@ -95,5 +100,13 @@ namespace World_yachts.Views
         public AddContractViewModel AddContractViewModel => _provider.GetRequiredService<AddContractViewModel>();
 
         public ChangeContractViewModel ChangeContractViewModel => _provider.GetRequiredService<ChangeContractViewModel>();
+
+        public EconomicReportViewModel EconomicReportViewModel => _provider.GetRequiredService<EconomicReportViewModel>();
+
+        public PopularBoatsViewModel PopularBoatsViewModel => _provider.GetRequiredService<PopularBoatsViewModel>();
+
+        public BestSalesPersonsViewModel BestSalesPersonsViewModel => _provider.GetRequiredService<BestSalesPersonsViewModel>();
+
+        public ReportsViewModel ReportsViewModel => _provider.GetRequiredService<ReportsViewModel>();
     }
 }

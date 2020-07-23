@@ -56,7 +56,7 @@ namespace World_yachts.ViewModels
 
         public ICommand Statistics => new DelegateCommand(() =>
         {
-
+            _pageService.ChangePage(new Reports());
         }, () => _config.TypeUser == "Owner");
 
         public ICommand Exit => new DelegateCommand(() =>

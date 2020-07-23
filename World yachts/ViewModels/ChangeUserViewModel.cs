@@ -6,13 +6,11 @@ using System.Windows.Input;
 using World_yachts.Model.Configurations;
 using World_yachts.Model.Database.Interactions;
 using World_yachts.Model.Database.Models;
-using World_yachts.Services;
 
 namespace World_yachts.ViewModels
 {
     public class ChangeUserViewModel : BindableBase
     {
-        private readonly PageService _pageService;
         private ConfigurationUser _config;
         private EntityFramework _eF;
         private User _user;
@@ -34,9 +32,9 @@ namespace World_yachts.ViewModels
 
         public ObservableCollection<Role> Roles { get; set; }
 
-        public ChangeUserViewModel(PageService pageService)
+        public ChangeUserViewModel()
         {
-            _pageService = pageService;
+
         }
 
         public ICommand Loaded => new DelegateCommand(() =>
