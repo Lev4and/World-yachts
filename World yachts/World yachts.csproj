@@ -134,6 +134,7 @@
     <Compile Include="Converters\TextToDouble.cs" />
     <Compile Include="Converters\TextToInt32.cs" />
     <Compile Include="Converters\ValueToVisibility.cs" />
+    <Compile Include="Model\Configurations\ConfigurationDatabase.cs" />
     <Compile Include="Model\Configurations\ConfigurationUser.cs" />
     <Compile Include="Model\Database\Interactions\DataActions\IAccordanable.cs" />
     <Compile Include="Model\Database\Interactions\DataActions\IAddable.cs" />
@@ -306,6 +307,7 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Logic\Date.cs" />
+    <Compile Include="Model\Logic\EFConnectionString.cs" />
     <Compile Include="Model\Logic\FormattingList.cs" />
     <Compile Include="Model\Logic\PathParser.cs" />
     <Compile Include="Model\Logic\Range.cs" />
@@ -338,6 +340,7 @@
     <Compile Include="ViewModels\PopularBoatsViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\ReportsViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\UserInformationSupplementViewModel.cs" />
     <Compile Include="ViewModels\UsersViewModel.cs" />
     <Compile Include="Views\Pages\Accessories.xaml.cs">
@@ -381,6 +384,9 @@
     </Compile>
     <Compile Include="Views\Pages\Reports.xaml.cs">
       <DependentUpon>Reports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\UserInformationSupplement.xaml.cs">
       <DependentUpon>UserInformationSupplement.xaml</DependentUpon>
@@ -526,6 +532,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Reports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -19,6 +19,7 @@ namespace World_yachts.ViewModels
         public MainWindowViewModel(PageService pageService)
         {
             _pageService = pageService;
+
             _eF = new EntityFramework();
 
             _pageService.OnPageChanged += (page) => PageSource = page;

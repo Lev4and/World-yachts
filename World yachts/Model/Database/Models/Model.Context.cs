@@ -21,7 +21,12 @@ namespace World_yachts.Model.Database.Models
             : base("name=WorldYachtsContext")
         {
         }
-    
+
+        public WorldYachtsContext(string nameOrConnectionString)
+            : base(nameOrConnectionString)
+        {
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

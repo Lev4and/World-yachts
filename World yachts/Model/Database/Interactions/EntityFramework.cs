@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using World_yachts.Model.Configurations;
 using World_yachts.Model.Database.Models;
 using World_yachts.Model.Logic;
 
@@ -11,16 +12,15 @@ namespace World_yachts.Model.Database.Interactions
 {
     public class EntityFramework : IInteraction
     {
+        private ConfigurationDatabase _config;
         private WorldYachtsContext _context;
 
         public EntityFramework()
         {
-            _context = new WorldYachtsContext();
+            _config = ConfigurationDatabase.GetConfiguration();
+            _context = new WorldYachtsContext(_config.ConnectionString);
 
-            var adapter = (IObjectContextAdapter)_context;
-            var objectContext = adapter.ObjectContext;
-
-            objectContext.CommandTimeout = 180;
+            SetCommandTimeout();
         }
 
         public bool AddAccessory(string accName, string descriptionOfAccessory, int price, double VAT, int inventory, int orderLevel, int orderBatch, int idPartner, List<string> listSelectedCompatibleModelBoats)
@@ -1334,6 +1334,14 @@ namespace World_yachts.Model.Database.Interactions
         public List<SalesPerson> GetSalesPeople()
         {
             return _context.SalesPerson.AsNoTracking().ToList();
+        }
+
+        private void SetCommandTimeout()
+        {
+            var adapter = (IObjectContextAdapter)_context;
+            var objectContext = adapter.ObjectContext;
+
+            objectContext.CommandTimeout = _config.CommandTimeout;
         }
     }
 }

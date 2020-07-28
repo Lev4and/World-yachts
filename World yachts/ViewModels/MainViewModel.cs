@@ -1,4 +1,5 @@
 ﻿using DevExpress.Mvvm;
+using System.Data.Entity.Core;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -36,7 +37,14 @@ namespace World_yachts.ViewModels
             {
                 Thread.Sleep(2000);
 
-                _eF.BlockingUsers();
+                try
+                {
+                    _eF.BlockingUsers();
+                }
+                catch(EntityException entityEx)
+                {
+                    MessageBox.Show("Сервер базы данных отключен или указан неверный адрес сервера", "Ошибка");
+                }
 
                 IsBackgroundTaskRunning = false;
             });
@@ -50,6 +58,11 @@ namespace World_yachts.ViewModels
         public ICommand Registration => new DelegateCommand(() =>
         {
             _pageService.ChangePage(new Registration());
+        }, () => IsBackgroundTaskRunning == false);
+
+        public ICommand Settings => new DelegateCommand(() =>
+        {
+            _pageService.ChangePage(new Settings());
         }, () => IsBackgroundTaskRunning == false);
 
         public ICommand Exit => new DelegateCommand(() =>

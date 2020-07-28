@@ -42,6 +42,7 @@ namespace World_yachts.Views
             services.AddTransient<PopularBoatsViewModel>();
             services.AddTransient<BestSalesPersonsViewModel>();
             services.AddTransient<ReportsViewModel>();
+            services.AddTransient<SettingsViewModel>();
 
             services.AddSingleton<PageService>();
 
@@ -108,5 +109,7 @@ namespace World_yachts.Views
         public BestSalesPersonsViewModel BestSalesPersonsViewModel => _provider.GetRequiredService<BestSalesPersonsViewModel>();
 
         public ReportsViewModel ReportsViewModel => _provider.GetRequiredService<ReportsViewModel>();
+
+        public SettingsViewModel SettingsViewModel => _provider.GetRequiredService<SettingsViewModel>();
     }
 }

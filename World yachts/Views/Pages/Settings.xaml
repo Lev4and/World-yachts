@@ -1,0 +1,126 @@
+﻿<Page x:Class="World_yachts.Views.Pages.Settings"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:World_yachts.Views.Pages"
+      xmlns:vm="clr-namespace:World_yachts.ViewModels"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:c="clr-namespace:World_yachts.Converters"
+      mc:Ignorable="d" 
+      DataContext="{Binding SettingsViewModel, Source={StaticResource ViewModelLocator}}"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Settings">
+    <Page.Resources>
+        <c:TextToInt32 x:Key="textToInt32"/>
+    </Page.Resources>
+    <Grid>
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding Loaded}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <TextBlock TextAlignment="Center"
+                           Text="Настройки"
+                           FontFamily="Comic Sans MS"
+                           FontSize="22"
+                           Margin="0,10,10,0"
+                           Padding="5,0"/>
+                <Button Content="Назад"
+                        Command="{Binding Back}"
+                        VerticalAlignment="Top" 
+                        HorizontalAlignment="Left" 
+                        Margin="10,10,0,0"
+                        FontFamily="Comic Sans MS"
+                        FontSize="18"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0" Width="300">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Label Content="Время выполнения запроса (MAX)"
+                       FontFamily="Comic Sans MS"
+                       FontSize="18" 
+                       Padding="0,5"/>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <TextBox Text="{Binding Path=CommandTimeout, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource textToInt32}}"
+                             FontFamily="Comic Sans MS"
+                             FontSize="18"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="0" Width="300">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Label Content="Введите адрес сервера"
+                       FontFamily="Comic Sans MS"
+                       FontSize="18" 
+                       Padding="0,5"/>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <TextBox x:Name="serverAddressTextBox"
+                             Text="{Binding Path=ServerAddress, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                             FontFamily="Comic Sans MS"
+                             FontSize="18"
+                             ToolTip="{Binding ElementName=serverAddressTextBox, Path=Text}">
+                    </TextBox>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2" Grid.Column="0" Width="300">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Label Content="Введите имя базы данных"
+                       FontFamily="Comic Sans MS"
+                       FontSize="18" 
+                       Padding="0,5"/>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <TextBox x:Name="databaseNameTextBox"
+                             Text="{Binding Path=DatabaseName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                             FontFamily="Comic Sans MS"
+                             FontSize="18"
+                             ToolTip="{Binding ElementName=databaseNameTextBox, Path=Text}">
+                    </TextBox>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Button Content="Сохранить изменения"
+                    Command="{Binding SaveChanges}"
+                    VerticalAlignment="Bottom" 
+                    Margin="0,0,0,10"
+                    Width="300"
+                    FontFamily="Comic Sans MS"
+                    FontSize="22"/>
+        </Grid>
+    </Grid>
+</Page>
